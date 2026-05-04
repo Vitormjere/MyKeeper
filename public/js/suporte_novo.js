@@ -33,7 +33,8 @@ async function novo() {
     }
 
     if(!senha){
-        document.getElementById('error-senha').textContent = 'Senha precisa receber valores'
+        document.getElementById('error-senha').textContent = 'Senha precisa receber valores';
+        return;
     }else if(senha.length < 8) {
         document.getElementById('error-senha').textContent = 'ERRO! Senha muito curta';
         return;
