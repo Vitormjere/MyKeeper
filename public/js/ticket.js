@@ -1,3 +1,8 @@
+function formatData(dataAmericana){
+    const[ano, mes, dia] = dataAmericana.split('-');
+    return `${dia}/${mes}/${ano}`;
+}
+
 function e(str) {
     const div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
@@ -49,11 +54,11 @@ function preencherTabela(tabela){
     `;
 
     for(var i=0;i<tabela.length;i++){
-        const btnEditar = tabela[i].status_ticket == 'ticket_respondido' || tabela[i].status_ticket == 'ticket_encerrado'
+        const btnEditar = tabela[i].status_ticket == tabela[i].status_ticket == 'ticket_encerrado'
             ? 'Não pode ser editado.' // não exibe o botão
             : `<button class="btn-editar"><a href="ticket_usuario_alterar.php?id=${tabela[i].id}">Editar</a></button>`;
         
-        const BtnExcluir = tabela[i].status_ticket == 'ticket_respondido' || tabela[i].status_ticket == 'ticket_encerrado'
+        const BtnExcluir = tabela[i].status_ticket == tabela[i].status_ticket == 'ticket_encerrado'
             ? 'Não pode ser excluído.' // não exibe o botão
             : `<button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id})">Excluir</a></button>`;
 
@@ -61,7 +66,7 @@ function preencherTabela(tabela){
                 <td> ${tabela[i].id} </td>
                 <td> ${e(tabela[i].titulo)} </td>
                 <td> ${e(tabela[i].descricao)} </td>
-                <td> ${e(tabela[i].data_ticket)} </td>
+                <td> ${e(formatData(tabela[i].data_ticket))} </td>
                 <td> ${respostaOuTracos(tabela[i].resposta_ticket)} </td>
                 <td> ${e(tabela[i].status_ticket)} </td>
                 <td class="botoes"> 

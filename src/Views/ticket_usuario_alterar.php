@@ -29,7 +29,7 @@
             </div>
             <div>
                 <label for="descricao">Descrição</label>
-                <input type="text" name="descricao" id="descricao" placeholder="Descrição do ticket">
+                <textarea name="descricao" id="descricao" placeholder="Descrição do ticket" style="resize: none;"></textarea>
                 <p id="error-descricao"></p>
             </div>
             <div>

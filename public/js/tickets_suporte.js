@@ -4,6 +4,11 @@ function e(str) {
     return div.innerHTML;
 }
 
+function formatData(dataAmericana){
+    const[ano, mes, dia] = dataAmericana.split('-');
+    return `${dia}/${mes}/${ano}`;
+}
+
 function respostaOuTracos(valor) {
     if (valor === null || valor === undefined || String(valor).trim() === '' || String(valor).toLowerCase() === 'null') {
         return '---';
@@ -59,7 +64,7 @@ function preencherTabela(tabela){
                 <td> ${tabela[i].id} </td>
                 <td> ${e(tabela[i].titulo)} </td>
                 <td> ${e(tabela[i].descricao)} </td>
-                <td> ${e(tabela[i].data_ticket)} </td>
+                <td> ${e(formatData(tabela[i].data_ticket))} </td>
                 <td> ${respostaOuTracos(tabela[i].resposta_ticket)} </td>
                 <td> ${e(tabela[i].status_ticket)} </td>
                 <td class="botoes"> 
