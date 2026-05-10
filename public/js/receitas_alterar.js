@@ -9,11 +9,6 @@ function atualizarVisualSelect(select) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    document.querySelectorAll('select').forEach(select => {
-        atualizarVisualSelect(select);
-        select.addEventListener('change', () => atualizarVisualSelect(select));
-    });
-
     const response = await fetch('/mykeeper/config/check_session.php');
     const data = await response.json();
 
@@ -24,42 +19,52 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');
-    carregarProdutos(id);
+    carregarCategorias(id);
 });
 
-async function carregarProdutos(id) {
-    const retorno = await fetch('/mykeeper/src/Controllers/produto_get.php');
+async function carregarCategorias(id) {
+    const retorno = await fetch('/mykeeper/src/Controllers/categoria_get.php');
     const resposta = await retorno.json();
 
-    window._produtos = resposta.status == 'ok' ? resposta.data : [];
+    window._categorias = resposta.status == 'ok' ? resposta.data : [];
 
     buscar(id);
 }
 
-function criarLinhaIngrediente(produtoSelecionado = '', qtd = '', und = '') {
+function popularSelectCategoria(select, valorSelecionado = '') {
+    window._categorias.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.nome;
+        if (cat.id == valorSelecionado) option.selected = true;
+        select.appendChild(option);
+    });
+    atualizarVisualSelect(select);
+    select.addEventListener('change', () => atualizarVisualSelect(select));
+}
+
+function criarLinhaIngrediente(dados = {}) {
     const modelo = document.getElementById('modelo-ingrediente');
     const clone = modelo.cloneNode(true);
     clone.removeAttribute('id');
     clone.style.display = '';
 
-    const select = clone.querySelector('.select-produto');
-    window._produtos.forEach(p => {
-        const option = document.createElement('option');
-        option.value = p.id;
-        option.textContent = p.nome;
-        if (p.id == produtoSelecionado) option.selected = true;
-        select.appendChild(option);
-    });
+    const selectCat = clone.querySelector('.select-categoria');
+    const selectUnd = clone.querySelector('.select-und-medida');
 
-    atualizarVisualSelect(select);
-    select.addEventListener('change', () => atualizarVisualSelect(select));
+    popularSelectCategoria(selectCat, dados.id_categoria ?? '');
+    atualizarVisualSelect(selectUnd);
+    selectUnd.addEventListener('change', () => atualizarVisualSelect(selectUnd));
 
-    clone.querySelector('.input-qtd').value = qtd;
-    clone.querySelector('.input-und').value = und;
+    clone.querySelector('.input-nome').value = dados.nome ?? '';
+    clone.querySelector('.input-qtd').value = dados.qtd ?? '';
 
-    clone.querySelector('.btn-remover').addEventListener('click', () => {
-        clone.remove();
-    });
+    if (dados.und_medida) {
+        selectUnd.value = dados.und_medida;
+        atualizarVisualSelect(selectUnd);
+    }
+
+    clone.querySelector('.btn-remover').addEventListener('click', () => clone.remove());
 
     return clone;
 }
@@ -71,15 +76,14 @@ async function buscar(id) {
     if (resposta.status == 'ok') {
         const item = resposta.data;
         document.getElementById('id').value = id;
-        document.getElementById('titulo').value = e(item.titulo);
-        document.getElementById('descricao').value = e(item.descricao ?? '');
+        document.getElementById('titulo').value = item.titulo;
+        document.getElementById('descricao').value = item.descricao ?? '';
 
         const lista = document.getElementById('lista-ingredientes');
         item.ingredientes.forEach(ing => {
-            lista.appendChild(criarLinhaIngrediente(ing.id_produto, ing.qtd, ing.und_medida));
+            lista.appendChild(criarLinhaIngrediente(ing));
         });
     } else {
-        document.getElementById('error').textContent = 'ERRO: ' + resposta.mensagem;
         window.location.href = '/mykeeper/src/Views/receitas.php';
     }
 }
@@ -88,9 +92,7 @@ document.getElementById('adicionar-ingrediente').addEventListener('click', () =>
     document.getElementById('lista-ingredientes').appendChild(criarLinhaIngrediente());
 });
 
-document.getElementById('alterarreceita').addEventListener('click', () => {
-    alterar();
-});
+document.getElementById('alterarreceita').addEventListener('click', () => alterar());
 
 async function alterar() {
     const id = document.getElementById('id').value;
@@ -108,16 +110,7 @@ async function alterar() {
     }
 
     const linhas = document.querySelectorAll('#lista-ingredientes .ingrediente');
-    const ingredientes = [];
-
-    linhas.forEach(linha => {
-        const id_produto = linha.querySelector('.select-produto').value;
-        const qtd = linha.querySelector('.input-qtd').value;
-        const und_medida = linha.querySelector('.input-und').value.trim();
-        ingredientes.push({ id_produto, qtd, und_medida });
-    });
-
-    if (ingredientes.length === 0) {
+    if (linhas.length === 0) {
         document.getElementById('error-ingredientes').textContent = 'Adicione ao menos um ingrediente.';
         return;
     }
@@ -125,7 +118,16 @@ async function alterar() {
     const fd = new FormData();
     fd.append('titulo', titulo);
     fd.append('descricao', descricao);
-    fd.append('ingredientes', JSON.stringify(ingredientes));
+
+    linhas.forEach((linha, i) => {
+        fd.append(`ingredientes[${i}][nome]`, linha.querySelector('.input-nome').value.trim());
+        fd.append(`ingredientes[${i}][id_categoria]`, linha.querySelector('.select-categoria').value);
+        fd.append(`ingredientes[${i}][und_medida]`, linha.querySelector('.select-und-medida').value);
+        fd.append(`ingredientes[${i}][qtd]`, linha.querySelector('.input-qtd').value);
+
+        const imagem = linha.querySelector('.input-imagem').files[0];
+        if (imagem) fd.append(`ingredientes[${i}][imagem]`, imagem);
+    });
 
     const retorno = await fetch('/mykeeper/src/Controllers/receitas_alterar_back.php?id=' + id, {
         method: 'POST',
@@ -135,7 +137,6 @@ async function alterar() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
-        document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem;
         window.location.href = '/mykeeper/src/Views/receitas.php';
     } else {
         document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;

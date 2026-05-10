@@ -1,7 +1,6 @@
 <?php
 include_once(__DIR__ . '/../../config/valida_sessao.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,7 +12,7 @@ include_once(__DIR__ . '/../../config/valida_sessao.php');
 <body>
     <section>
         <a href="/mykeeper/src/Views/receitas.php">
-            <img src="/mykeeper/public/assets/perto.png" alt="x.png" style="position:fixed; top:12px; left:12px; width:32px; height:32px; object-fit:contain;">
+            <img src="/mykeeper/public/assets/perto.png" alt="voltar" style="position:fixed; top:12px; left:12px; width:32px; height:32px; object-fit:contain;">
         </a>
         <form>
             <div>
@@ -28,23 +27,56 @@ include_once(__DIR__ . '/../../config/valida_sessao.php');
                 <p id="error-descricao"></p>
             </div>
 
-            <div>
+            <div id="container-ingredientes">
                 <label>Ingredientes</label>
 
-                <!-- modelo clonado pelo JS, não visível -->
+                <!-- modelo clonado pelo JS -->
                 <div class="ingrediente" id="modelo-ingrediente" style="display:none;">
-                    <select class="select-produto">
-                        <option value="" data-placeholder="true">Escolha o produto</option>
-                    </select>
-                    <input type="number" class="input-qtd" placeholder="Quantidade" min="0.01" step="0.01">
-                    <input type="text" class="input-und" placeholder="Unidade (g, ml, xícara...)">
-                    <button type="button" class="btn-remover">Remover</button>
+                    <div class="ingrediente-header">
+                        <span class="ingrediente-titulo">Ingrediente</span>
+                        <button type="button" class="btn-remover">Remover</button>
+                    </div>
+                    <div class="ingrediente-campos">
+                        <div class="campo-grupo">
+                            <label>Nome do produto</label>
+                            <input type="text" class="input-nome" placeholder="Ex: Farinha de trigo">
+                        </div>
+                        <div class="campo-grupo">
+                            <label>Categoria</label>
+                            <select class="select-categoria">
+                                <option value="" data-placeholder="true">Escolha a categoria</option>
+                            </select>
+                        </div>
+                        <div class="campo-grupo">
+                            <label>Unidade de medida</label>
+                            <select class="select-und-medida">
+                                <option value="" data-placeholder="true">Escolha a unidade</option>
+                                <option value="kg">Quilo (kg)</option>
+                                <option value="gramas">Gramas (g)</option>
+                                <option value="l">Litro (L)</option>
+                                <option value="ml">Mililitro (mL)</option>
+                                <option value="unidade">Unidade</option>
+                                <option value="xicara">Xícara</option>
+                                <option value="colher_sopa">Colher de sopa</option>
+                                <option value="colher_cha">Colher de chá</option>
+                            </select>
+                        </div>
+                        <div class="campo-grupo campo-grupo--row">
+                            <div>
+                                <label>Quantidade</label>
+                                <input type="number" class="input-qtd" placeholder="0" min="0.01" step="0.01">
+                            </div>
+                            <div>
+                                <label>Ícone (opcional)</label>
+                                <input type="file" class="input-imagem" accept="image/png, image/jpeg, image/jpg">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="lista-ingredientes"></div>
                 <p id="error-ingredientes"></p>
-
-                <button type="button" id="adicionar-ingrediente">+ Ingrediente</button>
+                <button type="button" id="adicionar-ingrediente">+ Adicionar ingrediente</button>
             </div>
 
             <div>

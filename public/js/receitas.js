@@ -20,57 +20,113 @@ async function buscar() {
     const retorno = await fetch('/mykeeper/src/Controllers/receitas_get.php');
     const resposta = await retorno.json();
 
-    if (resposta.status == 'ok') {
-        preencherTabela(resposta.data);
+    if (resposta.status == 'ok' && resposta.data.length > 0) {
+        renderizarCards(resposta.data);
     } else {
-        document.getElementById('mensagem').textContent = 'Não há receitas cadastradas.';
+        document.getElementById('mensagem').textContent = 'Nenhuma receita cadastrada.';
     }
 }
 
-function preencherTabela(tabela) {
-    var html = `
-    <table class="tabela">
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Descrição</th>
-            <th>Gerada por IA</th>
-            <th>Data de Geração</th>
-            <th>#</th>
-        </tr>
-    `;
+function renderizarCards(receitas) {
+    const container = document.getElementById('item');
+    container.innerHTML = '';
 
-    for (var i = 0; i < tabela.length; i++) {
-        html += `<tr>
-            <td>${tabela[i].id}</td>
-            <td>${e(tabela[i].titulo)}</td>
-            <td>${e(tabela[i].descricao ?? '-')}</td>
-            <td>${tabela[i].gerada_por_ia ? 'Sim' : 'Não'}</td>
-            <td>${e(tabela[i].data_geracao)}</td>
-            <td class="botoes">
-                <button class="btn-editar"><a href="receitas_alterar.php?id=${tabela[i].id}">Editar</a></button>
-                <button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id})">Excluir</a></button>
-            </td>
-        </tr>`;
-    }
+    receitas.forEach(receita => {
+        const card = document.createElement('div');
+        card.classList.add('receita-card');
+        card.dataset.id = receita.id;
+        card.dataset.carregado = 'false';
 
-    html += `</table>`;
-    document.getElementById('item').innerHTML = html;
+        card.innerHTML = `
+            <div class="receita-header">
+                <div class="receita-info">
+                    <span class="receita-titulo">${e(receita.titulo)}</span>
+                    <span class="receita-data">${formatarData(receita.data_geracao)}</span>
+                </div>
+                <div class="receita-meta">
+                    <span class="badge ${receita.gerada_por_ia ? 'badge-ia' : 'badge-manual'}">
+                        ${receita.gerada_por_ia ? 'IA' : 'Manual'}
+                    </span>
+                    <span class="receita-chevron">▼</span>
+                </div>
+            </div>
+            <div class="receita-corpo">
+                <h4> Descrição </h4>
+                <p class="receita-descricao"></p>
+                <ul class="receita-ingredientes"></ul>
+                <div class="receita-acoes">
+                    <button class="btn-editar" onclick="window.location.href='/mykeeper/src/Views/receitas_alterar.php?id=${receita.id}'">Editar</button>
+                    <button class="btn-excluir" onclick="excluir(${receita.id}, this)">Excluir</button>
+                </div>
+            </div>
+        `;
+
+        card.querySelector('.receita-header').addEventListener('click', () => {
+            toggleCard(card);
+        });
+
+        container.appendChild(card);
+    });
 }
 
-async function excluir(id) {
+async function toggleCard(card) {
+    const corpo = card.querySelector('.receita-corpo');
+    const aberto = card.classList.contains('aberto');
+
+    // fecha todos os outros
+    document.querySelectorAll('.receita-card.aberto').forEach(c => {
+        if (c !== card) c.classList.remove('aberto');
+    });
+
+    if (aberto) {
+        card.classList.remove('aberto');
+        return;
+    }
+
+    // busca detalhes só na primeira vez
+    if (card.dataset.carregado === 'false') {
+        const id = card.dataset.id;
+        const retorno = await fetch('/mykeeper/src/Controllers/receitas_get.php?id=' + id);
+        const resposta = await retorno.json();
+
+        if (resposta.status == 'ok') {
+            const r = resposta.data;
+
+            corpo.querySelector('.receita-descricao').textContent = r.descricao || 'Sem descrição.';
+
+            const lista = corpo.querySelector('.receita-ingredientes');
+            lista.innerHTML = '';
+
+            r.ingredientes.forEach(ing => {
+                const li = document.createElement('li');
+                li.textContent = `${e(ing.nome)} — ${ing.qtd} ${e(ing.und_medida)}`;
+                lista.appendChild(li);
+            });
+
+            card.dataset.carregado = 'true';
+        }
+    }
+
+    card.classList.add('aberto');
+}
+
+async function excluir(id, btn) {
     if (!confirm('Tem certeza que deseja excluir esta receita?')) return;
 
     const retorno = await fetch('/mykeeper/src/Controllers/receitas_excluir.php?id=' + id);
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
+        btn.closest('.receita-card').remove();
         alert('SUCESSO! ' + resposta.mensagem);
     } else {
         alert('ERRO! ' + resposta.mensagem);
     }
+}
 
-    window.location.reload();
+function formatarData(data) {
+    const [ano, mes, dia] = data.split('-');
+    return `${dia}/${mes}/${ano}`;
 }
 
 document.getElementById('receita_nova').addEventListener('click', () => {

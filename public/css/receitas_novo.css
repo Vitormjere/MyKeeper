@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -19,7 +15,7 @@ body {
 
 section {
     width: 100%;
-    max-width: 660px;
+    max-width: 620px;
     background-color: #1a1d23;
     padding: 40px;
     border-radius: 16px;
@@ -28,7 +24,7 @@ section {
 }
 
 section::before {
-    content: 'Nova Receita';
+    content: 'Nova Receita'; /* → 'Alterar Receita' no outro arquivo */
     display: block;
     font-size: 1.6rem;
     color: #ffffff;
@@ -75,9 +71,7 @@ select {
 }
 
 input[type="text"],
-input[type="number"] {
-    min-height: 54px;
-}
+input[type="number"] { min-height: 54px; }
 
 textarea {
     min-height: 120px;
@@ -104,73 +98,126 @@ input:focus, textarea:focus, select:focus {
     transform: translateY(-1px);
 }
 
-select:hover {
-    background-color: #121922;
-    border-color: #46515e;
+select:hover { background-color: #121922; border-color: #46515e; }
+select[data-empty="true"] { color: #8fa4a1; font-weight: 500; }
+select option { background-color: #161c24; color: #f5fffb; font-weight: 600; }
+
+input[type="file"] {
+    background-color: #24282f;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px dashed #3d424a;
+    color: #a0a0a0;
+    cursor: pointer;
+    min-height: unset;
+    transform: none;
 }
 
-select[data-empty="true"] {
-    color: #8fa4a1;
-    font-weight: 500;
-}
-
-select option {
-    background-color: #161c24;
-    color: #f5fffb;
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #00ffa3;
+    border: none;
+    border-radius: 4px;
+    color: #0b0e11;
+    padding: 5px 12px;
+    margin-right: 10px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 /* --- Ingredientes --- */
 
+#container-ingredientes > label {
+    display: block;
+    margin-bottom: 8px;
+}
+
 #lista-ingredientes {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 4px;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .ingrediente {
+    background-color: #10151b;
+    border: 1px solid #2d3139;
+    border-radius: 12px;
+    padding: 16px;
     display: flex;
-    gap: 8px;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ingrediente-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.ingrediente .select-produto {
-    flex: 2;
+.ingrediente-titulo {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #00ffa3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ingrediente-campos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-grupo label {
+    font-size: 0.78rem;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.campo-grupo input,
+.campo-grupo select {
     min-height: 46px;
     font-size: 0.9rem;
     border-radius: 10px;
     padding: 10px 14px;
 }
 
-.ingrediente .input-qtd {
-    flex: 0 0 90px;
-    min-height: 46px;
-    font-size: 0.9rem;
-    border-radius: 10px;
-    padding: 10px 14px;
+.campo-grupo--row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
 }
 
-.ingrediente .input-und {
+.campo-grupo--row > div {
     flex: 1;
-    min-height: 46px;
-    font-size: 0.9rem;
-    border-radius: 10px;
-    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-grupo--row label {
+    font-size: 0.78rem;
+    color: #a0a0a0;
+    text-transform: uppercase;
 }
 
 .btn-remover {
-    flex-shrink: 0;
     background-color: rgba(255, 77, 77, 0.1);
     color: #ff4d4d;
     border: 1px solid #ff4d4d;
-    border-radius: 8px;
-    padding: 8px 12px;
+    border-radius: 6px;
+    padding: 6px 12px;
     font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    white-space: nowrap;
 }
 
 .btn-remover:hover {
@@ -188,8 +235,8 @@ select option {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-top: 6px;
-    align-self: flex-start;
+    width: 100%;
+    margin-top: 4px;
 }
 
 #adicionar-ingrediente:hover {
@@ -206,7 +253,7 @@ p[id^="error"] {
 
 /* --- Botão principal --- */
 
-#addreceita {
+#addreceita, #alterarreceita {
     background-color: #00ffa3;
     color: #0b0e11;
     border: none;
@@ -221,26 +268,17 @@ p[id^="error"] {
     margin-top: 10px;
 }
 
-#addreceita:hover {
+#addreceita:hover, #alterarreceita:hover {
     background-color: #00d68a;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 255, 163, 0.4);
 }
 
-#addreceita:active {
+#addreceita:active, #alterarreceita:active {
     transform: translateY(0);
 }
 
 @media (max-width: 480px) {
-    section {
-        padding: 25px 20px;
-    }
-
-    .ingrediente {
-        flex-wrap: wrap;
-    }
-
-    .ingrediente .input-qtd {
-        flex: 0 0 80px;
-    }
+    section { padding: 25px 20px; }
+    .campo-grupo--row { flex-direction: column; }
 }
