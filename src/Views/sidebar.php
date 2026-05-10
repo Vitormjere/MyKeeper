@@ -12,8 +12,8 @@
             <button id="categoriasButtonLink">Categorias</button>
             <!-- <button id="avencerButtonLink">A Vencer</button>
             <button id="comprasButtonLink">Compras</button>
-            <button id="receitasButtonLink">Receitas</button>
             <button id="historicoButtonLink">Historico</button> -->
+            <button id="receitasButtonLink">Receitas</button>
             <button id="perfilButtonLink">Perfil</button>
             <button id="adminHomeButtonLink">Admin</button>
             <button id="ticketButtonLink">Tickets</button>
