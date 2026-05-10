@@ -38,7 +38,7 @@ function preencherTabela(tabela){
             ? `<img src="${e(tabela[i].icone_estoque)}" style="width:40px; height:40px;">`
             : 'Sem ícone';
 
-        html += `<div class="card">
+        html += `<div class="card" style="cursor:pointer;" onclick="window.location.href='estoque_itens.php?id_estoque=${tabela[i].id}'">
                     <div class="card-icone">
                         ${icone}
                     </div>
@@ -49,8 +49,8 @@ function preencherTabela(tabela){
                         Criado em: ${new Date(tabela[i].data_criacao).toLocaleDateString('pt-BR')}
                     </div>
                     <div class="card-botoes">
-                        <button class = "btn-editar"><a href="estoque_alterar.php?id=${tabela[i].id}">Editar</a></button>
-                        <button class = "btn-excluir"><a href="#" onclick="excluir(${tabela[i].id})">Excluir</a></button>
+                        <button class="btn-editar" onclick="event.stopPropagation()"><a href="estoque_alterar.php?id=${tabela[i].id}">Editar</a></button>
+                        <button class="btn-excluir" onclick="event.stopPropagation(); excluir(${tabela[i].id})">Excluir</button>
                     </div>
                 </div>`;
     }
