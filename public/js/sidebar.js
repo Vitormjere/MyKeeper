@@ -26,3 +26,6 @@ document.getElementById('ticketButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/ticket_usuario.php';
 });
 
+document.getElementById('estoquesButtonLink').addEventListener('click', () => {
+    window.location.href = '/mykeeper/src/Views/estoque.php';
+});
