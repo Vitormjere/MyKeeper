@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0e11;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+body > div, 
+section {
+    margin-left: 260px; 
+    padding: 40px;
+}
+
+body > div:first-of-type {
+    padding-bottom: 0; 
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+section > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 900px;
+}
+
+section button {
+    background-color: #1a1d23;
+    color: #ffffff;
+    border: 1px solid #2d3139;
+    border-radius: 16px;
+    padding: 60px 30px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+section button:hover {
+    background-color: rgba(0, 255, 163, 0.05);
+    border-color: #00ffa3;
+    color: #00ffa3;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 255, 163, 0.15);
+}
+
+section button::before {
+    font-size: 2.5rem;
+    display: block;
+}
+
+#cadastroSuporteButtonLink::before {
+    content: "👤+";
+}
+
+#ticketsSuporte::before {
+    content: "🎫";
+}
+
+@media (max-width: 1024px) {
+    body > div, 
+    section {
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    section > div {
+        grid-template-columns: 1fr;
+    }
+}

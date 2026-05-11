@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0e11;
+    color: #e0e0e0;
+    display: flex;
+    min-height: 100vh;
+}
+
+section {
+    margin-left: 260px; 
+    padding: 40px;
+    width: calc(100% - 260px);
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+#item {
+    background-color: #1a1d23;
+    border-radius: 12px;
+    border: 1px solid #2d3139;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #24282f;
+    color: #00ffa3; 
+    padding: 15px 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+}
+
+.tabela td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #2d3139;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.tabela tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+td.botoes {
+    white-space: nowrap; 
+    text-align: right;
+    width: 200px;
+}
+
+.btn-editar, .btn-excluir {
+    display: inline-flex;
+    margin-left: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.btn-editar a, .btn-excluir a {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: inherit;
+    line-height: 1;
+}
+
+.btn-editar {
+    background-color: rgba(0, 255, 163, 0.1);
+    color: #00ffa3;
+    border-color: #00ffa3;
+}
+
+.btn-editar:hover {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    transform: translateY(-2px);
+}
+
+.btn-excluir {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+.btn-excluir:hover {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.addvs {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 25px;
+    float: right; 
+    box-shadow: 0 4px 14px rgba(0, 255, 163, 0.2);
+}
+
+.addvs:hover {
+    background-color: #00d68a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 163, 0.4);
+}
+
+@media (max-width: 1024px) {
+    section {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+}

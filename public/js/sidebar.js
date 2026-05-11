@@ -26,6 +26,10 @@ document.getElementById('ticketButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/ticket_usuario.php';
 });
 
+document.getElementById('receitasButtonLink').addEventListener('click', () => {
+    window.location.href = '/mykeeper/src/Views/receitas.php';
+})
+
 document.getElementById('estoquesButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/estoque.php';
 });

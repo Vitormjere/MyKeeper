@@ -1,0 +1,55 @@
+.sideNavBar {
+    width: 260px;
+    height: 100vh !important; 
+    background-color: #121418;
+    color: #ffffff;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important; 
+    padding: 0 !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #222;
+    z-index: 999;
+}
+
+.sideNavBar h2 {
+    height: 100px; 
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    margin: 0 !important;
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.sideNavBar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 15px;
+    margin-top: 10px; 
+}
+
+.sideNavBar button {
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    width: 100%;
+    display: flex; 
+    align-items: center;
+}
+
+#logoffButtonLink {
+    margin-top: auto; 
+    margin-bottom: 20px; 
+    color: #ff4d4d;
+}

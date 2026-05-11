@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0e11;
+    color: #e0e0e0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+section {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+section > div:first-child {
+    background-color: #1a1d23;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #2d3139;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-align: center;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #00ffa3; 
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    background-color: #0b0e11;
+    border: 1px solid #3d424a;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    border-color: #00ffa3;
+    box-shadow: 0 0 8px rgba(0, 255, 163, 0.15);
+}
+
+form p {
+    text-align: right;
+    margin: 8px 0 0 0;
+    font-size: 0.8rem;
+}
+
+form a {
+    color: #00ffa3;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+button[type="submit"] {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+    background-color: #00d68a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 163, 0.3);
+}
+
+.divider {
+    margin: 25px 0 0 0;
+    border-top: 1px solid #2d3139;
+    position: relative;
+    text-align: center;
+}
+
+.divider span {
+    background-color: #1a1d23;
+    padding: 0 10px;
+    color: #666;
+    font-size: 0.7rem;
+    font-weight: 700;
+    position: relative;
+    top: -10px;
+}
+
+#createAccount {
+    background: transparent;
+    border: 1px solid #3d424a;
+    color: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#createAccount:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: #ffffff;
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 10px;
+    }
+}

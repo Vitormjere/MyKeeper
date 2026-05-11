@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0e11;
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+section {
+    width: 100%;
+    max-width: 500px;
+    background-color: #1a1d23;
+    padding: 40px;
+    border-radius: 16px;
+    border: 1px solid #2d3139;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-align: center;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #00ffa3; 
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    background-color: #0b0e11;
+    border: 1px solid #3d424a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    color: #ffffff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #00ffa3;
+    box-shadow: 0 0 8px rgba(0, 255, 163, 0.15);
+}
+
+input::placeholder {
+    color: #555;
+}
+
+#alterarTicket {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+#alterarTicket:hover {
+    background-color: #00d68a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 163, 0.3);
+}
+
+#alterarTicket:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 30px 20px;
+    }
+}

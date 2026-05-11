@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+body {
+    margin: 0;
+    padding-left: 260px;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    align-items: flex-start;
+    background-color: #0b0e11; 
+    color: #e0e0e0;
+    display: block; 
+}
+
+section {
+    margin-left: 260px; 
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    margin-top: 0;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+section > div:nth-child(2) {
+    background-color: #1a1d23;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #2d3139;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+section p {
+    font-size: 1rem;
+    margin: 15px 0;
+    color: #a0a0a0;
+    border-bottom: 1px solid #2d3139;
+    padding-bottom: 10px;
+}
+
+section p strong {
+    color: #00ffa3; 
+    display: inline-block;
+    width: 80px;
+}
+
+section span {
+    color: #ffffff;
+}
+
+section > div:last-child {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-editar {
+    background-color: #00ffa3;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-editar a {
+    text-decoration: none;
+    color: #0b0e11;
+    font-weight: 600;
+}
+
+.btn-editar:hover {
+    background-color: #00d68a;
+    transform: translateY(-2px);
+}
+
+.btn-desativar {
+    background-color: transparent;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-desativar:hover {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    section {
+        margin-left: 0; 
+        padding: 20px;
+    }
+}

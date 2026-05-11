@@ -1,0 +1,151 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0e11;
+    color: #ffffff;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative; /* Essencial para o footer absoluto funcionar em relação ao corpo */
+}
+
+/* Brilho de fundo (Glow Effect) */
+.glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 255, 163, 0.1) 0%, rgba(11, 14, 17, 0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+/* ==========================================================================
+   2. CONTAINER PRINCIPAL
+   ========================================================================== */
+.landing-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    padding: 40px 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-badge {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin: 0 auto 20px;
+    box-shadow: 0 0 20px rgba(0, 255, 163, 0.3);
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    background: linear-gradient(to bottom, #ffffff, #a0a0a0);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   3. TEXTOS E BOTÃO
+   ========================================================================== */
+.tagline {
+    color: #00ffa3;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+#startNowButton {
+    background-color: #ffffff;
+    color: #0b0e11;
+    border: none;
+    padding: 18px 40px;
+    border-radius: 50px; /* Estilo pílula para landing page */
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#startNowButton:hover {
+    transform: scale(1.05);
+    background-color: #00ffa3;
+    box-shadow: 0 10px 30px rgba(0, 255, 163, 0.3);
+}
+
+#startNowButton .arrow {
+    transition: transform 0.3s ease;
+}
+
+#startNowButton:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   4. FOOTER
+   ========================================================================== */
+footer {
+    position: fixed; /* Troquei para fixed para garantir que ignore QUALQUER container */
+    bottom: 20px;    /* Distância do fundo */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;     /* Garante que fique acima de tudo */
+}
+
+footer p {
+    color: #444;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;       /* Remove margens que podem deslocar o texto */
+    text-align: center; /* Reforça a centralização */
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    h1 { font-size: 2.5rem; }
+    .description { font-size: 1rem; }
+}
