@@ -53,7 +53,9 @@
                         <p id="error-senha"></p>
                     </div>
                 </div>
-
+                <div>
+                    <p id="error"></p>
+                </div>
                 <button type="submit">Criar conta</button>
             </form>
             

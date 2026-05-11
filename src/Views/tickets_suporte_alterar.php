@@ -41,7 +41,7 @@
             </div>
             <div>
                 <label for="resposta_ticket">Resposta</label>
-                <input type="text" name="resposta_ticket" id="resposta_ticket" placeholder="Resposta do ticket">
+                <textarea name="resposta_ticket" id="resposta_ticket" placeholder="Resposta do ticker" style="resize: none;"></textarea>
                 <p id="error-resposta"></p>
             </div>
             <div>

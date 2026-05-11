@@ -86,8 +86,10 @@ document.getElementById('alterarperfil').addEventListener('click', async () => {
     });
     const resposta = await retorno.json();
     if (resposta.status == 'ok') {
-        document.getElementById('error').textContent = 'Perfil atualizado com sucesso!';
-        window.location.href = '/mykeeper/src/Views/perfil_usuario.php';
+        document.getElementById('error').textContent = 'Perfil atualizado com sucesso!' + '.Redirecionando...';
+        setTimeout(() => {
+            window.location.href = '/mykeeper/src/Views/perfil_usuario.php';
+        }, 1000);
     } else {
         document.getElementById('error').textContent = 'Erro: ' + resposta.mensagem;
     }

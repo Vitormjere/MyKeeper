@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     buscar(id);
 });
 
-document.getElementById('icone_categoria').addEventListener('change', function(){
+document.getElementById('icone_estoque').addEventListener('change', function(){
     const file = this.files[0];
     if(file){
         const reader = new FileReader();
@@ -36,58 +36,50 @@ document.getElementById('icone_categoria').addEventListener('change', function()
 });
 
 async function buscar(id){
-    const retorno = await fetch('/mykeeper/src/Controllers/categoria_get.php?id='+id);
+    const retorno = await fetch('/mykeeper/src/Controllers/estoque_get.php?id='+id);
     const resposta = await retorno.json();
 
     if(resposta.status == 'ok'){
         var item = resposta.data[0];
 
-        document.getElementById('nome_categoria').value       = e(item.nome);
-        document.getElementById('descricao_categoria').value  = e(item.descricao);
+        document.getElementById('nome_estoque').value       = e(item.nome_estoque);
 
-        if(item.icone){
+        if(item.icone_estoque){
             const preview = document.getElementById('preview');
-            preview.src = item.icone; 
+            preview.src = item.icone_estoque; 
             preview.style.display = 'block';
         }
 
     }else{
         document.getElementById('error').textContent = "ERRO: "+resposta.mensagem;
-        window.location.href = 'categoria.php';
+        window.location.href = 'estoque.php';
     }
 }
 
-document.getElementById('alterarcategoria').addEventListener('click', ()=>{
+document.getElementById('alterarestoque').addEventListener('click', ()=>{
     alterar();
 });
 
 async function alterar(){
-    let nome_categoria       = document.getElementById('nome_categoria').value;
-    let descricao_categoria  = document.getElementById('descricao_categoria').value;
-    let id                   = document.getElementById('id').value;
-    let icone                = document.getElementById('icone_categoria').files[0];
+    let nome_estoque       = document.getElementById('nome_estoque').value;
+    let id                 = document.getElementById('id').value;
+    let icone_estoque      = document.getElementById('icone_estoque').files[0];
 
-    if(!nome_categoria){
+    if(!nome_estoque){
         document.getElementById('error-nome').textContent = 'Nome precisa receber valores';
-        return;
-    }
-
-    if(!descricao_categoria){
-        document.getElementById('error-descricao').textContent = 'Descrição precisa receber valores';
         return;
     }
 
     const fd = new FormData();
 
-    fd.append('nome_categoria', nome_categoria);
-    fd.append('descricao_categoria', descricao_categoria);
+    fd.append('nome_estoque', nome_estoque);
 
     // ENVIA IMAGEM SE EXISTIR
-    if(icone){
-        fd.append('icone_categoria', icone);
+    if(icone_estoque){
+        fd.append('icone_estoque', icone_estoque);
     }
 
-    const retorno = await fetch('/mykeeper/src/Controllers/categoria_alterar_back.php?id='+id, {
+    const retorno = await fetch('/mykeeper/src/Controllers/estoque_alterar_back.php?id='+id, {
         method: 'POST',
         body: fd
     });
@@ -95,11 +87,15 @@ async function alterar(){
     const resposta = await retorno.json();
 
     if(resposta.status == 'ok'){
-        document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
+        const msg = document.getElementById('error');
+        msg.style.color = '#00ffa3'; // Muda para verde em caso de sucesso
+        msg.textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
-            window.location.href = "/mykeeper/src/Views/categoria.php";
-        }, 1000);
+            window.location.href = "/mykeeper/src/Views/estoque.php";
+        }, 1500);
     }else{
-        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
+        const msg = document.getElementById('error');
+        msg.style.color = '#ff4d4d'; // Muda para vermelho em caso de erro
+        msg.textContent = 'ERRO! ' + resposta.mensagem;
     }
 }

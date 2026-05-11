@@ -37,8 +37,10 @@ async function login() {
 
     const resposta = await retorno.json();
     if(resposta.status == 'ok'){
-        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
-        window.location.href = resposta.redirect
+        document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
+        setTimeout(() => {
+            window.location.href = resposta.redirect;
+        }, 1000);
     }else{
         document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     };

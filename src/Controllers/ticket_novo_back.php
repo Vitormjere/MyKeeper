@@ -1,8 +1,9 @@
 <?php
-    session_start();
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
-    
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }   
     $titulo = $_POST['titulo'];
     $descricao = $_POST['descricao'];
     $id_usuario = $_SESSION['usuario']['id'];

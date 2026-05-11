@@ -72,8 +72,9 @@ async function alterar(){
     const resposta = await retorno.json();
 
     if(resposta.status == 'ok'){
-        document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem;
-        window.location.href = "/mykeeper/src/Views/ticket_usuario.php";
+        document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
+            setTimeout(() => {
+        window.location.href = "/mykeeper/src/Views/ticket_usuario.php";}, 1000);
     }else{
         document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }

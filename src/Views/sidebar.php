@@ -9,6 +9,7 @@
             <button id="inicioButtonLink">Início</button>
             <!-- <button id="inventarioButtonLink">Inventario</button> -->
             <button id="produtosButtonLink">Produtos registrados</button>
+            <button id="estoquesButtonLink">Estoques</button>
             <button id="categoriasButtonLink">Categorias</button>
             <!-- <button id="avencerButtonLink">A Vencer</button>
             <button id="comprasButtonLink">Compras</button>

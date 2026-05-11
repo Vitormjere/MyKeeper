@@ -74,8 +74,10 @@ async function cadastrar() {
 
     const resposta = await retorno.json();
     if (resposta.status === 'ok') {
-        alert('SUCESSO! Cadastro realizado com êxito');
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        document.getElementById('error').textContent = 'SUCESSO! Cadastro realizado com êxito' + '. Redirecionando para a página de login...';
+        setTimeout(() => {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }, 1000);
         return;
     }
 

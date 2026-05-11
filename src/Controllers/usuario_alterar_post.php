@@ -2,6 +2,7 @@
     session_start();
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     if (empty($_SESSION['usuario']['id'])) {
         echo json_encode([
@@ -37,18 +38,19 @@
 
     $stmt = $conexao->prepare("UPDATE usuario SET nome = ?, email = ?, cep = ? WHERE id = ?");
     $stmt->bind_param('sssi', $nome, $email, $cep, $id);
-    $stmt->execute();
 
-    if ($stmt->affected_rows > 0) {
-        $_SESSION['usuario']['nome'] = $nome;
+    try {
+        $stmt->execute(); // só aqui
         $retorno = [
-            'status' => 'ok',
-            'mensagem' => 'Perfil atualizado com sucesso'
+            'status'   => 'ok',
+            'mensagem' => 'Dados atualizados com sucesso'
         ];
-    } else {
+    } catch (mysqli_sql_exception $e) {
         $retorno = [
-            'status' => 'nok',
-            'mensagem' => 'Falha ao atualizar perfil'
+            'status'   => 'nok',
+            'mensagem' => $e->getCode() == 1062
+                ? 'Este e-mail já está cadastrado por outro usuário'
+                : 'Falha ao atualizar: ' . $e->getMessage()
         ];
     }
 

@@ -33,7 +33,7 @@ async function novo() {
     }
 
     if(!senha){
-        document.getElementById('error-senha').textContent = 'Senha precisa receber valores'
+        document.getElementById('error-senha').textContent = 'Senha precisa receber valores';
         return;
     }else if(senha.length < 8) {
         document.getElementById('error-senha').textContent = 'ERRO! Senha muito curta';
@@ -53,8 +53,10 @@ async function novo() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
-        document.getElementById('error').innerText = 'SUCESSO! ' + resposta.mensagem;
-        window.location.href = '/mykeeper/src/Views/suporte.php';
+        document.getElementById('error').innerText = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
+        setTimeout(() => {
+            window.location.href = '/mykeeper/src/Views/suporte.php';
+        }, 1000);
     } else {
         document.getElementById('error').innerText = 'ERRO! ' + resposta.mensagem;
     }
