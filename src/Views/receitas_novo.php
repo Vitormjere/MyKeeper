@@ -30,7 +30,6 @@ include_once(__DIR__ . '/../../config/valida_sessao.php');
             <div id="container-ingredientes">
                 <label>Ingredientes</label>
 
-                <!-- modelo clonado pelo JS -->
                 <div class="ingrediente" id="modelo-ingrediente" style="display:none;">
                     <div class="ingrediente-header">
                         <span class="ingrediente-titulo">Ingrediente</span>

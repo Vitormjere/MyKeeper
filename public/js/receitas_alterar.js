@@ -115,6 +115,24 @@ async function alterar() {
         return;
     }
 
+    let ingredienteInvalido = false;
+    linhas.forEach((linha) => {
+        const nome = linha.querySelector('.input-nome').value.trim();
+        const categoria = linha.querySelector('.select-categoria').value;
+        const undMedida = linha.querySelector('.select-und-medida').value;
+        const qtd = linha.querySelector('.input-qtd').value;
+
+        if (!nome || !categoria || !undMedida || !qtd || Number(qtd) <= 0) {
+            ingredienteInvalido = true;
+        }
+    });
+
+    if (ingredienteInvalido) {
+        document.getElementById('error-ingredientes').textContent =
+            'Preencha todos os campos de cada ingrediente (nome, categoria, unidade e quantidade).';
+        return;
+    }
+
     const fd = new FormData();
     fd.append('titulo', titulo);
     fd.append('descricao', descricao);
