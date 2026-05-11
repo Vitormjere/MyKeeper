@@ -33,3 +33,7 @@ document.getElementById('receitasButtonLink').addEventListener('click', () => {
 document.getElementById('estoquesButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/estoque.php';
 });
+
+document.getElementById('comprasButtonLink').addEventListener('click', () => {
+    window.location.href = '/mykeeper/src/Views/compras.php';
+});

@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0b0e11; 
+    color: #e0e0e0;
+    display: flex;
+    min-height: 100vh;
+}
+
+section {
+    margin-left: 260px; /* Espaço para a sidebar */
+    padding: 40px;
+    width: calc(100% - 260px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cabeçalho da página */
+.header-estoque {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Botão de Adicionar */
+#criarCompras {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 14px rgba(0, 255, 163, 0.2);
+}
+
+#criarCompras:hover {
+    background-color: #00d68a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 163, 0.4);
+}
+
+/* Mensagem de Erro/Vazio */
+#mensagem {
+    color: #a0a0a0;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+/* =========================================
+   GRID E CARDS (3 POR LINHA)
+   ========================================= */
+#item {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Força exatamente 3 colunas iguais */
+    gap: 25px; /* Espaçamento entre os cards */
+    width: 100%;
+}
+
+.card {
+    background-color: #1a1d23;
+    border-radius: 12px;
+    border: 1px solid #2d3139;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço interno entre ícone, texto e botões */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-color: #3d424a;
+}
+
+.card-nome {
+    font-size: 1.25rem;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.card-data {
+    font-size: 0.85rem;
+    color: #a0a0a0;
+}
+
+.card-botoes {
+    margin-top: auto; /* Empurra os botões para a parte inferior do card */
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #2d3139;
+}
+
+/* Estilo dos Botões de Ação (Herdado do Padrão) */
+.btn-editar, .btn-excluir {
+    flex: 1; /* Faz os botões dividirem o espaço igualmente no card */
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    overflow: hidden;
+}
+
+.btn-editar a, .btn-excluir a {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+}
+
+.btn-editar {
+    background-color: rgba(0, 255, 163, 0.1);
+    color: #00ffa3;
+    border-color: #00ffa3;
+}
+
+.btn-editar:hover {
+    background-color: #00ffa3;
+    color: #0b0e11;
+}
+
+.btn-excluir {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+.btn-excluir:hover {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 1200px) {
+    #item {
+        grid-template-columns: repeat(2, 1fr); /* Cai para 2 por linha em telas médias */
+    }
+}
+
+@media (max-width: 1024px) {
+    section {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-estoque {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    #item {
+        grid-template-columns: 1fr; /* 1 card por linha no celular */
+    }
+}
