@@ -20,9 +20,11 @@
                 il.id_produto,
                 il.quantidade,
                 p.nome,
-                p.und_medida
+                p.und_medida,
+                c.nome AS nome_categoria
             FROM item_lista_compra il
             INNER JOIN produto p ON p.id = il.id_produto
+            INNER JOIN categoria c ON c.id = p.id_categoria
             INNER JOIN lista_compras lc ON lc.id = il.id_lista_compra
             WHERE il.id_lista_compra = ?
             AND lc.id_usuario = ?
@@ -38,10 +40,12 @@
                 il.id_produto,
                 il.quantidade,
                 p.nome,
-                p.und_medida
+                p.und_medida,
+                c.nome AS nome_categoria
             FROM item_lista_compra il
             INNER JOIN produto p ON p.id = il.id_produto
             INNER JOIN lista_compras lc ON lc.id = il.id_lista_compra
+            INNER JOIN categoria c ON c.id = p.id_categoria
             WHERE il.id_lista_compra = ?
             AND il.id_produto = ?
             AND lc.id_usuario = ?

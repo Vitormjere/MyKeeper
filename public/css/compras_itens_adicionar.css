@@ -73,6 +73,14 @@ h2 {
     margin-bottom: 5px;
 }
 
+
+.card-nome {
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
 .card-data {
     font-size: 0.8rem;
     color: #00ffa3;

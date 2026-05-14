@@ -52,7 +52,8 @@ function preencherTabela(tabela, id_lista_compra) {
                         ${e(tabela[i].nome)}
                     </div>
                     <div class="card-data">
-                        Quantidade: ${respostaOuTracos(e(String(tabela[i].quantidade)))} ${e(tabela[i].und_medida)}
+                        <p>Quantidade: ${respostaOuTracos(e(String(tabela[i].quantidade)))} ${e(tabela[i].und_medida)}</p>
+                        <p>Categoria: ${respostaOuTracos(tabela[i].nome_categoria)}</p>
                     </div>
                     <div class="card-botoes">
                         <button class="btn-editar"><a href="compras_itens_alterar.php?id_lista_compra=${id_lista_compra}&id_produto=${tabela[i].id_produto}">Editar</a></button>

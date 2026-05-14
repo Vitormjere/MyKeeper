@@ -52,6 +52,9 @@ function preencherLista(tabela) {
                     <div class="card-data">
                         ${e(tabela[i].und_medida)}
                     </div>
+                    <div class="card-categoria">
+                        <p>Categoria: ${tabela[i].categoria}</p> <br>
+                    </div>
                     <div class="card-inputs">
                         <input type="number" id="quantidade-${tabela[i].id}" placeholder="Quantidade" min="0" step="0.01">
                     </div>
