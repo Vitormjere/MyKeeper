@@ -35,7 +35,7 @@ function preencherTabela(tabela){
 
     for(var i=0;i<tabela.length;i++){
 
-        html += `<div class="card" style="cursor:pointer;" onclick="window.location.href='compras_itens.php?id_compra=${tabela[i].id}'">
+        html += `<div class="card" style="cursor:pointer;" onclick="window.location.href='compras_itens.php?id_lista_compra=${tabela[i].id}'">
                     <div class="card-nome">
                         ${e(tabela[i].titulo)}
                     </div>

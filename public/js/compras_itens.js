@@ -1,0 +1,78 @@
+function e(str) {
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
+function respostaOuTracos(valor) {
+    if (valor === null || valor === undefined || String(valor).trim() === '' || String(valor).toLowerCase() === 'null') {
+        return '---';
+    }
+
+    return e(valor);
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const response = await fetch('/mykeeper/config/check_session.php');
+    const data = await response.json();
+    if (!data.logado) {
+        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id_lista_compra = urlParams.get('id_lista_compra');
+    if (!id_lista_compra) {
+        window.location.href = '/mykeeper/src/Views/compras.php';
+        return;
+    }
+
+    buscar(id_lista_compra);
+
+    document.getElementById('adicionarItem').addEventListener('click', () => {
+        window.location.href = `/mykeeper/src/Views/compras_itens_adicionar.php?id_lista_compra=${id_lista_compra}`;
+    });
+});
+
+async function buscar(id_lista_compra) {
+    const retorno = await fetch('/mykeeper/src/Controllers/compras_itens_get.php?id_lista_compra=' + id_lista_compra);
+    const resposta = await retorno.json();
+    if (resposta.status == 'ok') {
+        preencherTabela(resposta.data, id_lista_compra);
+    } else {
+        document.getElementById('mensagem').textContent = 'Não há itens cadastrados nesta lista de compra.';
+    }
+}
+
+function preencherTabela(tabela, id_lista_compra) {
+    var html = "";
+    for (var i = 0; i < tabela.length; i++) {
+        html += `<div class="card">
+                    <div class="card-nome">
+                        ${e(tabela[i].nome)}
+                    </div>
+                    <div class="card-data">
+                        Quantidade: ${respostaOuTracos(e(String(tabela[i].quantidade)))} ${e(tabela[i].und_medida)}
+                    </div>
+                    <div class="card-botoes">
+                        <button class="btn-editar"><a href="compras_itens_alterar.php?id_lista_compra=${id_lista_compra}&id_produto=${tabela[i].id_produto}">Editar</a></button>
+                        <button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id_lista_compra}, ${tabela[i].id_produto})">Excluir</a></button>
+                    </div>
+                </div>`;
+    }
+    document.getElementById('item').innerHTML = html;
+}
+
+async function excluir(id_lista_compra, id_produto) {
+    if (!window.confirm('Tem certeza que deseja excluir este item?')) {
+        return;
+    }
+    const retorno = await fetch(`/mykeeper/src/Controllers/compras_itens_excluir.php?id_lista_compra=${id_lista_compra}&id_produto=${id_produto}`);
+    const resposta = await retorno.json();
+    if (resposta.status == 'ok') {
+        alert('SUCESSO! ' + resposta.mensagem);
+    } else {
+        alert('ERRO! ' + resposta.mensagem);
+    }
+    window.location.reload();
+}
