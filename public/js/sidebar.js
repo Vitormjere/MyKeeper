@@ -18,10 +18,6 @@ document.getElementById('perfilButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/perfil_usuario.php';
 });
 
-document.getElementById('adminHomeButtonLink').addEventListener('click', () => {
-    window.location.href = '/mykeeper/src/Views/admin_home.php';
-});
-
 document.getElementById('ticketButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/ticket_usuario.php';
 });
@@ -36,4 +32,8 @@ document.getElementById('estoquesButtonLink').addEventListener('click', () => {
 
 document.getElementById('comprasButtonLink').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/compras.php';
+});
+
+document.getElementById('adminHomeButtonLink').addEventListener('click', () => {
+    window.location.href = '/mykeeper/src/Views/admin_home.php';
 });

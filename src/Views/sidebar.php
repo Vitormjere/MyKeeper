@@ -15,7 +15,9 @@
             <!-- <button id="historicoButtonLink">Historico</button>  -->
             <button id="receitasButtonLink">Receitas</button>
             <button id="perfilButtonLink">Perfil</button>
-            <button id="adminHomeButtonLink">Admin</button>
+            <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario']['tipo'] === 1): ?>
+                <button id="adminHomeButtonLink">Admin</button>
+            <?php endif; ?>
             <button id="ticketButtonLink">Tickets</button>
             <button id="logoffButtonLink">Sair</button>
         </nav>
