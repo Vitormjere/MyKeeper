@@ -72,6 +72,10 @@ function preencherTabela(tabela) {
                         Excluir
                     </button>
 
+                    <button class="btn-compartilhar" onclick="event.stopPropagation(); compartilhar(${tabela[i].id})">
+                        Compartilhar
+                    </button>
+
                 </div>
             </div>
         </div>`;
@@ -98,3 +102,15 @@ async function excluir(id) {
 document.getElementById('criarCompras').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/compras_novo.php';
 });
+
+async function compartilhar(id) {
+    const retorno  = await fetch('/mykeeper/src/Controllers/lista_compras_compartilhar.php?id=' + id);
+    const resposta = await retorno.json();
+
+    if(resposta.status === 'ok'){
+        navigator.clipboard.writeText(resposta.link)
+            .then(() => alert('Link copiado!\n\n' + resposta.link))
+    } else {
+        alert('ERRO! ' + resposta.mensagem);
+    }
+}
