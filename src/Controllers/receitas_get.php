@@ -39,12 +39,26 @@ if (isset($_GET['id'])) {
         $stmt->close();
 
         $stmt2 = $conexao->prepare("
-            SELECT p.id AS id_produto, p.nome, p.id_categoria, p.und_medida, p.imagem, ii.qtd
+            SELECT 
+                p.id AS id_produto,
+                p.nome,
+                p.id_categoria,
+                p.und_medida,
+                p.imagem,
+                ii.qtd,
+                CASE 
+                    WHEN SUM(ie.quantidade) >= ii.qtd THEN 'disponivel'
+                    WHEN SUM(ie.quantidade) > 0       THEN 'parcial'
+                    ELSE                                   'indisponivel'
+                END AS status_estoque
             FROM item_ingrediente ii
             INNER JOIN produto p ON p.id = ii.id_produto
+            LEFT JOIN item_estoque ie ON ie.id_produto = p.id
+            LEFT JOIN estoque e ON e.id = ie.id_estoque AND e.id_usuario = ?
             WHERE ii.id_receita = ?
+            GROUP BY p.id, p.nome, p.id_categoria, p.und_medida, p.imagem, ii.qtd
         ");
-        $stmt2->bind_param('i', $id_receita);
+        $stmt2->bind_param('ii', $id_usuario, $id_receita);
         $stmt2->execute();
         $result2 = $stmt2->get_result();
 

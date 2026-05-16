@@ -51,7 +51,7 @@ function renderizarCards(receitas) {
                 </div>
             </div>
             <div class="receita-corpo">
-                <h4> Descrição </h4>
+                <h4>Descrição</h4>
                 <p class="receita-descricao"></p>
                 <ul class="receita-ingredientes"></ul>
                 <div class="receita-acoes">
@@ -59,8 +59,6 @@ function renderizarCards(receitas) {
                     <button class="btn-excluir" onclick="excluir(${receita.id}, this)">Excluir</button>
                     <button class="btn-compartilhar" onclick="compartilhar(${receita.id})">Compartilhar</button>
                 </div>
-                </div>
-
             </div>
         `;
 
@@ -76,7 +74,6 @@ async function toggleCard(card) {
     const corpo = card.querySelector('.receita-corpo');
     const aberto = card.classList.contains('aberto');
 
-    // fecha todos os outros
     document.querySelectorAll('.receita-card.aberto').forEach(c => {
         if (c !== card) c.classList.remove('aberto');
     });
@@ -86,7 +83,6 @@ async function toggleCard(card) {
         return;
     }
 
-    // busca detalhes só na primeira vez
     if (card.dataset.carregado === 'false') {
         const id = card.dataset.id;
         const retorno = await fetch('/mykeeper/src/Controllers/receitas_get.php?id=' + id);
@@ -100,9 +96,31 @@ async function toggleCard(card) {
             const lista = corpo.querySelector('.receita-ingredientes');
             lista.innerHTML = '';
 
+            const cores = {
+                disponivel:   '#00ffa3',
+                parcial:      '#f5a623',
+                indisponivel: '#ff4d4d'
+            };
+
+            const legendaHtml = `
+                <div class="ingredientes-legenda">
+                    <span><span class="legenda-faixa" style="background:#00ffa3"></span> Em Estoque</span>
+                    <span><span class="legenda-faixa" style="background:#f5a623"></span> Quantidade insuficiente</span>
+                    <span><span class="legenda-faixa" style="background:#ff4d4d"></span> Indisponível</span>
+                </div>
+            `;
+
+            lista.innerHTML = legendaHtml;
+
             r.ingredientes.forEach(ing => {
                 const li = document.createElement('li');
-                li.textContent = `${e(ing.nome)} — ${ing.qtd} ${e(ing.und_medida)}`;
+                const cor = cores[ing.status_estoque] || '#888';
+
+                li.classList.add('ingrediente-item');
+                li.innerHTML = `
+                    <span class="ingrediente-faixa" style="background: ${cor}"></span>
+                    <span class="ingrediente-texto">${e(ing.nome)} — ${ing.qtd} ${e(ing.und_medida)}</span>
+                `;
                 lista.appendChild(li);
             });
 
