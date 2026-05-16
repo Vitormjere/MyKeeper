@@ -27,6 +27,33 @@
                 </div>
             </a>
 
+            <a href="estoque.php" class="card-link">
+                <div class="home-card">
+                    <div class="icon">&#x1F4E5;</div>
+                    <h3>Estoque</h3>
+                    <p>Gerencie o estoque de seus produtos.</p>
+                    <span class="btn-atv">Ver Mais</span>
+                </div>
+            </a>
+
+            <a href="compras.php" class="card-link">
+                <div class="home-card">
+                    <div class="icon">&#x1F4DD;</div>
+                    <h3>Lista de Compras</h3>
+                    <p>Gerencia suas listas de compras.</p>
+                    <span class="btn-atv">Ver Mais</span>
+                </div>
+            </a>
+
+            <a href="receitas.php" class="card-link">
+                <div class="home-card">
+                    <div class="icon">&#x1F35A;</div>
+                    <h3>Receitas</h3>
+                    <p>Gerencie suas receitas e ingredientes.</p>
+                    <span class="btn-atv">Ver Mais</span>
+                </div>
+            </a>
+
             <a href="categoria.php" class="card-link">
                 <div class="home-card">
                     <div class="icon">🏷️</div>

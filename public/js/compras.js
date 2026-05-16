@@ -30,7 +30,7 @@ async function buscar() {
 
 function labelStatus(status) {
 
-    const map = { 'aberta': 'Aberta', 'fechada': 'Fechada', 'arquivada': 'Arquivada' };
+    const map = { 'aberta': 'Aberta', 'concluida': 'Concluída', 'arquivada': 'Arquivada' };
     return map[status] || status;
 
 }
@@ -62,6 +62,16 @@ function preencherTabela(tabela) {
 
                 </div>
 
+                ${status === 'aberta' ? `
+                <div class="card-botoes-status">
+                    <button class="btn-concluir" onclick="event.stopPropagation(); window.location.href='compras_concluir.php?id=${tabela[i].id}'">
+                        ✓ Concluída
+                    </button>
+                    <button class="btn-arquivar" onclick="event.stopPropagation(); alterarStatus(${tabela[i].id}, 'arquivada')">
+                        ⊘ Arquivar
+                    </button>
+                </div>` : ''}
+
                 <div class="card-botoes">
 
                     <button class="btn-editar" onclick="event.stopPropagation()">
@@ -77,6 +87,7 @@ function preencherTabela(tabela) {
                     </button>
 
                 </div>
+                
             </div>
         </div>`;
     }
@@ -113,4 +124,27 @@ async function compartilhar(id) {
     } else {
         alert('ERRO! ' + resposta.mensagem);
     }
+async function alterarStatus(id, novoStatus) {
+
+    const labels = { 'concluida': 'concluir', 'arquivada': 'arquivar' };
+
+    if (!window.confirm(`Tem certeza que deseja ${labels[novoStatus]} esta lista?`)) return;
+
+    const fd = new FormData();
+    fd.append('id', id);
+    fd.append('status', novoStatus);
+
+    const retorno = await fetch('/mykeeper/src/Controllers/compras_status.php', {
+        method: 'POST',
+        body: fd
+    });
+
+    const resposta = await retorno.json();
+
+    if (resposta.status == 'ok') {
+        alert('SUCESSO! ' + resposta.mensagem);
+    } else {
+        alert('ERRO! ' + resposta.mensagem);
+    }
+    window.location.reload();
 }
