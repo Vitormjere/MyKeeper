@@ -8,6 +8,7 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
         'logado' => true,
         'id'      => $_SESSION['usuario']['id'],
         'nome'    => $_SESSION['usuario']['nome'],
+        'tipo'    => $_SESSION['usuario']['tipo'],
         'redirect' => '/mykeeper/src/Views/home.php'
     ]);
 }else{

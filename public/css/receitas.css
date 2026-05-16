@@ -143,6 +143,8 @@ h2 {
     margin-bottom: 16px;
 }
 
+/* --- Ingredientes --- */
+
 .receita-ingredientes {
     list-style: none;
     display: flex;
@@ -151,13 +153,55 @@ h2 {
     margin-bottom: 20px;
 }
 
-.receita-ingredientes li {
+/* Legenda */
+.ingredientes-legenda {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.ingredientes-legenda span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: #a0a0a0;
+}
+
+.legenda-faixa {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* Item ingrediente */
+.ingrediente-item {
+    display: flex;
+    align-items: stretch;
+    background: #10151b;
+    border: 1px solid #2d3139;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.ingrediente-item:hover {
+    border-color: #3d424a;
+    background: #222530;
+}
+
+.ingrediente-faixa {
+    width: 4px;
+    flex-shrink: 0;
+}
+
+.ingrediente-texto {
+    padding: 8px 12px;
     font-size: 0.88rem;
     color: #e0e0e0;
-    padding: 8px 12px;
-    background-color: #10151b;
-    border-radius: 8px;
-    border-left: 3px solid #00ffa3;
 }
 
 /* --- Ações --- */
@@ -168,7 +212,9 @@ h2 {
     justify-content: flex-end;
 }
 
-.btn-editar, .btn-excluir {
+.btn-editar,
+.btn-excluir,
+.btn-compartilhar {
     padding: 8px 18px;
     border-radius: 6px;
     font-size: 0.85rem;
@@ -198,6 +244,17 @@ h2 {
 .btn-excluir:hover {
     background-color: #ff4d4d;
     color: #ffffff;
+}
+
+.btn-compartilhar {
+    background-color: rgba(100, 160, 255, 0.08);
+    color: #64a0ff;
+    border-color: rgba(100, 160, 255, 0.3);
+}
+
+.btn-compartilhar:hover {
+    background-color: #64a0ff;
+    color: #0b0e11;
 }
 
 /* --- Botão adicionar --- */

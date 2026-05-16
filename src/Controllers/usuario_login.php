@@ -6,13 +6,25 @@ include_once(__DIR__ . '/../../config/conexao.php');
 $stmt = $conexao->prepare("SELECT * FROM usuario WHERE email = ?");
 $stmt->bind_param("s", $_POST['email']);
 $stmt->execute();
-$result = $stmt->get_result();
-$usuario = $result->fetch_assoc();
+$resultado = $stmt->get_result();
+
+if ($resultado->num_rows > 0) {
+    $tipo = 0;
+} else {
+    $stmt = $conexao->prepare("SELECT * FROM suporte WHERE email = ?");
+    $stmt->bind_param("s", $_POST['email']);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $tipo = 1;
+}
+
+$usuario = $resultado->fetch_assoc();
 
 if ($usuario && password_verify($_POST['senha'], $usuario['senha'])) {
-    if (!$usuario['conta_ativa']) {
+
+    if ($tipo === 0 && !$usuario['conta_ativa']) {
         echo json_encode([
-            'status' => 'nok',
+            'status'   => 'nok',
             'mensagem' => 'Conta desativada. Entre em contato com o suporte.'
         ]);
         exit;
@@ -20,16 +32,18 @@ if ($usuario && password_verify($_POST['senha'], $usuario['senha'])) {
 
     $_SESSION['usuario'] = [
         'id'   => $usuario['id'],
-        'nome' => $usuario['nome']
+        'nome' => $usuario['nome'],
+        'tipo' => $tipo
     ];
     $_SESSION['logado'] = true;
+
     $retorno = [
         'status'   => 'ok',
         'mensagem' => 'Login realizado com sucesso',
         'redirect' => '/mykeeper/src/Views/home.php'
     ];
-    
-}else {
+
+} else {
     $retorno = [
         'status'   => 'nok',
         'mensagem' => 'Email ou senha incorretos'
@@ -39,7 +53,6 @@ if ($usuario && password_verify($_POST['senha'], $usuario['senha'])) {
 $stmt->close();
 $conexao->close();
 
-header('Content-type:application/json;charset:utf-8');
+header('Content-Type: application/json; charset=utf-8');
 echo json_encode($retorno);
-
 ?>

@@ -40,6 +40,7 @@ include_once(__DIR__ . '/../../config/valida_sessao.php');
                     <option value="gramas">Gramas (g)</option>
                     <option value="l">Litro (L)</option>
                     <option value="ml">Mililitro (mL)</option>
+                    <option value="unidade">Unidade</option>
                 </select>
                 <p id="error-unidade"></p>
             </div>
