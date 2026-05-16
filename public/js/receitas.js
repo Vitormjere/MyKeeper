@@ -57,7 +57,10 @@ function renderizarCards(receitas) {
                 <div class="receita-acoes">
                     <button class="btn-editar" onclick="window.location.href='/mykeeper/src/Views/receitas_alterar.php?id=${receita.id}'">Editar</button>
                     <button class="btn-excluir" onclick="excluir(${receita.id}, this)">Excluir</button>
+                    <button class="btn-compartilhar" onclick="compartilhar(${receita.id})">Compartilhar</button>
                 </div>
+                </div>
+
             </div>
         `;
 
@@ -132,3 +135,16 @@ function formatarData(data) {
 document.getElementById('receita_nova').addEventListener('click', () => {
     window.location.href = '/mykeeper/src/Views/receitas_novo.php';
 });
+
+async function compartilhar(id) {
+    const retorno  = await fetch('/mykeeper/src/Controllers/receitas_compartilhar.php?id=' + id);
+    const resposta = await retorno.json();
+
+    if(resposta.status === 'ok'){
+        navigator.clipboard.writeText(resposta.link)
+            .then(() => alert('Link copiado!\n\n' + resposta.link))
+            .catch(() => prompt('Copie o link abaixo:', resposta.link));
+    } else {
+        alert('ERRO! ' + resposta.mensagem);
+    }
+}
