@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tickets de Suporte</title>
     <link rel="stylesheet" href="/mykeeper/public/css/ticket_usuario.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 <body>    
     <section>
@@ -22,6 +23,7 @@
             <button type="button" id="ticket_novo" class="addvs">Adicionar Ticket</button>
         </div>
     </section>
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/ticket.js"></script>
     <script src="/mykeeper/public/js/sidebar.js"></script>
 </body>

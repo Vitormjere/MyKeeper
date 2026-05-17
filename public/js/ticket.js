@@ -80,16 +80,17 @@ function preencherTabela(tabela){
     document.getElementById('item').innerHTML = html;
 }
 
-async function excluir(id){
-    const retorno = await fetch('/mykeeper/src/Controllers/ticket_excluir.php?id='+id);
-    const resposta = await retorno.json();
-    if(resposta.status == 'ok'){
-        alert('SUCESSO! '+ resposta.mensagem);
-    }else{
-        alert('ERRO! ' + resposta.mensagem)
-    }
-
-    window.location.reload();
+async function excluir(id) {
+    notificacaoExcluir('Tem certeza que deseja excluir este ticket?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/ticket_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }
 
 document.getElementById('ticket_novo').addEventListener('click', ()=>{

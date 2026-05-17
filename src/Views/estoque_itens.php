@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itens do Estoque</title>
     <link rel="stylesheet" href="/mykeeper/public/css/estoque_itens.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 <body>
     <section>
@@ -25,6 +26,7 @@
         <p id="mensagem"></p>
     </section>
     
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/estoque_itens.js"></script>
     <script src="/mykeeper/public/js/sidebar.js"></script>
 </body>

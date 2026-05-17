@@ -85,16 +85,15 @@ function preencherTabela(tabela, id_lista_compra, bloqueado) {
     document.getElementById('item').innerHTML = html;
 }
 
-async function excluir(id_lista_compra, id_produto) {
-    if (!window.confirm('Tem certeza que deseja excluir este item?')) {
-        return;
-    }
-    const retorno = await fetch(`/mykeeper/src/Controllers/compras_itens_excluir.php?id_lista_compra=${id_lista_compra}&id_produto=${id_produto}`);
-    const resposta = await retorno.json();
-    if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
-    } else {
-        alert('ERRO! ' + resposta.mensagem);
-    }
-    window.location.reload();
+async function excluir(id) {
+    notificacaoExcluir('Tem certeza que deseja excluir este item?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/compras_itens_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }

@@ -74,19 +74,15 @@ function preencherTabela(tabela, id_estoque) {
     document.getElementById('item').innerHTML = html;
 }
 
-async function excluir(id, id_estoque) {
-    if (!window.confirm('Tem certeza que deseja excluir este item?')) {
-        return;
-    }
-
-    const retorno = await fetch('/mykeeper/src/Controllers/item_estoque_excluir.php?id=' + id);
-    const resposta = await retorno.json();
-
-    if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
-    } else {
-        alert('ERRO! ' + resposta.mensagem);
-    }
-
-    buscar(id_estoque);
+async function excluir(id) {
+    notificacaoExcluir('Tem certeza que deseja excluir este item?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/item_estoque_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }
