@@ -30,7 +30,7 @@ section {
 
 /* Pseudo-elemento para o título dinâmico */
 section::before {
-    content: 'Alterar Estoque';
+    content: 'Lista de Compras';
     display: block;
     font-size: 1.6rem;
     color: #ffffff;
