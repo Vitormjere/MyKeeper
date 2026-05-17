@@ -124,6 +124,8 @@ async function compartilhar(id) {
     } else {
         alert('ERRO! ' + resposta.mensagem);
     }
+}
+
 async function alterarStatus(id, novoStatus) {
 
     const labels = { 'concluida': 'concluir', 'arquivada': 'arquivar' };
