@@ -131,18 +131,17 @@ async function toggleCard(card) {
     card.classList.add('aberto');
 }
 
-async function excluir(id, btn) {
-    if (!confirm('Tem certeza que deseja excluir esta receita?')) return;
-
-    const retorno = await fetch('/mykeeper/src/Controllers/receitas_excluir.php?id=' + id);
-    const resposta = await retorno.json();
-
-    if (resposta.status == 'ok') {
-        btn.closest('.receita-card').remove();
-        alert('SUCESSO! ' + resposta.mensagem);
-    } else {
-        alert('ERRO! ' + resposta.mensagem);
-    }
+async function excluir(id) {
+    notificacaoExcluir('Tem certeza que deseja excluir esta receita?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/receitas_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }
 
 function formatarData(data) {

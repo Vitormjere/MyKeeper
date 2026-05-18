@@ -35,6 +35,21 @@ h2 {
     border: 1px solid #2d3139;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+#item::-webkit-scrollbar {
+    width: 4px;
+}
+
+#item::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#item::-webkit-scrollbar-thumb {
+    background: #2d3139;
+    border-radius: 4px;
 }
 
 .tabela {

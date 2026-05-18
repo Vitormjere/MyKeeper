@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listas de Compras</title>
     <link rel="stylesheet" href="/mykeeper/public/css/compras.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
     
 </head>
 <body>
@@ -26,6 +27,7 @@
         
     </section>
         
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/compras.js"></script>
     <script src="/mykeeper/public/js/sidebar.js"></script>
 </body>

@@ -10,6 +10,7 @@ include_once(__DIR__ . '/sidebar.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receitas</title>
     <link rel="stylesheet" href="/mykeeper/public/css/receitas.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 <body>  
     <section>
@@ -22,6 +23,7 @@ include_once(__DIR__ . '/sidebar.php');
             <button type="button" id="receita_nova" class="addvs">Adicionar Receita</button>
         </div>
     </section>
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/receitas.js"></script>
     <script src="/mykeeper/public/js/sidebar.js"></script>
 </body>

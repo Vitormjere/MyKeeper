@@ -96,18 +96,16 @@ function preencherTabela(tabela) {
 }
 
 async function excluir(id) {
-    if (!window.confirm('Tem certeza que deseja excluir esta lista de compras?')) return;
-
-    const retorno  = await fetch('/mykeeper/src/Controllers/compras_excluir.php?id=' + id);
-    const resposta = await retorno.json();
-
-    if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
-    } else {
-        alert('ERRO! ' + resposta.mensagem);
-    }
-    
-    window.location.reload();
+    notificacaoExcluir('Tem certeza que deseja excluir esta lista de compras?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/compras_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }
 
 document.getElementById('criarCompras').addEventListener('click', () => {
@@ -149,4 +147,5 @@ async function alterarStatus(id, novoStatus) {
         alert('ERRO! ' + resposta.mensagem);
     }
     window.location.reload();
+}
 }
