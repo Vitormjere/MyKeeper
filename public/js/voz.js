@@ -62,6 +62,7 @@ document.getElementById('btnVoz').addEventListener('click', ()=>{
     document.getElementById('btnVoz').innerHTML = '✕';
 });
 
+//entende
 rec.onresult = async (e)=>{
     var i = e.results.length - 1;
     if(!e.results[i].isFinal){
