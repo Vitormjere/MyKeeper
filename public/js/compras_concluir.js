@@ -85,19 +85,25 @@ async function confirmar() {
     const id_estoque = document.getElementById('selectEstoque').value;
 
     if (!id_estoque) {
-        alert('Selecione um estoque antes de confirmar.');
+        notificacaoSistema('Selecione um estoque antes de confirmar.', 'warning');
         return;
     }
 
     const cards = document.querySelectorAll('#item .card');
 
     if (cards.length === 0) {
-        alert('Nenhum item para adicionar.');
+        notificacaoSistema('Nenhum item para adicionar.', 'warning');
         return;
     }
 
-    if (!window.confirm('Confirmar? Os itens serão adicionados ao estoque e a lista será concluída.')) return;
+    confirmarSistema('Confirmar? Os itens serão adicionados ao estoque e a lista será concluída.', finalizarCompra, {
+        textoConfirmar: 'Sim, confirmar'
+    });
+}
 
+async function finalizarCompra() {
+    const id_estoque = document.getElementById('selectEstoque').value;
+    const cards = document.querySelectorAll('#item .card');
     const itens = [];
     for (var i = 0; i < cards.length; i++) {
         itens.push({
@@ -121,9 +127,11 @@ async function confirmar() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
-        window.location.href = '/mykeeper/src/Views/compras.php';
+        notificacaoSistema('SUCESSO! ' + resposta.mensagem, 'success');
+        setTimeout(function() {
+            window.location.href = '/mykeeper/src/Views/compras.php';
+        }, 1200);
     } else {
-        alert('ERRO! ' + resposta.mensagem);
+        notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
 }

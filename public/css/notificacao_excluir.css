@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
     z-index: 9999;
     pointer-events: none;
     backdrop-filter: blur(0px);
@@ -16,16 +17,21 @@
 }
 
 .notificacao {
-    width: 500px;
-    padding: 28px;
-    background-color: #1a1d23;
+    --notificacao-cor: #4ea9ff;
+    --notificacao-bg: rgba(78, 169, 255, 0.12);
+    --notificacao-shadow: rgba(78, 169, 255, 0.18);
+    width: min(500px, 100%);
+    background:
+        linear-gradient(135deg, var(--notificacao-bg), rgba(26, 29, 35, 0) 42%),
+        #1a1d23;
     border-radius: 12px;
-    border: 1px solid #2d3139;
+    border: 1px solid var(--notificacao-cor);
+    border-left-width: 6px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35), 0 0 24px var(--notificacao-shadow);
     pointer-events: all;
     animation: notificacaoIn 0.2s ease;
     transition: opacity 0.3s, transform 0.3s;
@@ -39,12 +45,93 @@
     transform: translateY(-8px);
 }
 
-.notificacao-msg {
+.notificacao-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.notificacao-icone {
+    width: 34px;
+    min-width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--notificacao-bg);
+    border: 1px solid var(--notificacao-cor);
+    color: var(--notificacao-cor);
     font-size: 1rem;
-    color: #ffffff;
-    font-weight: 600;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.notificacao-textos {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.notificacao-titulo {
+    color: var(--notificacao-cor);
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.notificacao-msg {
+    font-size: 0.98rem;
+    color: #f4f7fb;
+    font-weight: 500;
     margin: 0;
-    text-align: center;
+    text-align: left;
+    line-height: 1.45;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.notificacao.success {
+    --notificacao-cor: #00ffa3;
+    --notificacao-bg: rgba(0, 255, 163, 0.12);
+    --notificacao-shadow: rgba(0, 255, 163, 0.18);
+}
+
+.notificacao.error {
+    --notificacao-cor: #ff4d4d;
+    --notificacao-bg: rgba(255, 77, 77, 0.12);
+    --notificacao-shadow: rgba(255, 77, 77, 0.18);
+}
+
+.notificacao.danger {
+    --notificacao-cor: #ff4d4d;
+    --notificacao-bg: rgba(255, 77, 77, 0.12);
+    --notificacao-shadow: rgba(255, 77, 77, 0.18);
+}
+
+.notificacao.warning {
+    --notificacao-cor: #f5a623;
+    --notificacao-bg: rgba(245, 166, 35, 0.14);
+    --notificacao-shadow: rgba(245, 166, 35, 0.18);
+}
+
+.notificacao.info {
+    --notificacao-cor: #4ea9ff;
+    --notificacao-bg: rgba(78, 169, 255, 0.12);
+    --notificacao-shadow: rgba(78, 169, 255, 0.18);
+}
+
+.notificacao.confirm {
+    --notificacao-cor: #f5a623;
+    --notificacao-bg: rgba(245, 166, 35, 0.14);
+    --notificacao-shadow: rgba(245, 166, 35, 0.18);
+}
+
+.notificacao.confirm.danger {
+    --notificacao-cor: #ff4d4d;
+    --notificacao-bg: rgba(255, 77, 77, 0.12);
+    --notificacao-shadow: rgba(255, 77, 77, 0.18);
 }
 
 .notificacao-actions {
@@ -56,7 +143,7 @@
 
 .notificacao-btn {
     flex: 1;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
@@ -67,28 +154,55 @@
 }
 
 .notificacao-btn {
-    background-color: rgba(0, 255, 163, 0.1);
-    color: #00ffa3;
-    border-color: #00ffa3;
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #ffffff;
+    border-color: #3d424a;
 }
 
 .notificacao-btn:hover {
-    background-color: #00ffa3;
-    color: #0b0e11;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.notificacao-btn:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
 }
 
 .notificacao-confirmar {
-    background-color: rgba(255, 77, 77, 0.1);
-    color: #ff4d4d;
-    border-color: #ff4d4d;
+    background-color: var(--notificacao-bg);
+    color: var(--notificacao-cor);
+    border-color: var(--notificacao-cor);
 }
 
 .notificacao-confirmar:hover {
-    background-color: #ff4d4d;
-    color: #ffffff;
+    background-color: var(--notificacao-cor);
+    color: #0b0e11;
 }
 
 @keyframes notificacaoIn {
     from { opacity: 0; transform: translateY(-8px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+    .notificacao {
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .notificacao-header {
+        gap: 12px;
+    }
+
+    .notificacao-icone {
+        width: 30px;
+        min-width: 30px;
+        height: 30px;
+    }
+
+    .notificacao-actions {
+        flex-direction: column;
+    }
 }

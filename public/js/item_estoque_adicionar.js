@@ -85,9 +85,11 @@ async function adicionar(id_produto) {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
-        window.location.href = `/mykeeper/src/Views/estoque_itens.php?id_estoque=${id_estoque}`;
+        notificacaoSistema('SUCESSO! ' + resposta.mensagem, 'success');
+        setTimeout(function() {
+            window.location.href = `/mykeeper/src/Views/estoque_itens.php?id_estoque=${id_estoque}`;
+        }, 1200);
     } else {
-        alert('ERRO! ' + resposta.mensagem);
+        notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
 }

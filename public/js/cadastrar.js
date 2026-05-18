@@ -74,6 +74,7 @@ async function cadastrar() {
 
     const resposta = await retorno.json();
     if (resposta.status === 'ok') {
+        document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! Cadastro realizado com êxito' + '. Redirecionando para a página de login...';
         setTimeout(() => {
             window.location.href = '/mykeeper/src/Views/usuario_login.php';
@@ -81,5 +82,6 @@ async function cadastrar() {
         return;
     }
 
+    document.getElementById('error-email').style.color = '#ff6b6b';
     document.getElementById('error-email').textContent = 'ERRO! ' + resposta.mensagem;
 }

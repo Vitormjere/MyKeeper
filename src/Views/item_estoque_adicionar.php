@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Item ao Estoque</title>
     <link rel="stylesheet" href="/mykeeper/public/css/item_estoque_adicionar.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 <body>
 <section>
@@ -21,6 +22,7 @@
     <div id="item"></div>
     <p id="mensagem"></p>
 </section>
+<script src="/mykeeper/public/js/notificacao_excluir.js"></script>
 <script src="/mykeeper/public/js/item_estoque_adicionar.js"></script>
 </body>
 </html>

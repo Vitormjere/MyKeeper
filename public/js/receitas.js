@@ -158,10 +158,8 @@ async function compartilhar(id) {
     const resposta = await retorno.json();
 
     if(resposta.status === 'ok'){
-        navigator.clipboard.writeText(resposta.link)
-            .then(() => alert('Link copiado!\n\n' + resposta.link))
-            .catch(() => prompt('Copie o link abaixo:', resposta.link));
+        await copiarTextoSistema(resposta.link, 'Link da receita copiado com sucesso.');
     } else {
-        alert('ERRO! ' + resposta.mensagem);
+        notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
 }
