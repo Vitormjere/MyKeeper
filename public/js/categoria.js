@@ -61,14 +61,16 @@ function preencherTabela(tabela) {
 }
 
 async function excluir(id) {
-    const retorno = await fetch('/mykeeper/src/Controllers/categoria_excluir.php?id=' + id);
-    const resposta = await retorno.json();
-    if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
-    } else {
-        alert('ERRO! ' + resposta.mensagem);
-    }
-    window.location.reload();
+    notificacaoExcluir('Tem certeza que deseja excluir esta categoria?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/categoria_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }
 
 document.getElementById('categoria_nova').addEventListener('click', () => {

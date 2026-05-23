@@ -1,0 +1,94 @@
+#notificacao-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    pointer-events: none;
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.2s;
+}
+
+#notificacao-container.ativo {
+    pointer-events: all;
+    backdrop-filter: blur(4px);
+}
+
+.notificacao {
+    width: 500px;
+    padding: 28px;
+    background-color: #1a1d23;
+    border-radius: 12px;
+    border: 1px solid #2d3139;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    pointer-events: all;
+    animation: notificacaoIn 0.2s ease;
+    transition: opacity 0.3s, transform 0.3s;
+    font-family: 'Inter', sans-serif;
+    color: #e0e0e0;
+    font-size: 14px;
+}
+
+.notificacao.hide {
+    opacity: 0;
+    transform: translateY(-8px);
+}
+
+.notificacao-msg {
+    font-size: 1rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+}
+
+.notificacao-actions {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #2d3139;
+}
+
+.notificacao-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.notificacao-btn {
+    background-color: rgba(0, 255, 163, 0.1);
+    color: #00ffa3;
+    border-color: #00ffa3;
+}
+
+.notificacao-btn:hover {
+    background-color: #00ffa3;
+    color: #0b0e11;
+}
+
+.notificacao-confirmar {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+.notificacao-confirmar:hover {
+    background-color: #ff4d4d;
+    color: #ffffff;
+}
+
+@keyframes notificacaoIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

@@ -60,20 +60,17 @@ function preencherTabela(tabela){
 
 }
 
-async function excluir(id){
-    if (!window.confirm('Tem certeza que deseja excluir este estoque?')) {
-        return;
-    }
-
-    const retorno = await fetch('/mykeeper/src/Controllers/estoque_excluir.php?id='+id);
-    const resposta = await retorno.json();
-    if(resposta.status == 'ok'){
-        alert('SUCESSO! '+ resposta.mensagem);
-    }else{
-        alert('ERRO! ' + resposta.mensagem)
-    }
-
-    window.location.reload();
+async function excluir(id) {
+    notificacaoExcluir('Tem certeza que deseja excluir este estoque?', 'confirm', async function() {
+        const retorno = await fetch('/mykeeper/src/Controllers/estoque_excluir.php?id=' + id);
+        const resposta = await retorno.json();
+        if (resposta.status == 'ok') {
+            notificacaoExcluir(resposta.mensagem, 'success');
+            setTimeout(function() { window.location.reload(); }, 1500);
+        } else {
+            notificacaoExcluir(resposta.mensagem, 'error');
+        }
+    });
 }
 
 document.getElementById('criarNovoEstoque').addEventListener('click', ()=>{

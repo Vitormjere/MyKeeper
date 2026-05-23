@@ -21,7 +21,8 @@
                 il.quantidade,
                 p.nome,
                 p.und_medida,
-                c.nome AS nome_categoria
+                c.nome AS nome_categoria,
+                lc.status_compra
             FROM item_lista_compra il
             INNER JOIN produto p ON p.id = il.id_produto
             INNER JOIN categoria c ON c.id = p.id_categoria
@@ -41,7 +42,8 @@
                 il.quantidade,
                 p.nome,
                 p.und_medida,
-                c.nome AS nome_categoria
+                c.nome AS nome_categoria,
+                lc.status_compra
             FROM item_lista_compra il
             INNER JOIN produto p ON p.id = il.id_produto
             INNER JOIN lista_compras lc ON lc.id = il.id_lista_compra
