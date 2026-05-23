@@ -86,7 +86,7 @@ td {
 tr:last-child td { border-bottom: none; }
 tr:hover td { background-color: #222530; }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     body { padding: 40px; }
 
     .logo { font-size: 1.8rem; margin-bottom: 28px; }
