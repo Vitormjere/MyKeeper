@@ -21,26 +21,26 @@ fetch(`/mykeeper/src/Controllers/item_lista_compras_compartilhar.php?token=${tok
             html += '<p class="vazio">Nenhum item nesta lista.</p>';
         } else {
             html += `
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Produto</th>
-                            <th>Categoria</th>
-                            <th>Quantidade</th>
-                            <th>Unidade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${itens.map(i => `
+                <div class="tabela-wrapper">
+                    <table>
+                        <thead>
                             <tr>
-                                <td>${i.nome}</td>
-                                <td>${i.nome_categoria}</td>
-                                <td>${i.quantidade}</td>
-                                <td>${i.und_medida}</td>
+                                <th>Produto</th>
+                                <th>Categoria</th>
+                                <th>Quantidade</th>
                             </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            ${itens.map(i => `
+                                <tr>
+                                    <td>${i.nome}</td>
+                                    <td>${i.nome_categoria}</td>
+                                    <td>${i.quantidade ?? '—'}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
             `;
         }
 
