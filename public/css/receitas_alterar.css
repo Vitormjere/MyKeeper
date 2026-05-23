@@ -8,94 +8,76 @@ body {
     color: #e0e0e0;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 20px;
 }
 
 section {
     width: 100%;
     max-width: 620px;
     background-color: #1a1d23;
-    padding: 40px;
+    padding: 24px 20px;
     border-radius: 16px;
     border: 1px solid #2d3139;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-top: 10px;
 }
 
 section::before {
-    content: 'Nova Receita'; /* → 'Alterar Receita' no outro arquivo */
+    content: 'Alterar Receita';
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #ffffff;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-align: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-form > div {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+form { display: flex; flex-direction: column; gap: 16px; }
+form > div { display: flex; flex-direction: column; gap: 6px; }
 
 label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #00ffa3;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-input[type="text"],
-input[type="number"],
-textarea,
-select {
+input[type="text"], input[type="number"], textarea, select {
     width: 100%;
     background-color: #10151b;
     border: 1px solid #37404b;
     border-radius: 14px;
-    padding: 14px 18px;
+    padding: 12px 16px;
     color: #f5fffb;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
 }
 
-input[type="text"],
-input[type="number"] { min-height: 54px; }
-
-textarea {
-    min-height: 120px;
-    resize: vertical;
-    line-height: 1.6;
-}
+input[type="text"], input[type="number"] { min-height: 50px; }
+textarea { min-height: 100px; resize: vertical; line-height: 1.6; }
 
 select {
-    min-height: 54px;
+    min-height: 50px;
     appearance: none;
     cursor: pointer;
-    padding-right: 52px;
+    padding-right: 46px;
     background-image:
-        linear-gradient(180deg, rgba(0, 255, 163, 0.12), rgba(0, 255, 163, 0)),
+        linear-gradient(180deg, rgba(0,255,163,0.12), rgba(0,255,163,0)),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300ffa3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat, no-repeat;
-    background-position: center, right 16px center;
-    background-size: 100% 100%, 18px;
+    background-position: center, right 14px center;
+    background-size: 100% 100%, 16px;
 }
 
 input:focus, textarea:focus, select:focus {
     border-color: #00ffa3;
-    box-shadow: 0 0 0 4px rgba(0, 255, 163, 0.12);
-    transform: translateY(-1px);
+    box-shadow: 0 0 0 4px rgba(0,255,163,0.12);
 }
 
 select:hover { background-color: #121922; border-color: #46515e; }
@@ -109,8 +91,8 @@ input[type="file"] {
     border: 1px dashed #3d424a;
     color: #a0a0a0;
     cursor: pointer;
+    font-size: 0.85rem;
     min-height: unset;
-    transform: none;
 }
 
 input[type="file"]::-webkit-file-upload-button {
@@ -124,106 +106,44 @@ input[type="file"]::-webkit-file-upload-button {
     cursor: pointer;
 }
 
-/* --- Ingredientes --- */
-
-#container-ingredientes > label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-#lista-ingredientes {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 10px;
-}
+#container-ingredientes > label { display: block; margin-bottom: 8px; }
+#lista-ingredientes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 10px; }
 
 .ingrediente {
     background-color: #10151b;
     border: 1px solid #2d3139;
     border-radius: 12px;
-    padding: 16px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-.ingrediente-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.ingrediente-header { display: flex; justify-content: space-between; align-items: center; }
+.ingrediente-titulo { font-size: 0.78rem; font-weight: 600; color: #00ffa3; text-transform: uppercase; letter-spacing: 0.5px; }
+.ingrediente-campos { display: flex; flex-direction: column; gap: 10px; }
 
-.ingrediente-titulo {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #00ffa3;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+.campo-grupo { display: flex; flex-direction: column; gap: 6px; }
+.campo-grupo label { font-size: 0.75rem; color: #a0a0a0; text-transform: uppercase; letter-spacing: 0.4px; }
+.campo-grupo input, .campo-grupo select { min-height: 44px; font-size: 0.88rem; border-radius: 10px; padding: 10px 14px; }
 
-.ingrediente-campos {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.campo-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.campo-grupo label {
-    font-size: 0.78rem;
-    color: #a0a0a0;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-}
-
-.campo-grupo input,
-.campo-grupo select {
-    min-height: 46px;
-    font-size: 0.9rem;
-    border-radius: 10px;
-    padding: 10px 14px;
-}
-
-.campo-grupo--row {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-}
-
-.campo-grupo--row > div {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.campo-grupo--row label {
-    font-size: 0.78rem;
-    color: #a0a0a0;
-    text-transform: uppercase;
-}
+.campo-grupo--row { display: flex; flex-direction: column; gap: 10px; }
+.campo-grupo--row > div { display: flex; flex-direction: column; gap: 6px; }
+.campo-grupo--row label { font-size: 0.75rem; color: #a0a0a0; text-transform: uppercase; }
 
 .btn-remover {
-    background-color: rgba(255, 77, 77, 0.1);
+    background-color: rgba(255,77,77,0.1);
     color: #ff4d4d;
     border: 1px solid #ff4d4d;
     border-radius: 6px;
     padding: 6px 12px;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.btn-remover:hover {
-    background-color: #ff4d4d;
-    color: #ffffff;
-}
+.btn-remover:hover { background-color: #ff4d4d; color: #ffffff; }
 
 #adicionar-ingrediente {
     background-color: transparent;
@@ -239,19 +159,9 @@ input[type="file"]::-webkit-file-upload-button {
     margin-top: 4px;
 }
 
-#adicionar-ingrediente:hover {
-    background-color: rgba(0, 255, 163, 0.08);
-}
+#adicionar-ingrediente:hover { background-color: rgba(0,255,163,0.08); }
 
-/* --- Erros --- */
-
-p[id^="error"] {
-    font-size: 0.8rem;
-    color: #ff4d4d;
-    min-height: 16px;
-}
-
-/* --- Botão principal --- */
+p[id^="error"] { font-size: 0.78rem; color: #ff4d4d; min-height: 16px; }
 
 #addreceita, #alterarreceita {
     background-color: #00ffa3;
@@ -260,25 +170,24 @@ p[id^="error"] {
     padding: 14px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
-#addreceita:hover, #alterarreceita:hover {
-    background-color: #00d68a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 255, 163, 0.4);
+#addreceita:hover, #alterarreceita:hover { background-color: #00d68a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,163,0.4); }
+#addreceita:active, #alterarreceita:active { transform: translateY(0); }
+
+@media (min-width: 600px) {
+    .campo-grupo--row { flex-direction: row; }
+    .campo-grupo--row > div { flex: 1; }
 }
 
-#addreceita:active, #alterarreceita:active {
-    transform: translateY(0);
-}
-
-@media (max-width: 480px) {
-    section { padding: 25px 20px; }
-    .campo-grupo--row { flex-direction: column; }
+@media (min-width: 768px) {
+    body { align-items: center; padding: 40px 20px; }
+    section { padding: 40px; margin-top: 0; }
+    section::before { font-size: 1.6rem; }
 }

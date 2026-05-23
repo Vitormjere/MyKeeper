@@ -8,6 +8,7 @@
     pointer-events: none;
     backdrop-filter: blur(0px);
     transition: backdrop-filter 0.2s;
+    padding: 20px;
 }
 
 #notificacao-container.ativo {
@@ -16,16 +17,16 @@
 }
 
 .notificacao {
-    width: 500px;
-    padding: 28px;
+    width: 100%;
+    max-width: 460px;
+    padding: 24px 20px;
     background-color: #1a1d23;
     border-radius: 12px;
     border: 1px solid #2d3139;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    gap: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     pointer-events: all;
     animation: notificacaoIn 0.2s ease;
     transition: opacity 0.3s, transform 0.3s;
@@ -34,13 +35,10 @@
     font-size: 14px;
 }
 
-.notificacao.hide {
-    opacity: 0;
-    transform: translateY(-8px);
-}
+.notificacao.hide { opacity: 0; transform: translateY(-8px); }
 
 .notificacao-msg {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #ffffff;
     font-weight: 600;
     margin: 0;
@@ -56,7 +54,7 @@
 
 .notificacao-btn {
     flex: 1;
-    padding: 8px 10px;
+    padding: 10px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
@@ -67,28 +65,27 @@
 }
 
 .notificacao-btn {
-    background-color: rgba(0, 255, 163, 0.1);
+    background-color: rgba(0,255,163,0.1);
     color: #00ffa3;
     border-color: #00ffa3;
 }
 
-.notificacao-btn:hover {
-    background-color: #00ffa3;
-    color: #0b0e11;
-}
+.notificacao-btn:hover { background-color: #00ffa3; color: #0b0e11; }
 
 .notificacao-confirmar {
-    background-color: rgba(255, 77, 77, 0.1);
+    background-color: rgba(255,77,77,0.1);
     color: #ff4d4d;
     border-color: #ff4d4d;
 }
 
-.notificacao-confirmar:hover {
-    background-color: #ff4d4d;
-    color: #ffffff;
-}
+.notificacao-confirmar:hover { background-color: #ff4d4d; color: #ffffff; }
 
 @keyframes notificacaoIn {
     from { opacity: 0; transform: translateY(-8px); }
-    to   { opacity: 1; transform: translateY(0); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 480px) {
+    .notificacao { padding: 28px; }
+    .notificacao-msg { font-size: 1rem; }
 }

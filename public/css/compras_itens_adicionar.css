@@ -1,101 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #0b0e11; 
+    background-color: #0b0e11;
     color: #e0e0e0;
     display: flex;
     min-height: 100vh;
+    padding-bottom: 70px;
 }
 
 section {
-    margin-left: 260px; 
-    padding: 40px;
-    width: calc(100% - 260px);
+    padding: 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* Header e Título */
 .header-lista {
-    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #2d3139;
     padding-bottom: 15px;
 }
 
-h2 {
-    font-size: 1.8rem;
+.header-lista h2 {
+    font-size: 1.4rem;
     color: #ffffff;
     font-weight: 600;
+    margin-right: auto;
 }
 
-/* Grid de Produtos */
-#item {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+#item { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; }
 
-/* Card de Produto */
 .card {
     background-color: #1a1d23;
     border-radius: 12px;
     border: 1px solid #2d3139;
-    padding: 20px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     transition: all 0.2s ease;
 }
 
-.card:hover, .card:focus-within {
-    transform: translateY(-4px);
-    border-color: #00ffa3;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
+.card:hover, .card:focus-within { transform: translateY(-4px); border-color: #00ffa3; box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
 
-.card-icone img {
-    border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid #3d424a;
-    margin-bottom: 10px;
-}
+.card-icone img { border-radius: 8px; object-fit: cover; border: 1px solid #3d424a; margin-bottom: 10px; }
+.card-nome { font-size: 0.95rem; color: #ffffff; font-weight: 600; margin-bottom: 5px; }
+.card-data { font-size: 0.78rem; color: #00ffa3; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
 
-.card-nome {
-    font-size: 1.1rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-
-.card-nome {
-    font-size: 0.9rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.card-data {
-    font-size: 0.8rem;
-    color: #00ffa3;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-/* Área de Inputs do Lote */
-.card-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-}
+.card-inputs { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
 
 .card-inputs input {
     width: 100%;
@@ -109,17 +67,9 @@ h2 {
     transition: border-color 0.2s ease;
 }
 
-.card-inputs input:focus {
-    border-color: #00ffa3;
-}
+.card-inputs input:focus { border-color: #00ffa3; }
+input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
 
-/* Estilo para o seletor de data */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-}
-
-/* Botão Adicionar */
 .btn-editar {
     width: 100%;
     background-color: #00ffa3;
@@ -131,21 +81,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
     text-transform: uppercase;
     transition: background 0.3s ease;
+    font-size: 0.85rem;
 }
 
-.btn-editar:hover {
-    background-color: #00d68a;
-}
+.btn-editar:hover { background-color: #00d68a; }
 
-/* Responsividade */
-@media (max-width: 1200px) {
-    #item { grid-template-columns: repeat(2, 1fr); }
-}
+@media (min-width: 768px) { #item { grid-template-columns: repeat(2, 1fr); } }
 
-@media (max-width: 1024px) {
-    section { margin-left: 0; width: 100%; padding: 20px; }
-}
-
-@media (max-width: 600px) {
-    #item { grid-template-columns: 1fr; }
+@media (min-width: 1024px) {
+    body { padding-bottom: 0; }
+    section { margin-left: 260px; padding: 40px; width: calc(100% - 260px); }
+    .header-lista h2 { font-size: 1.8rem; }
+    #item { grid-template-columns: repeat(3, 1fr); gap: 20px; }
 }

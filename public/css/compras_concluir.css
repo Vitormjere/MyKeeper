@@ -1,143 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #0b0e11; 
+    background-color: #0b0e11;
     color: #e0e0e0;
     display: flex;
     min-height: 100vh;
+    padding-bottom: 70px;
 }
 
 section {
-    margin-left: 260px; 
-    padding: 40px;
-    width: calc(100% - 260px);
+    padding: 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* Header e Título */
 .header-estoque {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #2d3139;
     padding-bottom: 15px;
 }
 
-h2 {
-    font-size: 1.8rem;
-    color: #ffffff;
-    font-weight: 600;
-}
+h2 { font-size: 1.4rem; color: #ffffff; font-weight: 600; }
 
-/* Grid de Produtos */
-#item {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-/* Card de Produto */
-.card {
-    background-color: #1a1d23;
-    border-radius: 12px;
-    border: 1px solid #2d3139;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.2s ease;
-}
-
-.card:hover, .card:focus-within {
-    transform: translateY(-4px);
-    border-color: #00ffa3;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-}
-
-.card-icone img {
-    border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid #3d424a;
-    margin-bottom: 10px;
-}
-
-.card-nome {
-    font-size: 1.1rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.card-data {
-    font-size: 0.8rem;
-    color: #00ffa3;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-/* Área de Inputs do Lote */
-.card-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.card-inputs input {
-    width: 100%;
-    background-color: #0b0e11;
-    border: 1px solid #3d424a;
-    border-radius: 6px;
-    padding: 10px;
-    color: #ffffff;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s ease;
-}
-
-.card-inputs input:focus {
-    border-color: #00ffa3;
-}
-
-/* Estilo para o seletor de data */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-}
-
-/* Botão Adicionar */
-.btn-editar {
-    width: 100%;
-    background-color: #00ffa3;
-    color: #0b0e11;
-    border: none;
-    padding: 12px;
-    border-radius: 6px;
-    font-weight: 700;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background 0.3s ease;
-}
-
-.btn-editar:hover {
-    background-color: #00d68a;
-}
-
-.select-estoque-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 30px;
-}
+.select-estoque-wrapper { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
 
 .select-estoque-wrapper label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #a0a0a0;
     text-transform: uppercase;
     font-weight: 600;
@@ -152,22 +44,71 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     color: #ffffff;
     font-size: 0.95rem;
     outline: none;
-    max-width: 400px;
+    width: 100%;
     cursor: pointer;
     transition: border-color 0.2s ease;
 }
 
-.select-estoque-wrapper select:focus {
-    border-color: #00ffa3;
+.select-estoque-wrapper select:focus { border-color: #00ffa3; }
+
+#item { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+.card {
+    background-color: #1a1d23;
+    border-radius: 12px;
+    border: 1px solid #2d3139;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
 }
 
+.card:hover, .card:focus-within { transform: translateY(-4px); border-color: #00ffa3; }
+
+.card-icone img { border-radius: 8px; object-fit: cover; border: 1px solid #3d424a; margin-bottom: 10px; }
+.card-nome { font-size: 0.95rem; color: #ffffff; font-weight: 600; margin-bottom: 5px; }
+.card-data { font-size: 0.78rem; color: #00ffa3; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+
+.card-inputs { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+
+.card-inputs input {
+    width: 100%;
+    background-color: #0b0e11;
+    border: 1px solid #3d424a;
+    border-radius: 6px;
+    padding: 10px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.card-inputs input:focus { border-color: #00ffa3; }
+input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
+
+.btn-editar {
+    width: 100%;
+    background-color: #00ffa3;
+    color: #0b0e11;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.btn-editar:hover { background-color: #00d68a; }
+
 #btnConfirmar {
-    margin-top: 30px;
+    margin-top: 24px;
     align-self: flex-start;
     background-color: #00ffa3;
     color: #0b0e11;
     border: none;
-    padding: 14px 32px;
+    padding: 12px 28px;
     border-radius: 8px;
     font-weight: 700;
     font-size: 0.9rem;
@@ -176,19 +117,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transition: background 0.3s ease;
 }
 
-#btnConfirmar:hover {
-    background-color: #00d68a;
-}
+#btnConfirmar:hover { background-color: #00d68a; }
 
-/* Responsividade */
-@media (max-width: 1200px) {
-    #item { grid-template-columns: repeat(2, 1fr); }
-}
+@media (min-width: 768px) { #item { grid-template-columns: repeat(2, 1fr); } }
 
-@media (max-width: 1024px) {
-    section { margin-left: 0; width: 100%; padding: 20px; }
-}
-
-@media (max-width: 600px) {
-    #item { grid-template-columns: 1fr; }
+@media (min-width: 1024px) {
+    body { padding-bottom: 0; }
+    section { margin-left: 260px; padding: 40px; width: calc(100% - 260px); }
+    h2 { font-size: 1.8rem; }
+    #item { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .select-estoque-wrapper select { max-width: 400px; }
 }

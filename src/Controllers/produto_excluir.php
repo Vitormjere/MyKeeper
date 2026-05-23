@@ -54,6 +54,12 @@ if(isset($_GET['id'])){
         }
     }
 
+    //para o comando de voz
+    $hist = $conexao->prepare("INSERT INTO produto_historico (id_usuario, nome, id_categoria, und_medida) SELECT id_usuario, nome, id_categoria, und_medida FROM produto WHERE id = ? AND id_usuario = ?");
+    $hist->bind_param('ii', $_GET['id'], $id_usuario);
+    $hist->execute();
+    $hist->close();
+
     // 3. Deleta o produto
     $stmt = $conexao->prepare("DELETE FROM produto WHERE id = ? AND id_usuario = ?");
     $stmt->bind_param('ii', $_GET['id'], $id_usuario);
