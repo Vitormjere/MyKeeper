@@ -148,4 +148,3 @@ async function alterarStatus(id, novoStatus) {
     }
     window.location.reload();
 }
-}

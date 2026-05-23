@@ -12,4 +12,5 @@ addClick('receitasButtonLink',  '/mykeeper/src/Views/receitas.php');
 addClick('perfilButtonLink',    '/mykeeper/src/Views/perfil_usuario.php');
 addClick('ticketButtonLink',    '/mykeeper/src/Views/ticket_usuario.php');
 addClick('logoffButtonLink',    '/mykeeper/src/Controllers/logoff.php');
-addClick('adminHomeButtonLink', '/mykeeper/src/Views/admin_home.php');
+addClick('TicketsButtonLinkSuporte', '/mykeeper/src/Views/tickets_suporte.php');
+addClick('suporteButtonLink', '/mykeeper/src/Views/suporte.php');

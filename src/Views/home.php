@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="/mykeeper/public/css/home.css">
 </head>
 <body>
+    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['tipo'] === 1): 
+        echo '<script>window.location.href = "/mykeeper/src/Views/admin_home.php";</script>';
+        exit();    
+    ?>
+    <?php endif; ?>
+
     <section class="main-content">
         <div class="welcome-container">
             <h1>Bem-vindo ao <span>MyKeeper</span></h1>

@@ -272,7 +272,7 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-top: 25px;
-    align-self: flex-end;
+    float: right;
     box-shadow: 0 4px 14px rgba(0, 255, 163, 0.2);
 }
 
@@ -283,10 +283,9 @@ h2 {
 }
 
 #mensagem {
-    color: #6b7280;
+    color: #a0a0a0;
+    font-size: 1rem;
     margin-top: 20px;
-    font-size: 0.95rem;
-    text-align: center;
 }
 
 @media (max-width: 1024px) {
