@@ -59,6 +59,8 @@ document.getElementById('btnVoz').addEventListener('click', ()=>{
     document.getElementById('btnVoz').innerHTML = '✕';
 });
 
+
+
 rec.onresult = async (e)=>{
     var i = e.results.length - 1;
     if(!e.results[i].isFinal) return;
@@ -68,12 +70,21 @@ rec.onresult = async (e)=>{
 
     var nome = texto.charAt(0).toUpperCase() + texto.slice(1);
 
-    // verifica no histórico se o produto já foi cadastrado antes
+    // Verifica no histórico
     const checkHistorico = await fetch('/mykeeper/src/Controllers/produto_historico_get.php?nome=' + encodeURIComponent(nome));
     const historico = await checkHistorico.json();
 
     if(historico.status == 'ok'){
-        // produto já existiu, cadastra automaticamente com dados antigos
+        // antes de cadastrar, verifica se já existe no produto
+        const checkProduto = await fetch('/mykeeper/src/Controllers/produto_verificar.php?nome=' + encodeURIComponent(nome));
+        const produtoExiste = await checkProduto.json();
+
+        if(produtoExiste.status == 'ok'){
+            toast(nome + ' já está cadastrado!', 'aviso');
+            return;
+        }
+
+        // não existe no produto, cadastra pelo histórico
         var fd = new FormData();
         fd.append('nome_produto', nome);
         fd.append('id_categoria', historico.data.id_categoria || '');
@@ -81,25 +92,37 @@ rec.onresult = async (e)=>{
 
         try{
             const retorno = await fetch('/mykeeper/src/Controllers/produto_novo_back.php', {
-                method:'POST',
-                body:fd
+                method: 'POST',
+                body: fd
             });
             const resposta = await retorno.json();
             if(resposta.status == 'ok'){
-                toast(nome + ' adicionado!');
+                toast(nome + ' adicionado!', 'success');
             } else {
                 toast('Erro ao adicionar ' + nome, true);
             }
         } catch(err){
             toast('Erro ao adicionar ' + nome, true);
         }
-
-    } else {
-        // produto nunca existiu, preenche o campo e avisa
-        document.getElementById('nome_produto').value = nome;
-        toast('Complete as informações de ' + nome + '!', 'aviso');
+        return;
     }
+
+    // Verifica na tabela produto
+    const checkProduto = await fetch('/mykeeper/src/Controllers/produto_verificar.php?nome=' + encodeURIComponent(nome));
+    const produtoExiste = await checkProduto.json();
+
+    if(produtoExiste.status == 'ok'){
+        // já está cadastrado
+        toast(nome + ' já está cadastrado!', 'aviso');
+        return;
+    }
+
+    // Não encontrou em nenhum -> preenche o campo manualmente
+    document.getElementById('nome_produto').value = nome;
+    toast('Complete as informações de ' + nome + '!', 'aviso');
 };
+
+
 
 rec.onerror = (evento)=>{
     ouvindo = false;
