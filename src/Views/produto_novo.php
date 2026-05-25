@@ -55,6 +55,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
                     <option value="gramas">Gramas (g)</option>
                     <option value="l">Litro (L)</option>
                     <option value="ml">Mililitro (mL)</option>
+                    <option value="un">Unidade (un)</option>
                 </select>
                 <p id="error-unidade"></p>
             </div>
