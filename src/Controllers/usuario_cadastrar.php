@@ -32,6 +32,21 @@
         exit;
     }
 
+    $stmtCheck = $conexao->prepare("SELECT id FROM suporte WHERE email = ?");
+    $stmtCheck->bind_param("s", $email);
+    $stmtCheck->execute();
+    $stmtCheck->store_result();
+
+    if ($stmtCheck->num_rows > 0) {
+        $stmtCheck->close();
+        echo json_encode([
+            'status'   => 'nok',
+            'mensagem' => 'Este email já está cadastrado'
+        ]);
+        exit;
+    }
+    $stmtCheck->close();
+
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
     $cep = substr($cepNumerico, 0, 5) . '-' . substr($cepNumerico, 5, 3);
 
