@@ -45,7 +45,7 @@ label {
     letter-spacing: 0.5px;
 }
 
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], input[type="password"] {
     width: 100%;
     background-color: #0b0e11;
     border: 1px solid #3d424a;
@@ -61,7 +61,7 @@ input:focus { border-color: #00ffa3; box-shadow: 0 0 8px rgba(0,255,163,0.15); }
 
 p[id^="error"] { font-size: 0.8rem; color: #ff4d4d; }
 
-#alterarperfil {
+#alterarperfil, #alterarsenha {
     background-color: #00ffa3;
     color: #0b0e11;
     border: none;
@@ -76,8 +76,8 @@ p[id^="error"] { font-size: 0.8rem; color: #ff4d4d; }
     margin-top: 8px;
 }
 
-#alterarperfil:hover { background-color: #00d68a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,163,0.4); }
-#alterarperfil:active { transform: translateY(0); }
+#alterarperfil:hover, #alterarsenha:hover { background-color: #00d68a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,163,0.4); }
+#alterarperfil:active, #alterarsenha:active { transform: translateY(0); }
 
 @media (min-width: 768px) {
     body { align-items: center; padding: 40px 20px; }

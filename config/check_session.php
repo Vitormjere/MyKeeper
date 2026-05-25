@@ -13,6 +13,8 @@ if(isset($_SESSION['logado']) && $_SESSION['logado'] === true){
     ]);
 }else{
     echo json_encode([
-        'logado' => false
+        'logado'   => false,
+        'expirado' => true,   
+        'mensagem' => 'Sessão expirada'
     ]);
 }

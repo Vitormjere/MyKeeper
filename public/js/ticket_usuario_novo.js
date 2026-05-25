@@ -4,8 +4,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
-        return; // para a execução aqui
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
+        return;
     }
 });
 

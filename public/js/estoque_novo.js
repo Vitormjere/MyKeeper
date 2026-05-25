@@ -1,3 +1,16 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    const response = await fetch('/mykeeper/config/check_session.php');
+    const data = await response.json();
+    if (!data.logado) {
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
+        return;
+    }
+});
+
 document.getElementById('icone_estoque').addEventListener('change', function() {
     const file = this.files[0];
     if (file) {

@@ -27,6 +27,7 @@
 
         <div>
             <button class = "btn-editar"><a href="" id="linkEditar">Editar</a></button>
+            <button class = "btn-editar"><a href="" id="linkSenha">Mudar Senha</a></button>
             <button class="btn-desativar" id="desativarConta">Desativar Conta</button>
         </div>
 
