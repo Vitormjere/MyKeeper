@@ -75,6 +75,11 @@ h2 {
     vertical-align: middle;
 }
 
+.tabela td:nth-child(5) {
+    font-weight: 600;
+    color: #d8fff0;
+}
+
 .tabela tr:last-child td {
     border-bottom: none;
 }
