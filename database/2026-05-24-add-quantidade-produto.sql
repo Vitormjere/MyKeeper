@@ -1,2 +1,0 @@
-ALTER TABLE produto
-ADD COLUMN quantidade DOUBLE NOT NULL DEFAULT 0 AFTER nome;
