@@ -16,7 +16,7 @@
     <section>
         <div class="header-estoque">
             <h2>Estoque</h2>
-            <button id="criarNovoEstoque">Novo Estoque</button>
+            <button id="criarNovoEstoque">Adicionar Estoque</button>
         </div>
         
         <div id="item"></div>

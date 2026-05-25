@@ -39,6 +39,12 @@ h2 {
     overflow-y: auto;
 }
 
+
+#item:empty {
+    border: none;
+    box-shadow: none;
+}
+
 #item::-webkit-scrollbar {
     width: 4px;
 }
@@ -73,6 +79,11 @@ h2 {
     border-bottom: 1px solid #2d3139;
     color: #ffffff;
     vertical-align: middle;
+}
+
+.tabela td:nth-child(5) {
+    font-weight: 600;
+    color: #d8fff0;
 }
 
 .tabela tr:last-child td {

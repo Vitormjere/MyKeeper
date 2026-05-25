@@ -20,7 +20,7 @@
 
         <div class="header-estoque">
             <h2>Listas de compras</h2>
-            <button id="criarCompras">+ Nova lista</button>
+            <button id="criarCompras">Adicionar lista</button>
         </div>
         <div id="item"></div>
         <p id="mensagem"></p>

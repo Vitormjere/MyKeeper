@@ -74,8 +74,8 @@ function preencherTabela(tabela, id_lista_compra, bloqueado) {
                     <div class="card-botoes">
                         ${bloqueado ? '' : `
                         <button class="btn-editar"><a href="compras_itens_alterar.php?id_lista_compra=${id_lista_compra}&id_produto=${tabela[i].id_produto}">Editar</a></button>
+                        <button class="btn-excluir"><a href="#" onclick="excluir(${id_lista_compra}, ${tabela[i].id_produto})">Excluir</a></button>
                         `}
-                        <button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id_lista_compra}, ${tabela[i].id_produto})">Excluir</a></button>
                     </div>
 
                 </div>`;
@@ -85,9 +85,9 @@ function preencherTabela(tabela, id_lista_compra, bloqueado) {
     document.getElementById('item').innerHTML = html;
 }
 
-async function excluir(id) {
+async function excluir(id_lista_compra, id_produto) {
     notificacaoExcluir('Tem certeza que deseja excluir este item?', 'confirm', async function() {
-        const retorno = await fetch('/mykeeper/src/Controllers/compras_itens_excluir.php?id=' + id);
+        const retorno = await fetch('/mykeeper/src/Controllers/compras_itens_excluir.php?id_lista_compra=' + id_lista_compra + '&id_produto=' + id_produto);
         const resposta = await retorno.json();
         if (resposta.status == 'ok') {
             notificacaoExcluir(resposta.mensagem, 'success');
