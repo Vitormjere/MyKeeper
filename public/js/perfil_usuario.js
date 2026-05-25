@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
 
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
 
@@ -29,6 +33,7 @@ function preencherInformacoes(usuario) {
     document.getElementById('email').textContent = e(usuario.email);
     document.getElementById('cep').textContent = e(usuario.cep);
     document.getElementById('linkEditar').href = `/mykeeper/src/Views/perfil_alterar.php?id=${usuario.id}`;
+    document.getElementById('linkSenha').href = `/mykeeper/src/Views/senha_alterar.php?id=${usuario.id}`;
 }
 
 document.getElementById('desativarConta').addEventListener('click', async () => {

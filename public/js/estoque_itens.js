@@ -4,11 +4,23 @@ function e(str) {
     return div.innerHTML;
 }
 
+function respostaOuTracos(valor) {
+    if (valor === null || valor === undefined || String(valor).trim() === '' || String(valor).toLowerCase() === 'null') {
+        return '---';
+    }
+
+    return e(valor);
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('/mykeeper/config/check_session.php');
     const data = await response.json();
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
 
@@ -57,10 +69,10 @@ function preencherTabela(tabela, id_estoque) {
                         ${e(tabela[i].nome)}
                     </div>
                     <div class="card-data">
-                        Quantidade: ${e(String(tabela[i].quantidade))} ${e(tabela[i].und_medida)}
+                        Quantidade: ${respostaOuTracos(tabela[i].quantidade)} ${e(tabela[i].und_medida)}
                     </div>
                     <div class="card-data">
-                        Marca: ${e(tabela[i].marca ?? 'Não informada')}
+                        Marca: ${respostaOuTracos(tabela[i].marca)}
                     </div>
                     <div class="card-data">
                         Validade: ${validade}

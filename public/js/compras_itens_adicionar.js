@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('/mykeeper/config/check_session.php');
     const data = await response.json();
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
 
@@ -83,9 +87,7 @@ async function adicionar(id_produto) {
 
     if (resposta.status == 'ok') {
         notificacaoSistema('SUCESSO! ' + resposta.mensagem, 'success');
-        setTimeout(function() {
-            window.location.href = `/mykeeper/src/Views/compras_itens.php?id_lista_compra=${id_lista_compra}`;
-        }, 1200);
+        setTimeout(function() {}, 600);
     } else {
         notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }

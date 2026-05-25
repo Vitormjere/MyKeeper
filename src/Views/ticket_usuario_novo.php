@@ -27,7 +27,7 @@
             <form>
                 <div>
                     <div>
-                        <label for="titulo">Título</label>
+                        <label for="titulo">Título: <span style="color: red;">*</span></label>
                     </div>
                     <div>
                         <input type="text" name="titulo" id="titulo" placeholder="Título do ticket">
@@ -36,7 +36,7 @@
                 </div>
                 <div>
                     <div>
-                        <label for="descricao">Descrição</label>
+                        <label for="descricao">Descrição: <span style="color: red;">*</span></label>
                     </div>
                     <div>
                         <textarea name="descricao" id="descricao" style="resize: none;" placeholder="Descrição do ticket"></textarea>
@@ -47,6 +47,7 @@
                     <p id="error"></p>
                 </div>
                 <button type="button" id="criarTicket">Criar ticket</button>
+                <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
             </form>
     </section>
 </body>

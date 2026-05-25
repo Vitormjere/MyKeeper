@@ -54,7 +54,7 @@ h2 { font-size: 1.4rem; color: #ffffff; font-weight: 600; margin-bottom: 20px; }
 
 td.botoes { white-space: nowrap; text-align: center; width: 100px; }
 
-.btn-editar {
+.btn-editar, .btn-chat{
     display: inline-flex;
     border-radius: 6px;
     cursor: pointer;
@@ -67,6 +67,9 @@ td.botoes { white-space: nowrap; text-align: center; width: 100px; }
     overflow: hidden;
 }
 
+.btn-chat { background-color: rgba(0,123,255,0.1); color: #007bff; border-color: #007bff; }
+.btn-chat:hover { background-color: #007bff; color: #ffffff; transform: translateY(-2px); }
+.btn-chat a { display: block; padding: 6px 12px; text-decoration: none; color: inherit; line-height: 1; }
 .btn-editar a { display: block; padding: 6px 12px; text-decoration: none; color: inherit; line-height: 1; }
 .btn-editar:hover { background-color: #00ffa3; color: #0b0e11; transform: translateY(-2px); }
 
@@ -77,4 +80,5 @@ td.botoes { white-space: nowrap; text-align: center; width: 100px; }
     .tabela th { padding: 15px 20px; font-size: 0.75rem; }
     .tabela td { padding: 12px 20px; }
     .btn-editar a { padding: 8px 16px; }
+    .btn-chat a { padding: 8px 16px; } /* <-- adiciona isso */
 }

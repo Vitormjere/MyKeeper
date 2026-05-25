@@ -27,7 +27,7 @@
 
                 <div>
                     <div>
-                        <label for="email">E-mail</label>
+                        <label for="email">E-mail: <span style="color: red;">*</span></label>
                     </div>
                     <div>
                         <input type="text" name="email" id="email" placeholder="seu@email.com">
@@ -38,7 +38,7 @@
 
                 <div>
                     <div>
-                        <label for="senha">Senha</label> <br>
+                        <label for="senha">Senha: <span style="color: red;">*</span></label> <br>
                     </div>
                     <div>
                         <input type="password" name="senha" id="senha" placeholder="••••••" minLength="8">
@@ -51,6 +51,7 @@
                 </div>
 
                 <button type="submit">Entrar</button>
+                <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
             </form>
 
             <div class="divider">

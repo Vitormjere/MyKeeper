@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch('/mykeeper/config/check_session.php');
     const data = await response.json();
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
     buscar(data.id);
@@ -85,9 +89,15 @@ document.getElementById('alterarperfil').addEventListener('click', async () => {
         body: fd
     });
     const resposta = await retorno.json();
+    
     if (resposta.status == 'ok') {
+        const sidebarNome = document.querySelector('.usuarioLogado');
+        if (sidebarNome) {
+            sidebarNome.textContent = resposta.data.nome;
+        }
+
         document.getElementById('error').style.color = '#00ffa3';
-        document.getElementById('error').textContent = 'Perfil atualizado com sucesso!' + '.Redirecionando...';
+        document.getElementById('error').textContent = 'Perfil atualizado com sucesso! Redirecionando...';
         setTimeout(() => {
             window.location.href = '/mykeeper/src/Views/perfil_usuario.php';
         }, 1000);

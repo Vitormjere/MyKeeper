@@ -6,6 +6,14 @@ document.getElementById('formLogin').addEventListener('submit',(e)=>{
 document.getElementById('createAccount').addEventListener('click', ()=>{
     window.location.href = '/mykeeper/src/Views/usuario_cadastro.php';
 })
+document.addEventListener('DOMContentLoaded', async ()=>{
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('motivo') === 'expirado') {
+        document.getElementById('error').style.color = '#ffcc00';
+        document.getElementById('error').textContent = 'Sua sessão expirou por inatividade. Faça login novamente.';
+    }
+});
+
 
 async function login() {
     let email = document.getElementById('email').value;

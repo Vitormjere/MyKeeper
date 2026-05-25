@@ -49,11 +49,15 @@
     
 
     try {
-        $stmt->execute(); // só aqui
-        $retorno = [
-            'status'   => 'ok',
-            'mensagem' => 'Dados atualizados com sucesso'
-        ];
+        $stmt->execute(); 
+        if($stmt->affected_rows > 0){
+            $_SESSION['usuario']['nome'] = $nome; 
+            $retorno = [
+                'status'   => 'ok',
+                'mensagem' => 'Perfil atualizado com sucesso',
+                'data'     => ['nome' => $nome]  
+            ];
+        }
     } catch (mysqli_sql_exception $e) {
         $retorno = [
             'status'   => 'nok',

@@ -23,7 +23,7 @@
         <input type="hidden" id="id_produto">
         <input type="hidden" id="id_lista_compra">
         <div>
-            <label for="quantidade">Quantidade</label>
+            <label for="quantidade">Quantidade: </label>
             <input type="number" id="quantidade" placeholder="Quantidade" min="0" step="0.01">
             <p id="error-quantidade"></p>
         </div>

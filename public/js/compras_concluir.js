@@ -4,6 +4,14 @@ function e(str) {
     return div.innerHTML;
 }
 
+function respostaOuTracos(valor) {
+    if (valor === null || valor === undefined || String(valor).trim() === '' || String(valor).toLowerCase() === 'null') {
+        return '---';
+    }
+
+    return e(valor);
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 const id_lista_compra = urlParams.get('id');
 
@@ -17,7 +25,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
 
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
 
@@ -70,7 +82,7 @@ function preencherCards(tabela) {
         <div class="card" data-id-produto="${tabela[i].id_produto}" data-quantidade="${tabela[i].quantidade}">
 
             <div class="card-nome">${e(tabela[i].nome)}</div>
-            <div class="card-data">${e(tabela[i].quantidade)} ${e(tabela[i].und_medida)}</div>
+            <div class="card-data">${respostaOuTracos(tabela[i].quantidade)} ${respostaOuTracos(tabela[i].und_medida)}</div>
             <div class="card-inputs">
                 <input type="text" placeholder="Marca (opcional)" class="input-marca">
                 <input type="date" class="input-validade">

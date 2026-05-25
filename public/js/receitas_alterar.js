@@ -13,7 +13,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
 
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
 
@@ -155,8 +159,13 @@ async function alterar() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
-        window.location.href = '/mykeeper/src/Views/receitas.php';
+        document.getElementById('error').style.color = '#00ffa3';
+        document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
+        setTimeout(() => {
+            window.location.href = '/mykeeper/src/Views/receitas.php';
+        }, 1000);
     } else {
+        document.getElementById('error').style.color = '#ff6b6b';
         document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }
 }

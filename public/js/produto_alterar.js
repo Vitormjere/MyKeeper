@@ -18,7 +18,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
 
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
         return;
     }
 
@@ -66,7 +70,6 @@ async function buscar(id) {
     if (resposta.status == 'ok') {
         const item = resposta.data[0];
         document.getElementById('nome_produto').value = e(item.nome);
-        document.getElementById('quantidade_produto').value = item.quantidade;
         document.getElementById('und_medida_produto').value = item.und_medida;
         atualizarVisualSelect(document.getElementById('und_medida_produto'))
         document.getElementById('id').value = id;
@@ -91,7 +94,6 @@ document.getElementById('alterarproduto').addEventListener('click', () => {
 
 async function alterar() {
     const nome_produto = document.getElementById('nome_produto').value;
-    const quantidade_produto = document.getElementById('quantidade_produto').value;
     const id_categoria = document.getElementById('categoria_produto').value;
     const und_medida_produto = document.getElementById('und_medida_produto').value;
     const id = document.getElementById('id').value;
@@ -100,12 +102,6 @@ async function alterar() {
     if (!nome_produto.trim()) {
         document.getElementById('error-nome').textContent = 'Por favor, preencha o nome do produto.';
         document.getElementById('nome_produto').focus();
-        return;
-    }
-
-    if (quantidade_produto === '' || Number(quantidade_produto) < 0) {
-        document.getElementById('error-quantidade').textContent = 'Por favor, preencha uma quantidade válida.';
-        document.getElementById('quantidade_produto').focus();
         return;
     }
 
@@ -124,7 +120,6 @@ async function alterar() {
 
     const fd = new FormData();
     fd.append('nome_produto', nome_produto);
-    fd.append('quantidade_produto', quantidade_produto);
     fd.append('id_categoria', id_categoria);
     fd.append('und_medida_produto', und_medida_produto);
 
@@ -147,9 +142,6 @@ async function alterar() {
         }, 1000);
     } else {
         document.getElementById('error').style.color = '#ff6b6b';
-        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem + '. Redirecionando...';
-        setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/produto.php';
-        }, 1000);
+        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }
 }

@@ -57,6 +57,16 @@
     color: #ff4d4d;
 }
 
+.usuarioLogado {
+    color: #a0a0a0;
+    font-size: 0.72rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 8px 14px;
+    border-right: 1px solid #00ffa3;
+    flex-shrink: 0;
+}
+
 @media (min-width: 1024px) {
     .sideNavBar {
         width: 260px;
@@ -107,4 +117,15 @@
         margin-top: auto;
         margin-bottom: 20px;
     }
+
+    .usuarioLogado {
+        font-size: 0.85rem;
+        padding: 10px 15px;
+        border-right: none;
+        border-top: 1px solid #222;
+        margin-top: auto;
+        width: 100%;
+        color: #ccc;
+    }
+    
 }

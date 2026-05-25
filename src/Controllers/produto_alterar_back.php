@@ -3,13 +3,10 @@
     error_reporting(E_ALL);
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
-    include_once(__DIR__ . '/../../config/produto_quantidade.php');
 
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     };
-
-    garantir_coluna_quantidade_produto($conexao);
 
     $retorno = [
         'status' => '',
@@ -22,24 +19,13 @@
     if(isset($_GET['id'])){
 
         $nome = trim($_POST['nome_produto'] ?? '');
-        $quantidade = $_POST['quantidade_produto'] ?? '';
         $id_categoria = !empty($_POST['id_categoria']) ? (int)$_POST['id_categoria'] : null;
         $und_medida = trim($_POST['und_medida_produto'] ?? '');
 
-        if ($nome === '' || $quantidade === '' || !$id_categoria || $und_medida === '') {
+        if ($nome === '' || !$id_categoria || $und_medida === '') {
             echo json_encode([
                 'status' => 'nok',
-                'mensagem' => 'Preencha nome, quantidade, categoria e unidade de medida'
-            ]);
-            exit;
-        }
-
-        $quantidade = floatval($quantidade);
-
-        if ($quantidade < 0) {
-            echo json_encode([
-                'status' => 'nok',
-                'mensagem' => 'Quantidade inválida'
+                'mensagem' => 'Preencha nome, categoria e unidade de medida'
             ]);
             exit;
         }
@@ -68,17 +54,17 @@
         if($imagem){
             $stmt = $conexao->prepare("
                 UPDATE produto 
-                SET nome=?, quantidade=?, id_categoria=?, und_medida=?, imagem=?
+                SET nome=?, id_categoria=?, und_medida=?, imagem=?
                 WHERE id=? AND id_usuario = ?
             ");
-            $stmt->bind_param("sdissii", $nome, $quantidade, $id_categoria, $und_medida, $imagem, $_GET['id'], $id_usuario);
+            $stmt->bind_param("sissii", $nome, $id_categoria, $und_medida, $imagem, $_GET['id'], $id_usuario);
         } else {
             $stmt = $conexao->prepare("
                 UPDATE produto 
-                SET nome=?, quantidade=?, id_categoria=?, und_medida=?
+                SET nome=?, id_categoria=?, und_medida=?
                 WHERE id=? AND id_usuario = ?
             ");
-            $stmt->bind_param("sdisii", $nome, $quantidade, $id_categoria, $und_medida, $_GET['id'], $id_usuario);
+            $stmt->bind_param("sisii", $nome, $id_categoria, $und_medida, $_GET['id'], $id_usuario);
         }
 
         if(!$stmt->execute()){
@@ -89,11 +75,19 @@
             exit;
         }
 
-        $retorno = [
-            'status' => 'ok',
-            'mensagem' => 'Produto alterado com sucesso',
-            'data' => []
-        ];
+        if($stmt->affected_rows > 0){
+            $retorno = [
+                'status' => 'ok',
+                'mensagem' => 'Produto alterado com sucesso',
+                'data' => []
+            ];
+        }else{
+            $retorno = [
+                'status' => 'nok',
+                'mensagem' => 'Nenhuma alteração realizada',
+                'data' => []
+            ];
+        }
 
         $stmt->close();
 
