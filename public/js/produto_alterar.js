@@ -140,11 +140,16 @@ async function alterar() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
+        document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
             window.location.href = '/mykeeper/src/Views/produto.php';
         }, 1000);
     } else {
-        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
+        document.getElementById('error').style.color = '#ff6b6b';
+        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem + '. Redirecionando...';
+        setTimeout(() => {
+            window.location.href = '/mykeeper/src/Views/produto.php';
+        }, 1000);
     }
 }

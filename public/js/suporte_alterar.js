@@ -34,8 +34,10 @@ async function buscar(id){
         document.getElementById('email').value  = e(item.email);
 
     }else{
-        alert("ERRO: "+resposta.mensagem)
-        window.location.href = '/mykeeper/src/Views/suporte.php';
+        notificacaoSistema('ERRO: ' + resposta.mensagem, 'error');
+        setTimeout(function() {
+            window.location.href = '/mykeeper/src/Views/suporte.php';
+        }, 1200);
     }
 }
 
@@ -74,11 +76,13 @@ async function alterar(){
     const resposta = await retorno.json();
 
     if(resposta.status == 'ok'){
+        document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').innerText = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
             window.location.href = "/mykeeper/src/Views/suporte.php";
         }, 1000);
     }else{
+        document.getElementById('error').style.color = '#ff6b6b';
         document.getElementById('error').innerText = 'ERRO! ' + resposta.mensagem;
     }
 }

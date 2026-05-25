@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar ticket</title>
     <link rel="stylesheet" href="/mykeeper/public/css/tickets_suporte_alterar.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 <body>
     <section>
@@ -60,6 +61,7 @@
             <button type="button" id="alterarTicket">Alterar ticket</button>
         </form>
     </section>
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/tickets_suporte_alterar.js"></script>
 </body>
 </html>

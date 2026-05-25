@@ -32,16 +32,20 @@ function preencherInformacoes(usuario) {
 }
 
 document.getElementById('desativarConta').addEventListener('click', async () => {
-    if (confirm('Tem certeza que deseja desativar sua conta? Esta ação não pode ser desfeita.')) {
+    confirmarSistema('Tem certeza que deseja desativar sua conta? Esta ação não pode ser desfeita.', async function() {
         const response = await fetch('/mykeeper/src/Controllers/usuario_desativar.php', {
             method: 'POST'
         });
         const data = await response.json();
         if (data.status === 'ok') {
-            alert(data.mensagem);
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            notificacaoSistema(data.mensagem, 'success');
+            setTimeout(function() {
+                window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            }, 1200);
         } else {
-            alert('Erro ao desativar conta: ' + data.mensagem);
+            notificacaoSistema('Erro ao desativar conta: ' + data.mensagem, 'error');
         }
-    }
+    }, {
+        textoConfirmar: 'Sim, desativar'
+    });
 });
