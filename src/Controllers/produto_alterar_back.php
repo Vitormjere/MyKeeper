@@ -3,10 +3,13 @@
     error_reporting(E_ALL);
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
+    include_once(__DIR__ . '/../../config/produto_quantidade.php');
 
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     };
+
+    garantir_coluna_quantidade_produto($conexao);
 
     $retorno = [
         'status' => '',
