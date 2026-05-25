@@ -4,20 +4,18 @@
     header('X-XSS-Protection: 1; mode=block');
 
     if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+        session_start();
     }
 
-    define('SESSION_TIMEOUT', 600); 
+    define('SESSION_TIMEOUT', 600); // 10 minutos
 
     if (!empty($_SESSION['usuario']['id'])) {
         $agora = time();
         $ultimaAtividade = $_SESSION['ultima_atividade'] ?? $agora;
 
         if (($agora - $ultimaAtividade) > SESSION_TIMEOUT) {
-            // Tempo expirado — destrói a sessão
             session_unset();
             session_destroy();
-
             header('Content-Type: application/json; charset=utf-8');
             echo json_encode([
                 'status'   => 'nok',
@@ -25,6 +23,6 @@
             ]);
             exit;
         }
-        
+
         $_SESSION['ultima_atividade'] = $agora;
     }
