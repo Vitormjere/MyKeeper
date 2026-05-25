@@ -59,7 +59,7 @@ input[type="text"] {
 
 input:focus { border-color: #00ffa3; box-shadow: 0 0 8px rgba(0,255,163,0.15); }
 
-#error-nome, #error { font-size: 0.8rem; color: #ff4d4d; margin-top: 4px; }
+#error-nome, #error, #error-titulo { font-size: 0.8rem; color: #ff4d4d; margin-top: 4px; }
 #error { text-align: center; font-weight: 600; }
 
 #addcompras {

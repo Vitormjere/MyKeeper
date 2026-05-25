@@ -25,8 +25,8 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
             </div>
 
             <div>
-                <label for="descricao">Descrição: <span style="color: red;">*</span></label>
-                <textarea name="descricao" id="descricao"></textarea>
+                <label for="descricao">Descrição: </label>
+                <textarea name="descricao" id="descricao" style="resize:none;"></textarea>
                 <p id="error-descricao"></p>
             </div>
 

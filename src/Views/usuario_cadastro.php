@@ -61,7 +61,7 @@
                     <p id="error"></p>
                 </div>
                 <button type="submit">Criar conta</button>
-                <span> id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
+                <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
             </form>
             
             <div class="divider">

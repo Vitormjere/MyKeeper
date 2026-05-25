@@ -25,12 +25,6 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
             </div>
 
             <div>
-                <label for="quantidade_produto">Quantidade: <span style="color: red;">*</span></label>
-                <input type="number" name="quantidade_produto" id="quantidade_produto" min="0" step="0.01">
-                <p id="error-quantidade"></p>
-            </div>
-
-            <div>
                 <label for="categoria_produto">Categoria: <span style="color: red;">*</span></label>
                 <select name="categoria_produto" id="categoria_produto">
                     <option value="" data-placeholder="true">Escolha a categoria do produto</option>

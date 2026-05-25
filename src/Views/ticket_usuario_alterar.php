@@ -38,7 +38,6 @@
                 <p id="error"></p>
             </div>
             <button type="button" id="alterarTicket">Alterar ticket</button>
-            <button type="button" id="excluirTicket" style="background-color: #e74c3c; margin-left: 10px;">Excluir ticket</button>
         </form>
     </section>
     <script src="/mykeeper/public/js/notificacao_excluir.js"></script>

@@ -23,7 +23,7 @@
                 <label for="titulo">Titulo: <span style="color: red;">*</span></label>
                 <input type="text" name="titulo" id="titulo">
                 <input type="hidden" name="id" id="id">
-                <p id="error-nome"></p>
+                <p id="error-titulo"></p>
             </div>
                 <p id="error"></p>
             </div>

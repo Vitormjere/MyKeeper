@@ -23,23 +23,22 @@
         <input type="hidden" id="id">
         <input type="hidden" id="id_estoque">
         <div>
-            <label for="quantidade">Quantidade: <span style="color: red;">*</span></label>
+            <label for="quantidade">Quantidade: </label>
             <input type="number" id="quantidade" placeholder="Quantidade" min="0" step="0.01">
             <p id="error-quantidade"></p>
         </div>
         <div>
-            <label for="data_validade">Validade: <span style="color: red;">*</span></label>
+            <label for="data_validade">Validade: </label>
             <input type="date" id="data_validade">
         </div>
         <div>
-            <label for="marca">Marca: <span style="color: red;">*</span></label>
+            <label for="marca">Marca: </label>
             <input type="text" id="marca" placeholder="Marca">
         </div>
         <div>
             <p id="error"></p>
         </div>
         <button type="button" id="alteraritem">Salvar</button>
-        <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
     </form>
 </section>
 <script src="/mykeeper/public/js/item_estoque_alterar.js"></script>

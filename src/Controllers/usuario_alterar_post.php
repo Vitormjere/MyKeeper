@@ -50,10 +50,19 @@
 
     try {
         $stmt->execute(); // só aqui
-        $retorno = [
-            'status'   => 'ok',
-            'mensagem' => 'Dados atualizados com sucesso'
-        ];
+        if($stmt->affected_rows > 0){
+            $retorno = [
+                'status' => 'ok',
+                'mensagem' => 'Produto alterado com sucesso',
+                'data' => []
+            ];
+        }else{
+            $retorno = [
+                'status' => 'nok',
+                'mensagem' => 'Nenhuma alteração realizada',
+                'data' => []
+            ];
+        }
     } catch (mysqli_sql_exception $e) {
         $retorno = [
             'status'   => 'nok',

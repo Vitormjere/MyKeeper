@@ -23,7 +23,7 @@
         <input type="hidden" id="id_produto">
         <input type="hidden" id="id_lista_compra">
         <div>
-            <label for="quantidade">Quantidade: <span style="color: red;">*</span></label>
+            <label for="quantidade">Quantidade: </label>
             <input type="number" id="quantidade" placeholder="Quantidade" min="0" step="0.01">
             <p id="error-quantidade"></p>
         </div>
@@ -31,7 +31,6 @@
             <p id="error"></p>
         </div>
         <button type="button" id="alteraritem">Salvar</button>
-        <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
     </form>
 </section>
 <script src="/mykeeper/public/js/compras_itens_alterar.js"></script>
