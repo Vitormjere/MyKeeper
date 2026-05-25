@@ -151,5 +151,5 @@ async function salvarStatus(id, novoStatus) {
     } else {
         notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
-    setTimeout(function() { window.location.reload(); }, 1200);
+    window.location.reload();
 }

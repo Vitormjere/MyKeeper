@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -12,7 +8,7 @@ body {
     color: #e0e0e0;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     padding: 20px;
 }
@@ -21,36 +17,28 @@ section {
     width: 100%;
     max-width: 500px;
     background-color: #1a1d23;
-    padding: 40px;
+    padding: 24px 20px;
     border-radius: 16px;
     border: 1px solid #2d3139;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-top: 10px;
 }
 
 section::before {
     content: 'Nova Categoria';
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: #ffffff;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     text-align: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
+form { display: flex; flex-direction: column; gap: 16px; }
+form div { display: flex; flex-direction: column; gap: 6px; }
 
 label {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #00ffa3;
     text-transform: uppercase;
@@ -64,15 +52,12 @@ input[type="text"] {
     border-radius: 8px;
     padding: 12px 16px;
     color: #ffffff;
-    font-size: 1rem;
+    font-size: 0.95rem;
     outline: none;
     transition: all 0.2s ease;
 }
 
-input[type="text"]:focus {
-    border-color: #00ffa3;
-    box-shadow: 0 0 8px rgba(0, 255, 163, 0.15);
-}
+input[type="text"]:focus { border-color: #00ffa3; box-shadow: 0 0 8px rgba(0,255,163,0.15); }
 
 input[type="file"] {
     background-color: #24282f;
@@ -101,7 +86,6 @@ input[type="file"]::-webkit-file-upload-button {
     border: 2px solid #3d424a;
     object-fit: cover;
     background-color: #0b0e11;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 #addcategoria {
@@ -111,26 +95,21 @@ input[type="file"]::-webkit-file-upload-button {
     padding: 14px;
     border-radius: 8px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.95rem;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: all 0.3s ease;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
-#addcategoria:hover {
-    background-color: #00d68a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 255, 163, 0.4);
-}
+#addcategoria:hover { background-color: #00d68a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,255,163,0.4); }
+#addcategoria:active { transform: translateY(0); }
 
-#addcategoria:active {
-    transform: translateY(0);
-}
+p[id^="error"] { font-size: 0.8rem; color: #ff4d4d; }
 
-@media (max-width: 480px) {
-    section {
-        padding: 30px 20px;
-    }
+@media (min-width: 768px) {
+    body { align-items: center; padding: 40px 20px; }
+    section { padding: 40px; margin-top: 0; }
+    section::before { font-size: 1.6rem; }
 }

@@ -38,7 +38,6 @@ function preencherTabela(tabela){
             <th>Ícone</th>
             <th> Nome </th>
             <th> Categoria </th>
-            <th> Quantidade </th>
             <th> Unidade Medida </th>
             <th> # </th>
         </tr>
@@ -55,7 +54,6 @@ function preencherTabela(tabela){
                 <td> ${icone} </td>
                 <td> ${e(tabela[i].nome)} </td>
                 <td> ${e(tabela[i].categoria)} </td>
-                <td> ${e(String(tabela[i].quantidade))} </td>
                 <td> ${e(tabela[i].und_medida)} </td>
                 <td class="botoes"> 
                 <button class = "btn-editar"><a href="produto_alterar.php?id=${tabela[i].id}">Editar</a></button>

@@ -1,13 +1,10 @@
 <?php
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
-    include_once(__DIR__ . '/../../config/produto_quantidade.php');
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-
-    garantir_coluna_quantidade_produto($conexao);
 
     $retorno = [
         'status'   => '', 
@@ -18,25 +15,14 @@
     $id_usuario = $_SESSION['usuario']['id'];
 
     $nome_produto       = trim($_POST['nome_produto'] ?? '');
-    $quantidade_produto = $_POST['quantidade_produto'] ?? '';
-    $id_categoria       = !empty($_POST['id_categoria']) ? $_POST['id_categoria'] : null; 
+    $id_categoria       = !empty($_POST['id_categoria']) ? $_POST['id_categoria'] : null;
     $und_medida_produto = trim($_POST['und_medida_produto'] ?? '');
     $icone_produto      = null;
 
-    if ($nome_produto === '' || $quantidade_produto === '' || $id_categoria === null || $und_medida_produto === '') {
+    if ($nome_produto === '' || $id_categoria === null || $und_medida_produto === '') {
         echo json_encode([
             'status' => 'nok',
-            'mensagem' => 'Preencha nome, quantidade, categoria e unidade de medida'
-        ]);
-        exit;
-    }
-
-    $quantidade_produto = floatval($quantidade_produto);
-
-    if ($quantidade_produto < 0) {
-        echo json_encode([
-            'status' => 'nok',
-            'mensagem' => 'Quantidade inválida'
+            'mensagem' => 'Preencha nome, categoria e unidade de medida'
         ]);
         exit;
     }
@@ -63,10 +49,8 @@
         }
 
         $nomeArquivo = uniqid('produto_') . '.' . $extensao;
-
         $pastaFisica = dirname(__DIR__, 2) . '/public/uploads/produtos/';
-
-        $caminhoURL = '/mykeeper/public/uploads/produtos/' . $nomeArquivo;
+        $caminhoURL  = '/mykeeper/public/uploads/produtos/' . $nomeArquivo;
 
         if (move_uploaded_file($_FILES['icone_produto']['tmp_name'], $pastaFisica . $nomeArquivo)) {
             $icone_produto = $caminhoURL;
@@ -79,25 +63,21 @@
         }
     }
 
-    // preparando inserção no banco de dados
-
-    $stmt = $conexao->prepare("INSERT INTO produto(nome, quantidade, id_categoria, und_medida, imagem, id_usuario) VALUES(?,?,?,?,?,?)");
-
-    $stmt->bind_param("sdsssi", $nome_produto, $quantidade_produto, $id_categoria, $und_medida_produto, $icone_produto, $id_usuario);
-    // inserindo
+    $stmt = $conexao->prepare("INSERT INTO produto(nome, id_categoria, und_medida, imagem, id_usuario) VALUES(?,?,?,?,?)");
+    $stmt->bind_param("ssssi", $nome_produto, $id_categoria, $und_medida_produto, $icone_produto, $id_usuario);
     $stmt->execute();
 
     if($stmt->affected_rows > 0){
         $retorno = [
-            'status' => 'ok', //ok ou nok
-            'mensagem' => 'Produto inserido com sucesso', //mensagem que envio para o front
-            'data' => []
+            'status'   => 'ok',
+            'mensagem' => 'Produto inserido com sucesso',
+            'data'     => []
         ];
-    }else{
+    } else {
         $retorno = [
-            'status' => 'nok', //ok ou nok
-            'mensagem' => 'Falha ao inserir o produto', //mensagem que envio para o front
-            'data' => []
+            'status'   => 'nok',
+            'mensagem' => 'Falha ao inserir o produto',
+            'data'     => []
         ];
     }
 

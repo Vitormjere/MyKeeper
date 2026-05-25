@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -12,30 +8,24 @@ body {
     color: #e0e0e0;
     display: flex;
     min-height: 100vh;
+    padding-bottom: 70px;
 }
 
 section {
-    margin-left: 260px;
-    padding: 40px;
-    width: calc(100% - 260px);
+    padding: 20px;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: #ffffff;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-/* --- Cards --- */
-
-#item {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
+#item { display: flex; flex-direction: column; gap: 12px; }
 
 .receita-card {
     background-color: #1a1d23;
@@ -45,114 +35,121 @@ h2 {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.receita-card:hover {
-    border-color: #3d424a;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.receita-card.aberto {
-    border-color: #00ffa3;
-    box-shadow: 0 4px 20px rgba(0, 255, 163, 0.1);
-}
-
-/* --- Header clicável --- */
+.receita-card:hover { border-color: #3d424a; }
+.receita-card.aberto { border-color: #00ffa3; box-shadow: 0 4px 20px rgba(0, 255, 163, 0.1); }
 
 .receita-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 24px;
+    padding: 16px 18px;
     cursor: pointer;
     user-select: none;
 }
 
-.receita-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
+.receita-info { display: flex; flex-direction: column; gap: 4px; }
+.receita-titulo { font-size: 0.95rem; font-weight: 600; color: #ffffff; }
+.receita-data { font-size: 0.75rem; color: #6b7280; }
 
-.receita-titulo {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #ffffff;
-}
-
-.receita-data {
-    font-size: 0.78rem;
-    color: #6b7280;
-}
-
-.receita-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+.receita-meta { display: flex; align-items: center; gap: 10px; }
 
 .badge {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
-    padding: 3px 10px;
+    padding: 3px 8px;
     border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.badge-ia {
-    background-color: rgba(0, 255, 163, 0.12);
-    color: #00ffa3;
-    border: 1px solid #00ffa3;
-}
-
-.badge-manual {
-    background-color: rgba(255, 255, 255, 0.05);
-    color: #6b7280;
-    border: 1px solid #3d424a;
-}
-
-.receita-chevron {
-    font-size: 0.75rem;
-    color: #6b7280;
-    transition: transform 0.25s ease;
-}
-
-.receita-card.aberto .receita-chevron {
-    transform: rotate(180deg);
-}
-
-/* --- Corpo expansível --- */
+.badge-ia { background-color: rgba(0, 255, 163, 0.12); color: #00ffa3; border: 1px solid #00ffa3; }
+.badge-manual { background-color: rgba(255,255,255,0.05); color: #6b7280; border: 1px solid #3d424a; }
+.receita-chevron { font-size: 0.75rem; color: #6b7280; transition: transform 0.25s ease; }
+.receita-card.aberto .receita-chevron { transform: rotate(180deg); }
 
 .receita-corpo {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.35s ease, padding 0.25s ease;
     border-top: 0px solid #2d3139;
-    padding: 0 24px;
+    padding: 0 18px;
 }
 
 .receita-card.aberto .receita-corpo {
     max-height: 600px;
     border-top-width: 1px;
-    padding: 20px 24px;
+    padding: 16px 18px;
 }
 
-.receita-descricao {
-    font-size: 0.9rem;
-    color: #a0a0a0;
-    line-height: 1.6;
-    margin-bottom: 16px;
-}
+.receita-descricao { font-size: 0.88rem; color: #a0a0a0; line-height: 1.6; margin-bottom: 14px; }
 
-/* --- Ingredientes --- */
+.receita-ingredientes { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
 
-.receita-ingredientes {
-    list-style: none;
+.ingredientes-legenda {
     display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
+.ingredientes-legenda span { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: #a0a0a0; }
+.legenda-faixa { display: inline-block; width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+.ingrediente-item {
+    display: flex;
+    align-items: stretch;
+    background: #10151b;
+    border: 1px solid #2d3139;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ingrediente-faixa { width: 4px; flex-shrink: 0; }
+.ingrediente-texto { padding: 8px 12px; font-size: 0.85rem; color: #e0e0e0; }
+
+.receita-acoes { display: flex; gap: 8px; justify-content: flex-end; }
+
+.btn-editar, .btn-excluir, .btn-compartilhar {
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-editar { background-color: rgba(0, 255, 163, 0.1); color: #00ffa3; border-color: #00ffa3; }
+.btn-editar:hover { background-color: #00ffa3; color: #0b0e11; }
+.btn-excluir { background-color: rgba(255, 77, 77, 0.1); color: #ff4d4d; border-color: #ff4d4d; }
+.btn-excluir:hover { background-color: #ff4d4d; color: #ffffff; }
+.btn-compartilhar { background-color: rgba(100, 160, 255, 0.08); color: #64a0ff; border-color: rgba(100, 160, 255, 0.3); }
+.btn-compartilhar:hover { background-color: #64a0ff; color: #0b0e11; }
+
+.addvs {
+    background-color: #00ffa3;
+    color: #0b0e11;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+.addvs:hover { background-color: #00d68a; transform: translateY(-2px); }
+#mensagem { color: #6b7280; margin-top: 20px; font-size: 0.95rem; text-align: center; }
+
+@media (min-width: 1024px) {
+    body { padding-bottom: 0; }
+    section { margin-left: 260px; padding: 40px; width: calc(100% - 260px); }
+    h2 { font-size: 1.8rem; margin-bottom: 30px; }
+}
 /* Legenda */
 .ingredientes-legenda {
     display: flex;

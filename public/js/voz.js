@@ -16,20 +16,22 @@ const mic = `
 `;
 
 var toastBox = document.createElement('div');
-
 toastBox.style.cssText = `
     position:fixed;
     top:20px;
     right:20px;
     z-index:9999;
 `;
-
 document.body.appendChild(toastBox);
 
-function toast(msg, erro = false){
+function toast(msg, tipo = false){
     var div = document.createElement('div');
+    var bg = '#1D9E75';
+    if(tipo === true) bg = '#E24B4A';
+    if(tipo === 'aviso') bg = '#BA7517';
+
     div.style.cssText = `
-        background:${erro ? '#E24B4A' : '#1D9E75'};
+        background:${bg};
         color:#fff;
         padding:12px 16px;
         border-radius:6px;
@@ -37,69 +39,101 @@ function toast(msg, erro = false){
         font-size:14px;
         font-weight:600;
     `;
-
     div.innerText = msg;
     toastBox.appendChild(div);
     setTimeout(function(){
         div.style.opacity = '0';
-        setTimeout(function(){
-            div.remove();
-        }, 200);
+        setTimeout(function(){ div.remove(); }, 200);
     }, 1800);
 }
 
 document.getElementById('btnVoz').addEventListener('click', ()=>{
-
     if(ouvindo){
         rec.stop();
         ouvindo = false;
         document.getElementById('btnVoz').innerHTML = mic;
         return;
     }
-
     rec.start();
     ouvindo = true;
     document.getElementById('btnVoz').innerHTML = '✕';
 });
 
-//entende
-rec.onresult = async (e)=>{
+
+
+rec.onresult = async (e) => {
+
     var i = e.results.length - 1;
-    if(!e.results[i].isFinal){
-        return;
-    }
+
+    if(!e.results[i].isFinal) return;
+
     var texto = e.results[i][0].transcript.trim().toLowerCase();
-    if(texto == ''){
+
+    if(texto == '') return;
+
+    var nome = texto.charAt(0).toUpperCase() + texto.slice(1);
+
+    // verifica se já existe no produto
+    const checkProduto = await fetch(
+        '/mykeeper/src/Controllers/produto_verificar.php?nome=' + 
+        encodeURIComponent(nome)
+    );
+
+    const produtoExiste = await checkProduto.json();
+
+    if(produtoExiste.status == 'ok'){
+        toast(nome + ' já está cadastrado!', 'aviso');
         return;
     }
 
-    texto = texto.charAt(0).toUpperCase() + texto.slice(1);
+    // procura no histórico
+    const checkHistorico = await fetch(
+        '/mykeeper/src/Controllers/produto_historico_get.php?nome=' + 
+        encodeURIComponent(nome)
+    );
 
-    var fd = new FormData();
+    const historico = await checkHistorico.json();
 
-    fd.append('nome_produto', texto);
-    fd.append('id_categoria', '');
-    fd.append('und_medida_produto', '');
+    if(historico.status == 'ok'){
 
-    try{
+        var fd = new FormData();
 
-        const retorno = await fetch('/mykeeper/src/Controllers/produto_novo_back.php', {
-            method:'POST',
-            body:fd
-        });
-        const resposta = await retorno.json();
-        if(resposta.status == 'ok'){
-            toast(texto + ' adicionado!');
+        fd.append('nome_produto', nome);
+        fd.append('id_categoria', historico.data?.id_categoria || '');
+        fd.append('und_medida_produto', historico.data?.und_medida || '');
+
+        try{
+
+            const retorno = await fetch(
+                '/mykeeper/src/Controllers/produto_novo_back.php',
+                {
+                    method: 'POST',
+                    body: fd
+                }
+            );
+
+            const resposta = await retorno.json();
+
+            if(resposta.status == 'ok'){
+                toast(nome + ' adicionado!', 'success');
+            } else {
+                toast('Erro ao adicionar ' + nome, 'error');
+            }
+
+        } catch(err){
+            toast('Erro ao adicionar ' + nome, 'error');
         }
-        else{
-            toast('Erro ao adicionar ' + texto, true);
-        }
 
+        return;
     }
-    catch(err){
-        toast('Erro no microfone', true);
-    }
+
+    // não encontrou em nenhum lugar
+    document.getElementById('nome_produto').value = nome;
+
+    toast('Complete as informações de ' + nome + '!', 'aviso');
 };
+
+
 
 rec.onerror = (evento)=>{
     ouvindo = false;
@@ -108,7 +142,6 @@ rec.onerror = (evento)=>{
 };
 
 rec.onend = ()=>{
-
     if(ouvindo){
         try{
             rec.start();

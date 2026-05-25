@@ -44,7 +44,6 @@ async function carregarCategorias() {
             option.textContent = categoria.nome;
             select.appendChild(option);
         });
-
         atualizarVisualSelect(select);
     } else {
         document.getElementById('error-categoria').textContent = 'Erro ao carregar categorias';
@@ -57,7 +56,6 @@ document.getElementById('addproduto').addEventListener('click', () => {
 
 async function novo() {
     const nome_produto = document.getElementById('nome_produto').value.trim();
-    const quantidade_produto = document.getElementById('quantidade_produto').value;
     const categoria_produto = document.getElementById('categoria_produto').value;
     const und_medida_produto = document.getElementById('und_medida_produto').value.trim();
     const icone_produto = document.getElementById('icone_produto').files[0];
@@ -67,27 +65,21 @@ async function novo() {
         document.getElementById('nome_produto').focus();
         return;
     }
-    if (quantidade_produto === '' || Number(quantidade_produto) < 0) {
-        document.getElementById('error-quantidade').textContent = 'Por favor, preencha uma quantidade válida.';
-        document.getElementById('quantidade_produto').focus();
-        return;
-    }
+
     if (!und_medida_produto) {
         document.getElementById('error-unidade').textContent = 'Por favor, preencha a unidade de medida.';
         document.getElementById('und_medida_produto').focus();
         return;
     }
 
-    if (!categoria_produto){
+    if (!categoria_produto) {
         document.getElementById('error-categoria').textContent = 'Por favor, selecione uma categoria.';
         document.getElementById('categoria_produto').focus();
         return;
     }
-    
 
     const fd = new FormData();
     fd.append('nome_produto', nome_produto);
-    fd.append('quantidade_produto', quantidade_produto);
     fd.append('id_categoria', categoria_produto);
     fd.append('und_medida_produto', und_medida_produto);
 
