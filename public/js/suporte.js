@@ -34,6 +34,7 @@ function preencherTabela(tabela){
             <th> ID </th>
             <th> Nome </th>
             <th> Email </th>
+            <th> CEP </th>
             <th> # </th>
         </tr>
     `;
@@ -44,6 +45,7 @@ function preencherTabela(tabela){
                 <td> ${tabela[i].id} </td>
                 <td> ${e(tabela[i].nome)} </td>
                 <td> ${e(tabela[i].email)} </td>
+                <td> ${e(tabela[i].cep)} </td>
                 <td class="botoes"> 
                 <button class = "btn-editar"><a href="suporte_alterar.php?id=${tabela[i].id}">Editar</a></button>
                 <button class = "btn-excluir"><a href="#" onclick="excluir(${tabela[i].id})">Excluir</a></button>

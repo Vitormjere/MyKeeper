@@ -32,6 +32,12 @@
             </div>
 
             <div>
+                <label for="cep">CEP</label>
+                <input type="text" name="cep" id="cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
+                <p id="error-cep"></p>
+            </div>
+
+            <div>
                 <label for="senha">Senha</label>
                 <input type="password" name="senha" id="senha" minlength="8">
                 <p id="error-senha"></p>
