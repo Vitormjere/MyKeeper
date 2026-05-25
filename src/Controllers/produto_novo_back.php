@@ -14,10 +14,18 @@
 
     $id_usuario = $_SESSION['usuario']['id'];
 
-    $nome_produto       = $_POST['nome_produto'];
-    $id_categoria       = !empty($_POST['id_categoria']) ? $_POST['id_categoria'] : null; 
-    $und_medida_produto = $_POST['und_medida_produto'];
+    $nome_produto       = trim($_POST['nome_produto'] ?? '');
+    $id_categoria       = !empty($_POST['id_categoria']) ? $_POST['id_categoria'] : null;
+    $und_medida_produto = trim($_POST['und_medida_produto'] ?? '');
     $icone_produto      = null;
+
+    if ($nome_produto === '' || $id_categoria === null || $und_medida_produto === '') {
+        echo json_encode([
+            'status' => 'nok',
+            'mensagem' => 'Preencha nome, categoria e unidade de medida'
+        ]);
+        exit;
+    }
 
     if (isset($_FILES['icone_produto']) && $_FILES['icone_produto']['error'] === 0) {
 
@@ -41,10 +49,8 @@
         }
 
         $nomeArquivo = uniqid('produto_') . '.' . $extensao;
-
         $pastaFisica = dirname(__DIR__, 2) . '/public/uploads/produtos/';
-
-        $caminhoURL = '/mykeeper/public/uploads/produtos/' . $nomeArquivo;
+        $caminhoURL  = '/mykeeper/public/uploads/produtos/' . $nomeArquivo;
 
         if (move_uploaded_file($_FILES['icone_produto']['tmp_name'], $pastaFisica . $nomeArquivo)) {
             $icone_produto = $caminhoURL;
@@ -57,25 +63,21 @@
         }
     }
 
-    // preparando inserção no banco de dados
-
     $stmt = $conexao->prepare("INSERT INTO produto(nome, id_categoria, und_medida, imagem, id_usuario) VALUES(?,?,?,?,?)");
-
-    $stmt->bind_param("sssss", $nome_produto, $id_categoria, $und_medida_produto, $icone_produto, $id_usuario);
-    // inserindo
+    $stmt->bind_param("ssssi", $nome_produto, $id_categoria, $und_medida_produto, $icone_produto, $id_usuario);
     $stmt->execute();
 
     if($stmt->affected_rows > 0){
         $retorno = [
-            'status' => 'ok', //ok ou nok
-            'mensagem' => 'Produto inserido com sucesso', //mensagem que envio para o front
-            'data' => []
+            'status'   => 'ok',
+            'mensagem' => 'Produto inserido com sucesso',
+            'data'     => []
         ];
-    }else{
+    } else {
         $retorno = [
-            'status' => 'nok', //ok ou nok
-            'mensagem' => 'Falha ao inserir o produto', //mensagem que envio para o front
-            'data' => []
+            'status'   => 'nok',
+            'mensagem' => 'Falha ao inserir o produto',
+            'data'     => []
         ];
     }
 

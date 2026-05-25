@@ -117,10 +117,9 @@ async function compartilhar(id) {
     const resposta = await retorno.json();
 
     if(resposta.status === 'ok'){
-        navigator.clipboard.writeText(resposta.link)
-            .then(() => alert('Link copiado!\n\n' + resposta.link))
+        await copiarTextoSistema(resposta.link, 'Link da lista copiado com sucesso.');
     } else {
-        alert('ERRO! ' + resposta.mensagem);
+        notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
 }
 
@@ -128,8 +127,14 @@ async function alterarStatus(id, novoStatus) {
 
     const labels = { 'concluida': 'concluir', 'arquivada': 'arquivar' };
 
-    if (!window.confirm(`Tem certeza que deseja ${labels[novoStatus]} esta lista?`)) return;
+    confirmarSistema(`Tem certeza que deseja ${labels[novoStatus]} esta lista?`, async function() {
+        await salvarStatus(id, novoStatus);
+    }, {
+        textoConfirmar: 'Sim, continuar'
+    });
+}
 
+async function salvarStatus(id, novoStatus) {
     const fd = new FormData();
     fd.append('id', id);
     fd.append('status', novoStatus);
@@ -142,9 +147,9 @@ async function alterarStatus(id, novoStatus) {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
-        alert('SUCESSO! ' + resposta.mensagem);
+        notificacaoSistema('SUCESSO! ' + resposta.mensagem, 'success');
     } else {
-        alert('ERRO! ' + resposta.mensagem);
+        notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
     window.location.reload();
 }

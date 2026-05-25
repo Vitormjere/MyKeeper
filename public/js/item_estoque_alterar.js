@@ -64,11 +64,13 @@ async function alterar() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
+        document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
             window.location.href = '/mykeeper/src/Views/estoque_itens.php?id_estoque=' + id_estoque;
         }, 1000);
     } else {
+        document.getElementById('error').style.color = '#ff6b6b';
         document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }
 }

@@ -4,9 +4,17 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }   
-    $titulo = $_POST['titulo'];
-    $descricao = $_POST['descricao'];
+    $titulo = trim($_POST['titulo'] ?? '');
+    $descricao = trim($_POST['descricao'] ?? '');
     $id_usuario = $_SESSION['usuario']['id'];
+
+    if ($titulo === '' || $descricao === '') {
+        echo json_encode([
+            'status' => 'nok',
+            'mensagem' => 'Preencha título e descrição do ticket'
+        ]);
+        exit;
+    }
 
     $stmt = $conexao->prepare("INSERT INTO ticket_suporte (titulo, descricao, id_usuario) VALUES (?,?,?)");
     $stmt->bind_param("ssi", $titulo, $descricao, $id_usuario);

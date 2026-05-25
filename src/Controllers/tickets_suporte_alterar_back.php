@@ -13,11 +13,17 @@ $retorno = [
 
 if(isset($_GET['id'])){
 
-    $resposta_ticket = $_POST['resposta_ticket'];
-    $status_ticket   = $_POST['status_ticket'];
+    $resposta_ticket = trim($_POST['resposta_ticket'] ?? '');
+    $status_ticket   = $_POST['status_ticket'] ?? '';
 
-    $resposta_ticket = $_POST['resposta_ticket'];
-    $status_ticket   = $_POST['status_ticket'];
+    if($resposta_ticket === ''){
+        echo json_encode([
+            'status' => 'nok',
+            'mensagem' => 'O campo de resposta é obrigatório',
+            'data' => []
+        ]);
+        exit;
+    }
 
     $stmt = $conexao->prepare("UPDATE ticket_suporte SET resposta_ticket=?, status_ticket=? WHERE id=?");
     $stmt->bind_param("ssi", $resposta_ticket, $status_ticket, $_GET['id']);

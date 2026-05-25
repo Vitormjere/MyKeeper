@@ -19,8 +19,8 @@
             <h2>Tickets de Suporte</h2>
         </div>
         <div id="item">
-
         </div>
+        <p id="mensagem"></p>
 
 
     </section>

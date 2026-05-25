@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alterar Suporte</title>
     <link rel="stylesheet" href="/mykeeper/public/css/suporte_alterar.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 
 <body>
@@ -38,6 +39,7 @@
         </form>
     </section>
 
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/suporte_alterar.js"></script>
 </body>
 

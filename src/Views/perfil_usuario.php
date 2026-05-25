@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil do Usuário</title>
     <link rel="stylesheet" href="/mykeeper/public/css/perfil_usuario.css">
+    <link rel="stylesheet" href="/mykeeper/public/css/notificacao_excluir.css">
 </head>
 <body>
       
@@ -31,6 +32,7 @@
 
     </section>
 
+    <script src="/mykeeper/public/js/notificacao_excluir.js"></script>
     <script src="/mykeeper/public/js/perfil_usuario.js"></script>
     <script src="/mykeeper/public/js/sidebar.js"></script>
 </body>

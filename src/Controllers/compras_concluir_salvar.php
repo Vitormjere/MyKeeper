@@ -56,22 +56,42 @@
     }
     $checkLista->close();
 
-    // Insere os itens no estoque
-    $stmt = $conexao->prepare("
-        INSERT INTO item_estoque (id_estoque, id_produto, quantidade, data_validade, marca)
-        VALUES (?, ?, ?, ?, ?)
-    ");
-
     foreach ($itens as $item) {
         $id_produto    = intval($item['id_produto']);
-        $quantidade    = $item['quantidade'] ?: null;
+        $quantidade    = floatval($item['quantidade'] ?: 0);
         $data_validade = $item['data_validade'] ?: null;
         $marca         = $item['marca'] ?: null;
 
-        $stmt->bind_param('iidss', $id_estoque, $id_produto, $quantidade, $data_validade, $marca);
+        $checkItem = $conexao->prepare("
+            SELECT id FROM item_estoque
+            WHERE id_estoque = ? AND id_produto = ?
+            LIMIT 1
+        ");
+        $checkItem->bind_param('ii', $id_estoque, $id_produto);
+        $checkItem->execute();
+        $itemExistente = $checkItem->get_result()->fetch_assoc();
+        $checkItem->close();
+
+        if ($itemExistente) {
+            $stmt = $conexao->prepare("
+                UPDATE item_estoque
+                SET quantidade = COALESCE(quantidade, 0) + ?,
+                    data_validade = COALESCE(?, data_validade),
+                    marca = COALESCE(?, marca)
+                WHERE id = ?
+            ");
+            $stmt->bind_param('dssi', $quantidade, $data_validade, $marca, $itemExistente['id']);
+        } else {
+            $stmt = $conexao->prepare("
+                INSERT INTO item_estoque (id_estoque, id_produto, quantidade, data_validade, marca)
+                VALUES (?, ?, ?, ?, ?)
+            ");
+            $stmt->bind_param('iidss', $id_estoque, $id_produto, $quantidade, $data_validade, $marca);
+        }
+
         $stmt->execute();
+        $stmt->close();
     }
-    $stmt->close();
 
     // Atualiza o status da lista para concluida
     $update = $conexao->prepare("UPDATE lista_compras SET status_compra = 'concluida' WHERE id = ? AND id_usuario = ?");

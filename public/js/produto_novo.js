@@ -44,7 +44,6 @@ async function carregarCategorias() {
             option.textContent = categoria.nome;
             select.appendChild(option);
         });
-
         atualizarVisualSelect(select);
     } else {
         document.getElementById('error-categoria').textContent = 'Erro ao carregar categorias';
@@ -66,18 +65,18 @@ async function novo() {
         document.getElementById('nome_produto').focus();
         return;
     }
+
     if (!und_medida_produto) {
         document.getElementById('error-unidade').textContent = 'Por favor, preencha a unidade de medida.';
         document.getElementById('und_medida_produto').focus();
         return;
     }
 
-    if (!categoria_produto){
+    if (!categoria_produto) {
         document.getElementById('error-categoria').textContent = 'Por favor, selecione uma categoria.';
         document.getElementById('categoria_produto').focus();
         return;
     }
-    
 
     const fd = new FormData();
     fd.append('nome_produto', nome_produto);
@@ -96,11 +95,13 @@ async function novo() {
     const resposta = await retorno.json();
 
     if (resposta.status == 'ok') {
+        document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
             window.location.href = '/mykeeper/src/Views/produto.php';
         }, 1000);
     } else {
+        document.getElementById('error').style.color = '#ff6b6b';
         document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }
 }

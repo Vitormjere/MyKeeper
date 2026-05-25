@@ -84,4 +84,3 @@ async function excluir(id) {
 document.getElementById('produto_novo').addEventListener('click', ()=>{
     window.location.href = '/mykeeper/src/Views/produto_novo.php'
 })
-

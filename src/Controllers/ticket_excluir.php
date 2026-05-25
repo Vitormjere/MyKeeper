@@ -2,6 +2,10 @@
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
 
+    if(session_status() === PHP_SESSION_NONE){
+        session_start();
+    }
+
     $retorno = [
         'status' => '', //ok ou nok
         'mensagem' => '', //mensagem que envio para o front
@@ -9,8 +13,15 @@
     ];
 
     if(isset($_GET['id'])){
-        $stmt = $conexao->prepare("DELETE FROM ticket_suporte WHERE id = ?");
-        $stmt->bind_param('i', $_GET['id']);
+        $id_usuario = $_SESSION['usuario']['id'];
+
+        $stmt = $conexao->prepare("
+            DELETE FROM ticket_suporte
+            WHERE id = ?
+            AND id_usuario = ?
+            AND status_ticket = 'ticket_aberto'
+        ");
+        $stmt->bind_param('ii', $_GET['id'], $id_usuario);
         $stmt->execute();
 
         if($stmt->affected_rows > 0){
@@ -22,7 +33,7 @@
         }else{
             $retorno = [
                 'status' => 'nok', //ok ou nok
-                'mensagem' => 'Ticket não excluido', //mensagem que envio para o front
+                'mensagem' => 'Apenas tickets em aberto podem ser excluídos', //mensagem que envio para o front
                 'data' => []
             ];
         }

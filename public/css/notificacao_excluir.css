@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px;
     z-index: 9999;
     pointer-events: none;
     backdrop-filter: blur(0px);
@@ -42,7 +43,52 @@
     color: #ffffff;
     font-weight: 600;
     margin: 0;
-    text-align: center;
+    text-align: left;
+    line-height: 1.45;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.notificacao.success {
+    --notificacao-cor: #00ffa3;
+    --notificacao-bg: rgba(0, 255, 163, 0.12);
+    --notificacao-shadow: rgba(0, 255, 163, 0.18);
+}
+
+.notificacao.error {
+    --notificacao-cor: #ff4d4d;
+    --notificacao-bg: rgba(255, 77, 77, 0.12);
+    --notificacao-shadow: rgba(255, 77, 77, 0.18);
+}
+
+.notificacao.danger {
+    --notificacao-cor: #ff4d4d;
+    --notificacao-bg: rgba(255, 77, 77, 0.12);
+    --notificacao-shadow: rgba(255, 77, 77, 0.18);
+}
+
+.notificacao.warning {
+    --notificacao-cor: #f5a623;
+    --notificacao-bg: rgba(245, 166, 35, 0.14);
+    --notificacao-shadow: rgba(245, 166, 35, 0.18);
+}
+
+.notificacao.info {
+    --notificacao-cor: #4ea9ff;
+    --notificacao-bg: rgba(78, 169, 255, 0.12);
+    --notificacao-shadow: rgba(78, 169, 255, 0.18);
+}
+
+.notificacao.confirm {
+    --notificacao-cor: #f5a623;
+    --notificacao-bg: rgba(245, 166, 35, 0.14);
+    --notificacao-shadow: rgba(245, 166, 35, 0.18);
+}
+
+.notificacao.confirm.danger {
+    --notificacao-cor: #ff4d4d;
+    --notificacao-bg: rgba(255, 77, 77, 0.12);
+    --notificacao-shadow: rgba(255, 77, 77, 0.18);
 }
 
 .notificacao-actions {
