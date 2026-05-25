@@ -7,7 +7,7 @@
         session_start();
     }
 
-    define('SESSION_TIMEOUT', 600); // 10 minutos
+    define('SESSION_TIMEOUT', 1800); // 30 minutos
 
     if (!empty($_SESSION['usuario']['id'])) {
         $agora = time();

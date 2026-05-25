@@ -53,17 +53,17 @@ function preencherTabela(tabela){
             <th> Data de Abertura </th>
             <th> Resposta </th>
             <th> Status </th>
-            <th> # </th>
+            <th style="text-align: center;"> # </th>
         </tr>
     `;
 
     for(var i=0;i<tabela.length;i++){
-        const btnEditar = tabela[i].status_ticket == tabela[i].status_ticket == 'ticket_encerrado'
-            ? 'Não pode ser editado.' // não exibe o botão
+        const btnEditar = tabela[i].status_ticket == 'ticket_encerrado'
+            ? 'Encerrado, não permitido.'
             : `<button class="btn-editar"><a href="ticket_usuario_alterar.php?id=${tabela[i].id}">Editar</a></button>`;
-        
-        const BtnExcluir = tabela[i].status_ticket == tabela[i].status_ticket == 'ticket_encerrado'
-            ? 'Não pode ser excluído.' // não exibe o botão
+
+        const BtnExcluir = tabela[i].status_ticket == 'ticket_encerrado'
+            ? 'Encerrado, não permitido.'
             : `<button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id})">Excluir</a></button>`;
 
         html += `<tr>
@@ -74,6 +74,7 @@ function preencherTabela(tabela){
                 <td> ${respostaOuTracos(tabela[i].resposta_ticket)} </td>
                 <td> ${e(tabela[i].status_ticket)} </td>
                 <td class="botoes"> 
+                    <button class="btn-chat"><a href="/mykeeper/src/Views/chat_ticket.php?id=${tabela[i].id}">Chat</a></button>
                     ${btnEditar}
                     ${BtnExcluir}
                 </td>

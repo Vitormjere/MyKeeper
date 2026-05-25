@@ -52,9 +52,9 @@ h2 { font-size: 1.4rem; color: #ffffff; font-weight: 600; margin-bottom: 20px; }
 .tabela tr:last-child td { border-bottom: none; }
 .tabela tr:hover { background-color: rgba(255,255,255,0.03); }
 
-td.botoes { white-space: nowrap; text-align: right; }
+td.botoes { white-space: nowrap; text-align: center; }
 
-.btn-editar, .btn-excluir {
+.btn-editar, .btn-excluir, .btn-chat {
     display: inline-flex;
     margin-left: 6px;
     border-radius: 6px;
@@ -66,7 +66,7 @@ td.botoes { white-space: nowrap; text-align: right; }
     overflow: hidden;
 }
 
-.btn-editar a, .btn-excluir a {
+.btn-editar a, .btn-excluir a, .btn-chat a {
     display: block;
     padding: 6px 10px;
     text-decoration: none;
@@ -77,6 +77,8 @@ td.botoes { white-space: nowrap; text-align: right; }
 .btn-editar:hover { background-color: #00ffa3; color: #0b0e11; transform: translateY(-2px); }
 .btn-excluir { background-color: rgba(255,77,77,0.1); color: #ff4d4d; border-color: #ff4d4d; }
 .btn-excluir:hover { background-color: #ff4d4d; color: #ffffff; transform: translateY(-2px); }
+.btn-chat { background-color: rgba(0,123,255,0.1); color: #007bff; border-color: #007bff; }
+.btn-chat:hover { background-color: #007bff; color: #ffffff; transform: translateY(-2px); }
 
 .addvs {
     background-color: #00ffa3;

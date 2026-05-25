@@ -9,7 +9,7 @@
         $agora = time();
         $ultimaAtividade = $_SESSION['ultima_atividade'] ?? $agora;
 
-        if (($agora - $ultimaAtividade) > 10) { // mesmo timeout
+        if (($agora - $ultimaAtividade) > 1800) { // mesmo timeout
             session_unset();
             session_destroy();
             echo json_encode([
