@@ -12,9 +12,10 @@ if(isset($_GET['id'])){
 
     $nome      = $_POST['nome'];
     $email     = $_POST['email'];
+    $cep      = $_POST['cep'];
 
-    $stmt = $conexao->prepare("UPDATE suporte SET nome=?, email=? WHERE id=?");
-    $stmt->bind_param("ssi", $nome, $email, $_GET['id']);
+    $stmt = $conexao->prepare("UPDATE suporte SET nome=?, email=?, cep=? WHERE id=?");
+    $stmt->bind_param("sssi", $nome, $email, $cep, $_GET['id']);
 
     $stmt->execute();
 

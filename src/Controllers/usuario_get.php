@@ -1,6 +1,11 @@
 <?php
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
+
+    $tipo = $_SESSION['usuario']['tipo'];
 
     $retorno = [
         'status' => '',
@@ -9,8 +14,14 @@
     ];
 
     if(isset($_GET['id'])){
-        $stmt = $conexao->prepare("SELECT id, nome, cep, email FROM usuario WHERE id = ?");
-        $stmt->bind_param('i', $_GET['id']);
+        if($tipo == 0){
+            $stmt = $conexao->prepare("SELECT id, nome, cep, email FROM usuario WHERE id = ?");
+            $stmt->bind_param('i', $_GET['id']);
+        }else{
+            $stmt = $conexao->prepare("SELECT id, nome, cep, email FROM suporte WHERE id = ?");
+            $stmt->bind_param('i', $_GET['id']);
+        }
+
     } else {
         echo json_encode([
             'status' => 'nok',

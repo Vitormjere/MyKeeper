@@ -1,4 +1,6 @@
 <?php
+    ini_set('display_errors', 1);
+    error_reporting(E_ALL);
     session_start();
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
@@ -13,6 +15,7 @@
     }
 
     $id = $_SESSION['usuario']['id'];
+    $tipo = $_SESSION['usuario']['tipo'];
     $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $cepInput = trim($_POST['cep'] ?? '');
@@ -36,8 +39,14 @@
 
     $cep = substr($cepNumerico, 0, 5) . '-' . substr($cepNumerico, 5, 3);
 
-    $stmt = $conexao->prepare("UPDATE usuario SET nome = ?, email = ?, cep = ? WHERE id = ?");
-    $stmt->bind_param('sssi', $nome, $email, $cep, $id);
+    if($tipo == 0){
+        $stmt = $conexao->prepare("UPDATE usuario SET nome = ?, email = ?, cep = ? WHERE id = ?");
+        $stmt->bind_param('sssi', $nome, $email, $cep, $id);
+    }else{
+        $stmt = $conexao->prepare("UPDATE suporte SET nome = ?, email = ?, cep = ? WHERE id = ?");
+        $stmt->bind_param('sssi', $nome, $email, $cep, $id);
+    }
+    
 
     try {
         $stmt->execute(); // só aqui
