@@ -145,9 +145,6 @@ async function alterar() {
             window.location.href = '/mykeeper/src/Views/produto.php';
         }, 1000);
     } else {
-        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem + '. Redirecionando...';
-        setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/produto.php';
-        }, 1000);
+        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }
 }
