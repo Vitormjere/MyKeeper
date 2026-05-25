@@ -1,7 +1,7 @@
 <?php
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
-    
+  
     $nome      = $_POST['nome'];
     $email     = $_POST['email'];
     $senha     = $_POST['senha'];
