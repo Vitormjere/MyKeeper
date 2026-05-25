@@ -87,8 +87,7 @@ async function adicionar(id_produto) {
     if (resposta.status == 'ok') {
         notificacaoSistema('SUCESSO! ' + resposta.mensagem, 'success');
         setTimeout(function() {
-            window.location.href = `/mykeeper/src/Views/estoque_itens.php?id_estoque=${id_estoque}`;
-        }, 1200);
+        }, 800);
     } else {
         notificacaoSistema('ERRO! ' + resposta.mensagem, 'error');
     }
