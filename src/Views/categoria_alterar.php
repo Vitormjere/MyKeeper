@@ -18,18 +18,18 @@
     </a>
     <form>
         <div>
-            <label for="nome_categoria">Nome</label>
+            <label for="nome_categoria">Nome: <span style="color: red;">*</span></label>
             <input type="text" name="nome_categoria" id="nome_categoria">
             <p id="error-nome"></p>
             <input type="hidden" id="id">
         </div>
         <div>
-            <label for="descricao_categoria">Descrição</label>
+            <label for="descricao_categoria">Descrição: <span style="color: red;">*</span></label>
             <input type="text" name="descricao_categoria" id="descricao_categoria">
             <p id="error-descricao"></p>
         </div>
         <div>
-            <label for="icone_categoria">Ícone da categoria</label>
+            <label for="icone_categoria">Ícone da categoria:</label>
             <input type="file" name="icone_categoria" id="icone_categoria" accept="image/png, image/jpeg, image/jpg">
         </div>
         <div>
@@ -39,6 +39,9 @@
             <img src="" id="preview" style="display:none; width:100px; height:100px;">
         </div>
         <button type="button" id="alterarcategoria">Alterar</button>
+
+        <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
+
     </form>
 </section>
 <script src="/mykeeper/public/js/categoria_alterar.js"></script>

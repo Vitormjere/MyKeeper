@@ -23,16 +23,16 @@
         <input type="hidden" id="id">
         <input type="hidden" id="id_estoque">
         <div>
-            <label for="quantidade">Quantidade</label>
+            <label for="quantidade">Quantidade: </label>
             <input type="number" id="quantidade" placeholder="Quantidade" min="0" step="0.01">
             <p id="error-quantidade"></p>
         </div>
         <div>
-            <label for="data_validade">Validade</label>
+            <label for="data_validade">Validade: </label>
             <input type="date" id="data_validade">
         </div>
         <div>
-            <label for="marca">Marca</label>
+            <label for="marca">Marca: </label>
             <input type="text" id="marca" placeholder="Marca">
         </div>
         <div>

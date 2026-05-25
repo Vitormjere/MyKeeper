@@ -17,19 +17,19 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
         </a>
         <form>
             <div>
-                <label for="titulo">Título</label>
+                <label for="titulo">Título: <span style="color: red;">*</span></label>
                 <input type="text" name="titulo" id="titulo">
                 <p id="error-titulo"></p>
             </div>
 
             <div>
-                <label for="descricao">Descrição</label>
-                <textarea name="descricao" id="descricao" placeholder="Modo de preparo..."></textarea>
+                <label for="descricao">Descrição: </label>
+                <textarea name="descricao" id="descricao" placeholder="Modo de preparo..." style="resize: none;"></textarea>
                 <p id="error-descricao"></p>
             </div>
 
             <div id="container-ingredientes">
-                <label>Ingredientes</label>
+                <label>Ingredientes: <span style="color: red;">*</span></label>
 
                 <div class="ingrediente" id="modelo-ingrediente" style="display:none;">
                     <div class="ingrediente-header">
@@ -38,17 +38,17 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
                     </div>
                     <div class="ingrediente-campos">
                         <div class="campo-grupo">
-                            <label>Nome do produto</label>
+                            <label>Nome do produto: <span style="color: red;">*</span></label>
                             <input type="text" class="input-nome" placeholder="Ex: Farinha de trigo">
                         </div>
                         <div class="campo-grupo">
-                            <label>Categoria</label>
+                            <label>Categoria: <span style="color: red;">*</span></label>
                             <select class="select-categoria">
                                 <option value="" data-placeholder="true">Escolha a categoria</option>
                             </select>
                         </div>
                         <div class="campo-grupo">
-                            <label>Unidade de medida</label>
+                            <label>Unidade de medida: <span style="color: red;">*</span></label>
                             <select class="select-und-medida">
                                 <option value="" data-placeholder="true">Escolha a unidade</option>
                                 <option value="kg">Quilo (kg)</option>
@@ -63,7 +63,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
                         </div>
                         <div class="campo-grupo campo-grupo--row">
                             <div>
-                                <label>Quantidade</label>
+                                <label>Quantidade: <span style="color: red;">*</span></label>
                                 <input type="number" class="input-qtd" placeholder="0" min="0.01" step="0.01">
                             </div>
                             <div>
@@ -77,12 +77,14 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
                 <div id="lista-ingredientes"></div>
                 <p id="error-ingredientes"></p>
                 <button type="button" id="adicionar-ingrediente">+ Adicionar ingrediente</button>
+                <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
             </div>
 
             <div>
                 <p id="error"></p>
             </div>
             <button type="button" id="addreceita">Adicionar</button>
+            <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
         </form>
     </section>
     <script src="/mykeeper/public/js/receitas_novo.js"></script>

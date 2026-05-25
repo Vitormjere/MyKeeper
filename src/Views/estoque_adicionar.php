@@ -20,7 +20,7 @@
         </a>
         <form>
             <div>
-                <label for="nome_estoque">Nome</label>
+                <label for="nome_estoque">Nome: <span style="color: red;">*</span></label>
                 <input type="text" name="nome_estoque" id="nome_estoque">
                 <p id="error-nome"></p>
             </div>
@@ -37,6 +37,7 @@
                 <p id="error"></p>
             </div>
             <button type="button" id="addestoque">Adicionar</button>
+            <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
         </form>
     </section>
 

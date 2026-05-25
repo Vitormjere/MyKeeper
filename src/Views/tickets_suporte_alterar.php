@@ -43,12 +43,12 @@
                 <span id="data_ticket">Data de Abertura</span>
             </div>
             <div>
-                <label for="resposta_ticket">Resposta</label>
+                <label for="resposta_ticket">Resposta: <span style="color: red;">*</span></label>
                 <textarea name="resposta_ticket" id="resposta_ticket" placeholder="Resposta do ticker" style="resize: none;"></textarea>
                 <p id="error-resposta"></p>
             </div>
             <div>
-                <label for="status_ticket">Status</label>
+                <label for="status_ticket">Status: <span style="color: red;">*</span></label>
                 <select name="status_ticket" id="status_ticket">
                     <option value="ticket_aberto">Aberto</option>
                     <option value="ticket_respondido">Respondido</option>
@@ -61,6 +61,7 @@
                 <p id="error"></p>
             </div>
             <button type="button" id="alterarTicket">Alterar ticket</button>
+            <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
         </form>
     </section>
     <script src="/mykeeper/public/js/notificacao_excluir.js"></script>

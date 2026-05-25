@@ -53,6 +53,10 @@ input[type="password"] {
 input[type="password"]:focus { border-color: #00ffa3; box-shadow: 0 0 8px rgba(0,255,163,0.1); }
 input[type="password"]::placeholder { color: #666; }
 
+label {
+    text-align: left;
+}
+
 #entrar {
     background-color: #00ffa3;
     color: #0b0e11;
@@ -71,6 +75,12 @@ input[type="password"]::placeholder { color: #666; }
 #entrar:active { transform: translateY(0); }
 
 #error { font-size: 0.85rem; color: #ff4d4d; margin-top: 4px; }
+
+#significadoAspas {
+    font-size: 0.72rem;
+    color: #555;
+    text-align: left;
+}
 
 @media (min-width: 480px) {
     section > div { padding: 40px; }

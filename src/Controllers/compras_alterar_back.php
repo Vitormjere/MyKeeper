@@ -35,7 +35,7 @@
     }else{
         $retorno = [
             'status' => 'nok', //ok ou nok
-            'mensagem' => 'Falha ao atualizar a lista de compras', //mensagem que envio para o front
+            'mensagem' => 'Nenhuma alteração realizada', //mensagem que envio para o front
             'data' => []
         ];
     }
