@@ -1,5 +1,8 @@
 <?php
-    session_start();
+    include_once(__DIR__ . '/../../config/valida_sessao.php');
+    if ($_SESSION['usuario']['tipo'] == 0){
+        include_once(__DIR__ . '/../../config/valida_tipo_usuario.php');
+    } 
 ?>
 
 <!DOCTYPE html>
