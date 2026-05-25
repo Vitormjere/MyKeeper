@@ -50,8 +50,8 @@ async function cadastrar() {
 
     if(!senha){
         document.getElementById('error-senha').textContent = 'Senha precisa receber valores'
-    }else if(senha.length < 8) {
-        document.getElementById('error-senha').textContent = 'ERRO! Senha muito curta';
+    }else if(senha.length < 8 || !/[A-Z]/.test(senha) || !/[a-z]/.test(senha) || !/[0-9]/.test(senha) || !/[@$!%*?&]/.test(senha)) {
+        document.getElementById('error-senha').textContent = 'ERRO! Senha deve conter no mínimo 8 caracteres, letras maiúsculas, minúsculas, números e caracteres especiais.';
         return;
     }
 
@@ -80,8 +80,10 @@ async function cadastrar() {
             window.location.href = '/mykeeper/src/Views/usuario_login.php';
         }, 1000);
         return;
+    }else{
+        document.getElementById('error').style.color = '#ff6b6b';
+        document.getElementById('error').textContent = 'ERRO! ' + resposta.mensagem;
     }
 
-    document.getElementById('error-email').style.color = '#ff6b6b';
-    document.getElementById('error-email').textContent = 'ERRO! ' + resposta.mensagem;
+    
 }

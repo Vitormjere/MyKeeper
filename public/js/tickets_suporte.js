@@ -23,8 +23,12 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     const data = await response.json();
     
     if (!data.logado) {
-        window.location.href = '/mykeeper/src/Views/usuario_login.php';
-        return; // para a execução aqui
+        if (data.expirado) {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+        } else {
+            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+        }
+        return;
     }
     buscar();
 })
@@ -69,6 +73,7 @@ function preencherTabela(tabela){
                 <td> ${e(tabela[i].status_ticket)} </td>
                 <td class="botoes"> 
                 <button class = "btn-editar"><a href="tickets_suporte_alterar.php?id=${tabela[i].id}">Editar</a></button>
+                <button class="btn-chat"><a href="/mykeeper/src/Views/chat_ticket.php?id=${tabela[i].id}">Chat</a></button>
                 </td>
                 </tr>`;
     }

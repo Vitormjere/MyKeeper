@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alterar Perfil</title>
+    <title>Alterar Senha</title>
     <link rel="stylesheet" href="/mykeeper/public/css/perfil_alterar.css">
 </head>
 <body>
@@ -17,30 +17,25 @@
     </a>
         <form>
             <div>
-                <label for="nome">Nome: <span style="color: red;">*</span></label>
-                <input type="text" name="nome" id="nome">
-                <p id="error-nome"></p>
+                <label for="senha">Senha: <span style="color: red;">*</span></label>
+                <input type="password" name="senha" id="senha">
+                <p id="error-senha"></p>
             </div>
 
             <div>
-                <label for="email">Email: <span style="color: red;">*</span></label>
-                <input type="email" name="email" id="email">
-                <p id="error-email"></p>
+                <label for="nova_senha">Nova Senha: <span style="color: red;">*</span></label>
+                <input type="password" name="nova_senha" id="nova_senha">
+                <p id="error-nova_senha"></p>
             </div>
 
-            <div>
-                <label for="cep">CEP: <span style="color: red;">*</span></label>
-                <input type="text" name="cep" id="cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
-                <p id="error-cep"></p>
-            </div>
             <div>
                 <p id="error"></p>
             </div>
-            <button type="button" id="alterarperfil">Salvar</button>
+            <button type="button" id="alterarsenha">Salvar</button>
             <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
         </form>
     </section>
 
-    <script src="/mykeeper/public/js/perfil_alterar.js"></script>
+    <script src="/mykeeper/public/js/senha_alterar.js"></script>
 </body>
 </html>
