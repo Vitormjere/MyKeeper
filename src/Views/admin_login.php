@@ -23,13 +23,16 @@
                     style="position:fixed; top:12px; left:12px; width:32px; height:32px; object-fit:contain;">
             </a>
             <div>
-                <h2>Página de entrada para Administradores</h2>
+                <h2>Acesso para Administradores</h2>
             </div>
             <div>
                 <form>
-                    <input type="password" id="senha" placeholder="Senha de acesso">
-                    <button type="button" id="entrar">Entrar</button>
+                    <label for="senha">Senha de acesso: <span style="color: red;">*</span></label>
+                    <input required type="password" id="senha" placeholder="Insira a senha de acesso">
                     <p id="error"></p>
+                    <button type="button" id="entrar">Entrar</button>
+                    
+                    <span id="significadoAspas">*: Campo obrigatório</span>
                 </form>
             </div>
         </div>

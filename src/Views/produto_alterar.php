@@ -18,20 +18,20 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
     </a>
         <form>
             <div>
-                <label for="nome_produto">Nome</label>
+                <label for="nome_produto">Nome: <span style="color: red;">*</span></label>
                 <input type="text" name="nome_produto" id="nome_produto">
                 <p id="error-nome"></p>
                 <input type="hidden" id="id">
             </div>
 
             <div>
-                <label for="quantidade_produto">Quantidade</label>
+                <label for="quantidade_produto">Quantidade: <span style="color: red;">*</span></label>
                 <input type="number" name="quantidade_produto" id="quantidade_produto" min="0" step="0.01">
                 <p id="error-quantidade"></p>
             </div>
 
             <div>
-                <label for="categoria_produto">Categoria</label>
+                <label for="categoria_produto">Categoria: <span style="color: red;">*</span></label>
                 <select name="categoria_produto" id="categoria_produto">
                     <option value="" data-placeholder="true">Escolha a categoria do produto</option>
                 </select>
@@ -39,7 +39,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
             </div>
             
             <div>
-                <label for="und_medida_produto">Unidade de medida</label>
+                <label for="und_medida_produto">Unidade de medida: <span style="color: red;">*</span></label>
                 <select name="und_medida_produto" id="und_medida_produto">
                     <option value="" data-placeholder="true">Escolha como esse item sera medido</option>
                     <option value="kg">Quilo (Kg)</option>
@@ -63,6 +63,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
                 <p id="error"></p>
             </div>
             <button type="button" id="alterarproduto">Salvar</button>
+            <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
         </form>
     </section>
 

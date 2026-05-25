@@ -21,7 +21,7 @@
             <form id="formCadastro">
                 <div>
                     <div>
-                        <label for="nome">Nome completo</label>
+                        <label for="nome">Nome completo: <span style="color: red;">*</span></label>
                     </div>
                     <div>
                         <input type="text" name="nome" id="nome" placeholder="Seu nome">
@@ -30,7 +30,7 @@
                 </div>
                 <div>
                     <div>
-                        <label for="email">E-mail</label>
+                        <label for="email">E-mail: <span style="color: red;">*</span></label>
                     </div>
                     <div>
                         <input type="text" name="email" id="email" placeholder="seu@email.com">
@@ -39,14 +39,18 @@
                 </div>
 
                 <div>
-                    <label for="cep">CEP</label>
-                    <input type="text" name="cep" id="cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
-                    <p id="error-cep"></p>
+                    <div>
+                        <label for="cep">CEP: <span style="color: red;">*</span></label>
+                    </div>
+                    <div>
+                        <input type="text" name="cep" id="cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
+                        <p id="error-cep"></p>
+                    </div>
                 </div>
 
                 <div>
                     <div>
-                        <label for="senha">Senha</label> <br>
+                        <label for="senha">Senha: <span style="color: red;">*</span></label> <br>
                     </div>
                     <div>
                         <input type="password" name="senha" id="senha" placeholder="••••••" minlength="8">
@@ -57,6 +61,7 @@
                     <p id="error"></p>
                 </div>
                 <button type="submit">Criar conta</button>
+                <span> id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
             </form>
             
             <div class="divider">

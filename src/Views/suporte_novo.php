@@ -22,25 +22,25 @@
     </a>
         <form>
             <div>
-                <label for="nome">Nome</label>
+                <label for="nome">Nome: <span style="color: red;">*</span></label>
                 <input type="text" name="nome" id="nome">
                 <p id="error-nome"></p>
             </div>
 
             <div>
-                <label for="email">Email</label>
+                <label for="email">Email: <span style="color: red;">*</span></label>
                 <input type="email" name="email" id="email">
                 <p id="error-email"></p>
             </div>
 
             <div>
-                <label for="cep">CEP</label>
+                <label for="cep">CEP: <span style="color: red;">*</span></label>
                 <input type="text" name="cep" id="cep" placeholder="00000-000" maxlength="9" inputmode="numeric">
                 <p id="error-cep"></p>
             </div>
 
             <div>
-                <label for="senha">Senha</label>
+                <label for="senha">Senha: <span style="color: red;">*</span></label>
                 <input type="password" name="senha" id="senha" minlength="8">
                 <p id="error-senha"></p>
             </div>
@@ -48,6 +48,7 @@
                 <p id="error"></p>
             </div>
             <button type="button" id="addsuporte">Adicionar</button>
+            <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
         </form>
     </section>
 

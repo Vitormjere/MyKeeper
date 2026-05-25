@@ -24,13 +24,13 @@
         </div>
         <form>
             <div>
-                <label for="titulo">Título</label>
+                <label for="titulo">Título: <span style="color: red;">*</span></label>
                 <input type="text" name="titulo" id="titulo" placeholder="Título do ticket">
                 <p id="error-nome"></p>
                 <input type="hidden" id="ticketId">
             </div>
             <div>
-                <label for="descricao">Descrição</label>
+                <label for="descricao">Descrição: <span style="color: red;">*</span></label>
                 <textarea name="descricao" id="descricao" placeholder="Descrição do ticket" style="resize: none;"></textarea>
                 <p id="error-descricao"></p>
             </div>
@@ -38,6 +38,7 @@
                 <p id="error"></p>
             </div>
             <button type="button" id="alterarTicket">Alterar ticket</button>
+            <button type="button" id="excluirTicket" style="background-color: #e74c3c; margin-left: 10px;">Excluir ticket</button>
         </form>
     </section>
     <script src="/mykeeper/public/js/notificacao_excluir.js"></script>

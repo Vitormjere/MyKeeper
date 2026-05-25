@@ -21,7 +21,7 @@
         </div>
 
         <div class="select-estoque-wrapper">
-            <label for="selectEstoque">Selecione o estoque de destino</label>
+            <label for="selectEstoque">Selecione o estoque de destino: <span style="color: red;">*</span></label>
             <select id="selectEstoque">
                 <option value="">Carregando estoques...</option>
             </select>
@@ -31,6 +31,8 @@
         <p id="mensagem"></p>
 
         <button id="btnConfirmar">Confirmar e Concluir</button>
+
+        <span id="significadoAspas" style= "font-size: 0.72rem; color: #555; text-align: left;">*: Campo obrigatório</span>
 
     </section>
     
