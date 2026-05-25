@@ -3,10 +3,13 @@
     error_reporting(E_ALL);
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
+    include_once(__DIR__ . '/../../config/produto_quantidade.php');
 
     if(session_status() === PHP_SESSION_NONE){
         session_start();
     };
+
+    garantir_coluna_quantidade_produto($conexao);
 
     $retorno = [
         'status' => '',
@@ -18,9 +21,28 @@
 
     if(isset($_GET['id'])){
 
-        $nome = $_POST['nome_produto'];
+        $nome = trim($_POST['nome_produto'] ?? '');
+        $quantidade = $_POST['quantidade_produto'] ?? '';
         $id_categoria = !empty($_POST['id_categoria']) ? (int)$_POST['id_categoria'] : null;
-        $und_medida = $_POST['und_medida_produto'];
+        $und_medida = trim($_POST['und_medida_produto'] ?? '');
+
+        if ($nome === '' || $quantidade === '' || !$id_categoria || $und_medida === '') {
+            echo json_encode([
+                'status' => 'nok',
+                'mensagem' => 'Preencha nome, quantidade, categoria e unidade de medida'
+            ]);
+            exit;
+        }
+
+        $quantidade = floatval($quantidade);
+
+        if ($quantidade < 0) {
+            echo json_encode([
+                'status' => 'nok',
+                'mensagem' => 'Quantidade inválida'
+            ]);
+            exit;
+        }
 
         $imagem = null;
 
@@ -46,17 +68,17 @@
         if($imagem){
             $stmt = $conexao->prepare("
                 UPDATE produto 
-                SET nome=?, id_categoria=?, und_medida=?, imagem=?
+                SET nome=?, quantidade=?, id_categoria=?, und_medida=?, imagem=?
                 WHERE id=? AND id_usuario = ?
             ");
-            $stmt->bind_param("siisii", $nome, $id_categoria, $und_medida, $imagem, $_GET['id'], $id_usuario);
+            $stmt->bind_param("sdissii", $nome, $quantidade, $id_categoria, $und_medida, $imagem, $_GET['id'], $id_usuario);
         } else {
             $stmt = $conexao->prepare("
                 UPDATE produto 
-                SET nome=?, id_categoria=?, und_medida=?
+                SET nome=?, quantidade=?, id_categoria=?, und_medida=?
                 WHERE id=? AND id_usuario = ?
             ");
-            $stmt->bind_param("sisis", $nome, $id_categoria, $und_medida, $_GET['id'], $id_usuario);
+            $stmt->bind_param("sdisii", $nome, $quantidade, $id_categoria, $und_medida, $_GET['id'], $id_usuario);
         }
 
         if(!$stmt->execute()){

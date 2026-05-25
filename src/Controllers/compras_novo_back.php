@@ -16,7 +16,16 @@
 
     $id_usuario = $_SESSION['usuario']['id'];
 
-    $titulo       = $_POST['titulo'];
+    $titulo = trim($_POST['titulo'] ?? '');
+
+    if ($titulo === '') {
+        echo json_encode([
+            'status' => 'nok',
+            'mensagem' => 'O título da lista é obrigatório',
+            'data' => []
+        ]);
+        exit;
+    }
 
     // preparando inserção no banco de dados
 

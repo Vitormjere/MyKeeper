@@ -58,6 +58,7 @@ label {
 }
 
 input[type="text"],
+input[type="number"],
 select {
     width: 100%;
     min-height: 54px;
@@ -66,6 +67,7 @@ select {
     border-radius: 14px;
     padding: 14px 18px;
     color: #f5fffb;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.4;
@@ -91,6 +93,17 @@ input:focus, select:focus {
     border-color: #00ffa3;
     box-shadow: 0 0 0 4px rgba(0, 255, 163, 0.12);
     transform: translateY(-1px);
+}
+
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 select:hover {
