@@ -61,6 +61,12 @@
                 'data'     => ['nome' => $nome]  
             ];
         }
+        else {
+            $retorno = [
+                'status'   => 'nok',
+                'mensagem' => 'Nenhuma alteração realizada'
+            ];
+        }
     } catch (mysqli_sql_exception $e) {
         $retorno = [
             'status'   => 'nok',
