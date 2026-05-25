@@ -14,10 +14,29 @@
 
     $id_usuario = $_SESSION['usuario']['id'];
 
-    $nome_produto       = $_POST['nome_produto'];
+    $nome_produto       = trim($_POST['nome_produto'] ?? '');
+    $quantidade_produto = $_POST['quantidade_produto'] ?? '';
     $id_categoria       = !empty($_POST['id_categoria']) ? $_POST['id_categoria'] : null; 
-    $und_medida_produto = $_POST['und_medida_produto'];
+    $und_medida_produto = trim($_POST['und_medida_produto'] ?? '');
     $icone_produto      = null;
+
+    if ($nome_produto === '' || $quantidade_produto === '' || $id_categoria === null || $und_medida_produto === '') {
+        echo json_encode([
+            'status' => 'nok',
+            'mensagem' => 'Preencha nome, quantidade, categoria e unidade de medida'
+        ]);
+        exit;
+    }
+
+    $quantidade_produto = floatval($quantidade_produto);
+
+    if ($quantidade_produto < 0) {
+        echo json_encode([
+            'status' => 'nok',
+            'mensagem' => 'Quantidade inválida'
+        ]);
+        exit;
+    }
 
     if (isset($_FILES['icone_produto']) && $_FILES['icone_produto']['error'] === 0) {
 
@@ -59,9 +78,9 @@
 
     // preparando inserção no banco de dados
 
-    $stmt = $conexao->prepare("INSERT INTO produto(nome, id_categoria, und_medida, imagem, id_usuario) VALUES(?,?,?,?,?)");
+    $stmt = $conexao->prepare("INSERT INTO produto(nome, quantidade, id_categoria, und_medida, imagem, id_usuario) VALUES(?,?,?,?,?,?)");
 
-    $stmt->bind_param("sssss", $nome_produto, $id_categoria, $und_medida_produto, $icone_produto, $id_usuario);
+    $stmt->bind_param("sdsssi", $nome_produto, $quantidade_produto, $id_categoria, $und_medida_produto, $icone_produto, $id_usuario);
     // inserindo
     $stmt->execute();
 
