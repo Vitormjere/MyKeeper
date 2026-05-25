@@ -1,6 +1,7 @@
 <?php
     include_once(__DIR__ . '/../../config/valida_sessao.php');
     include_once(__DIR__ . '/../../config/valida_admin.php');
+    include_once(__DIR__ . '/../../config/valida_tipo_usuario.php');
 ?>
 
 <!DOCTYPE html>
