@@ -61,64 +61,75 @@ document.getElementById('btnVoz').addEventListener('click', ()=>{
 
 
 
-rec.onresult = async (e)=>{
+rec.onresult = async (e) => {
+
     var i = e.results.length - 1;
+
     if(!e.results[i].isFinal) return;
 
     var texto = e.results[i][0].transcript.trim().toLowerCase();
+
     if(texto == '') return;
 
     var nome = texto.charAt(0).toUpperCase() + texto.slice(1);
 
-    // Verifica no histórico
-    const checkHistorico = await fetch('/mykeeper/src/Controllers/produto_historico_get.php?nome=' + encodeURIComponent(nome));
-    const historico = await checkHistorico.json();
+    // verifica se já existe no produto
+    const checkProduto = await fetch(
+        '/mykeeper/src/Controllers/produto_verificar.php?nome=' + 
+        encodeURIComponent(nome)
+    );
 
-    if(historico.status == 'ok'){
-        // antes de cadastrar, verifica se já existe no produto
-        const checkProduto = await fetch('/mykeeper/src/Controllers/produto_verificar.php?nome=' + encodeURIComponent(nome));
-        const produtoExiste = await checkProduto.json();
-
-        if(produtoExiste.status == 'ok'){
-            toast(nome + ' já está cadastrado!', 'aviso');
-            return;
-        }
-
-        // não existe no produto, cadastra pelo histórico
-        var fd = new FormData();
-        fd.append('nome_produto', nome);
-        fd.append('id_categoria', historico.data.id_categoria || '');
-        fd.append('und_medida_produto', historico.data.und_medida || '');
-
-        try{
-            const retorno = await fetch('/mykeeper/src/Controllers/produto_novo_back.php', {
-                method: 'POST',
-                body: fd
-            });
-            const resposta = await retorno.json();
-            if(resposta.status == 'ok'){
-                toast(nome + ' adicionado!', 'success');
-            } else {
-                toast('Erro ao adicionar ' + nome, true);
-            }
-        } catch(err){
-            toast('Erro ao adicionar ' + nome, true);
-        }
-        return;
-    }
-
-    // Verifica na tabela produto
-    const checkProduto = await fetch('/mykeeper/src/Controllers/produto_verificar.php?nome=' + encodeURIComponent(nome));
     const produtoExiste = await checkProduto.json();
 
     if(produtoExiste.status == 'ok'){
-        // já está cadastrado
         toast(nome + ' já está cadastrado!', 'aviso');
         return;
     }
 
-    // Não encontrou em nenhum -> preenche o campo manualmente
+    // procura no histórico
+    const checkHistorico = await fetch(
+        '/mykeeper/src/Controllers/produto_historico_get.php?nome=' + 
+        encodeURIComponent(nome)
+    );
+
+    const historico = await checkHistorico.json();
+
+    if(historico.status == 'ok'){
+
+        var fd = new FormData();
+
+        fd.append('nome_produto', nome);
+        fd.append('id_categoria', historico.data?.id_categoria || '');
+        fd.append('und_medida_produto', historico.data?.und_medida || '');
+
+        try{
+
+            const retorno = await fetch(
+                '/mykeeper/src/Controllers/produto_novo_back.php',
+                {
+                    method: 'POST',
+                    body: fd
+                }
+            );
+
+            const resposta = await retorno.json();
+
+            if(resposta.status == 'ok'){
+                toast(nome + ' adicionado!', 'success');
+            } else {
+                toast('Erro ao adicionar ' + nome, 'error');
+            }
+
+        } catch(err){
+            toast('Erro ao adicionar ' + nome, 'error');
+        }
+
+        return;
+    }
+
+    // não encontrou em nenhum lugar
     document.getElementById('nome_produto').value = nome;
+
     toast('Complete as informações de ' + nome + '!', 'aviso');
 };
 
