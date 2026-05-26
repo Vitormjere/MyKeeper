@@ -1,8 +1,9 @@
 <?php
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
-    session_start();
-
+    if(session_status() === PHP_SESSION_NONE){
+        session_start();
+    };
     $retorno = [
         'status'   => '',
         'mensagem' => '',
