@@ -65,6 +65,7 @@ function preencherLista(tabela) {
                     <div class="card-botoes">
                         <button class="btn-editar" onclick="adicionar(${tabela[i].id})">+ Adicionar</button>
                     </div>
+                    <hr>
                 </div>`;
     }
     document.getElementById('item').innerHTML = html;

@@ -1,10 +1,13 @@
 <?php
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
-    session_start();
+    
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    } 
 
     if (empty($_SESSION['usuario']['id'])) {
         echo json_encode([
@@ -56,6 +59,12 @@
                 'status'   => 'ok',
                 'mensagem' => 'Perfil atualizado com sucesso',
                 'data'     => ['nome' => $nome]  
+            ];
+        }
+        else {
+            $retorno = [
+                'status'   => 'nok',
+                'mensagem' => 'Nenhuma alteração realizada'
             ];
         }
     } catch (mysqli_sql_exception $e) {

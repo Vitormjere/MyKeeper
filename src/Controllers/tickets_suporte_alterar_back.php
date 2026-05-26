@@ -1,9 +1,12 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-session_start();
+
 include_once(__DIR__ . '/../../config/headers.php');
 include_once(__DIR__ . '/../../config/conexao.php');
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    } 
 
 $retorno = [
     'status' => '',

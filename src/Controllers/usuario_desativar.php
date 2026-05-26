@@ -1,7 +1,10 @@
 <?php
-    session_start();
+
     include_once(__DIR__ . '/../../config/headers.php');
     include_once(__DIR__ . '/../../config/conexao.php');
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    } 
 
     if (empty($_SESSION['usuario']['id'])) {
         echo json_encode([

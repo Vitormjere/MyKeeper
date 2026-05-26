@@ -1,6 +1,8 @@
 <?php
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    } 
 
     include_once '../../config/headers.php';
     include_once '../../config/conexao.php';
