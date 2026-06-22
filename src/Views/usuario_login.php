@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once('../../config/verifica_login_realizado.php');
+    include_once(__DIR__ . '/../../config/verifica_login_realizado.php');
 ?>
 
 <!DOCTYPE html>

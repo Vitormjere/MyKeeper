@@ -20,6 +20,11 @@
         <h2>Adicionar Item</h2>
     </div>
     <input type="hidden" id="id_estoque">
+
+    <div class="busca-wrapper">
+        <input type="text" id="buscar-produto" placeholder="Buscar produto...">
+    </div>
+
     <div id="item"></div>
     <p id="mensagem"></p>
 </section>

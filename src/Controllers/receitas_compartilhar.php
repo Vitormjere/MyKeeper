@@ -34,7 +34,7 @@
 
     $config = parse_ini_file(__DIR__ . '/../../.env'); // ajusta o caminho se necessário
     $base   = rtrim($config['NGROK_URL'], '/');
-    $link   = $base . '/mykeeper/src/Views/receitas_guest.php?token=' . $token;
+    $link   = $base . '/mykeeper/receitas_guest?token=' . $token;
 
     echo json_encode([
         'status'   => 'ok',

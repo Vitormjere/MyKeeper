@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -20,13 +20,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id_estoque = urlParams.get('id_estoque');
 
     if (!id_estoque) {
-        window.location.href = '/mykeeper/src/Views/estoque.php';
+        window.location.href = '/mykeeper/estoque';
         return;
     }
 
     document.getElementById('id_estoque').value = id_estoque;
     buscarProdutos();
-    document.getElementById('btn-voltar').href = '/mykeeper/src/Views/estoque_itens.php?id_estoque=' + id_estoque;
+    document.getElementById('btn-voltar').href = '/mykeeper/estoque_itens?id_estoque=' + id_estoque;
+
+    document.getElementById('buscar-produto').addEventListener('input', function() {
+        const termo = this.value.toLowerCase().trim();
+        document.querySelectorAll('#item .card').forEach(card => {
+            const nome = card.querySelector('.card-nome').textContent.toLowerCase();
+            card.style.display = nome.includes(termo) ? '' : 'none';
+        });
+    });
 });
 
 async function buscarProdutos() {

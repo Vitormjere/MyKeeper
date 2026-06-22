@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -88,7 +88,7 @@ async function buscar(id) {
             lista.appendChild(criarLinhaIngrediente(ing));
         });
     } else {
-        window.location.href = '/mykeeper/src/Views/receitas.php';
+        window.location.href = '/mykeeper/receitas';
     }
 }
 
@@ -162,7 +162,7 @@ async function alterar() {
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/receitas.php';
+            window.location.href = '/mykeeper/receitas';
         }, 1000);
     } else {
         document.getElementById('error').style.color = '#ff6b6b';

@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -54,7 +54,7 @@ function preencherTabela(tabela) {
                 <td>${e(tabela[i].nome)}</td>
                 <td>${e(tabela[i].descricao)}</td>
                 <td class="botoes">
-                    <button class="btn-editar"><a href="categoria_alterar.php?id=${tabela[i].id}">Editar</a></button>
+                    <button class="btn-editar"><a href="/mykeeper/categoria_alterar?id=${tabela[i].id}">Editar</a></button>
                     <button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id})">Excluir</a></button>
                 </td>
             </tr>`;
@@ -78,5 +78,5 @@ async function excluir(id) {
 }
 
 document.getElementById('categoria_nova').addEventListener('click', () => {
-    window.location.href = '/mykeeper/src/Views/categoria_novo.php';
+    window.location.href = '/mykeeper/categoria_novo';
 });

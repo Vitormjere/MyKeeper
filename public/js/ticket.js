@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -60,7 +60,7 @@ function preencherTabela(tabela){
     for(var i=0;i<tabela.length;i++){
         const btnEditar = tabela[i].status_ticket == 'ticket_encerrado'
             ? 'Encerrado, não permitido.'
-            : `<button class="btn-editar"><a href="ticket_usuario_alterar.php?id=${tabela[i].id}">Editar</a></button>`;
+            : `<button class="btn-editar"><a href="/mykeeper/ticket_usuario_alterar?id=${tabela[i].id}">Editar</a></button>`;
 
         const BtnExcluir = tabela[i].status_ticket == 'ticket_encerrado'
             ? 'Encerrado, não permitido.'
@@ -74,7 +74,7 @@ function preencherTabela(tabela){
                 <td> ${respostaOuTracos(tabela[i].resposta_ticket)} </td>
                 <td> ${e(tabela[i].status_ticket)} </td>
                 <td class="botoes"> 
-                    <button class="btn-chat"><a href="/mykeeper/src/Views/chat_ticket.php?id=${tabela[i].id}">Chat</a></button>
+                    <button class="btn-chat"><a href="/mykeeper/chat_ticket?id=${tabela[i].id}">Chat</a></button>
                     ${btnEditar}
                     ${BtnExcluir}
                 </td>
@@ -99,5 +99,5 @@ async function excluir(id) {
 }
 
 document.getElementById('ticket_novo').addEventListener('click', ()=>{
-    window.location.href = '/mykeeper/src/Views/ticket_usuario_novo.php'
+    window.location.href = '/mykeeper/ticket_usuario_novo'
 });

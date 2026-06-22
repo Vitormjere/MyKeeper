@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -56,7 +56,35 @@ function criarLinhaIngrediente(dados = {}) {
     atualizarVisualSelect(selectUnd);
     selectUnd.addEventListener('change', () => atualizarVisualSelect(selectUnd));
 
-    clone.querySelector('.input-nome').value = dados.nome ?? '';
+    clone.querySelector('.input-nome').addEventListener('blur', async function() {
+        const nome = this.value.trim();
+        if (!nome) return;
+
+        const retorno = await fetch('/mykeeper/src/Controllers/produto_info_get.php?nome=' + encodeURIComponent(nome));
+        const resposta = await retorno.json();
+
+        if (resposta.status == 'ok') {
+            selectCat.value = resposta.data.id_categoria;
+
+            const mapaUnidades = {
+                'g': 'gramas',
+                'gramas': 'gramas',
+                'kg': 'kg',
+                'l': 'l',
+                'litro': 'l',
+                'ml': 'ml',
+                'un': 'un',
+                'unidade': 'un',
+                'unid': 'un'
+            };
+
+            selectUnd.value = mapaUnidades[resposta.data.und_medida] || resposta.data.und_medida;
+
+            atualizarVisualSelect(selectCat);
+            atualizarVisualSelect(selectUnd);
+        }
+    });
+
     clone.querySelector('.input-qtd').value = dados.qtd ?? '';
 
     if (dados.und_medida) selectUnd.value = dados.und_medida;
@@ -136,7 +164,7 @@ async function novo() {
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/receitas.php';
+            window.location.href = '/mykeeper/receitas';
         }, 1000);
     } else {
         document.getElementById('error').style.color = '#ff6b6b';

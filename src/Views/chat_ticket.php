@@ -3,7 +3,7 @@
 
     $id_ticket = intval($_GET['id'] ?? 0);
     if ($id_ticket === 0) {
-        header('Location: /mykeeper/src/Views/home.php');
+        header('Location: /mykeeper/home');
         exit;
     }
 

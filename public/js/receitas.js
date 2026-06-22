@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -59,7 +59,7 @@ function renderizarCards(receitas) {
                 <p class="receita-descricao"></p>
                 <ul class="receita-ingredientes"></ul>
                 <div class="receita-acoes">
-                    <button class="btn-editar" onclick="window.location.href='/mykeeper/src/Views/receitas_alterar.php?id=${receita.id}'">Editar</button>
+                    <button class="btn-editar" onclick="window.location.href='/mykeeper/receitas_alterar?id=${receita.id}'">Editar</button>
                     <button class="btn-excluir" onclick="excluir(${receita.id}, this)">Excluir</button>
                     <button class="btn-compartilhar" onclick="compartilhar(${receita.id})">Compartilhar</button>
                 </div>
@@ -154,7 +154,7 @@ function formatarData(data) {
 }
 
 document.getElementById('receita_nova').addEventListener('click', () => {
-    window.location.href = '/mykeeper/src/Views/receitas_novo.php';
+    window.location.href = '/mykeeper/receitas_novo';
 });
 
 async function compartilhar(id) {

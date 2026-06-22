@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -27,14 +27,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id_lista_compra = urlParams.get('id_lista_compra');
     if (!id_lista_compra) {
-        window.location.href = '/mykeeper/src/Views/compras.php';
+        window.location.href = '/mykeeper/compras';
         return;
     }
 
     buscar(id_lista_compra);
 
     document.getElementById('adicionarItem').addEventListener('click', () => {
-        window.location.href = `/mykeeper/src/Views/compras_itens_adicionar.php?id_lista_compra=${id_lista_compra}`;
+        window.location.href = `/mykeeper/compras_itens_adicionar?id_lista_compra=${id_lista_compra}`;
     });
 });
 
@@ -77,7 +77,7 @@ function preencherTabela(tabela, id_lista_compra, bloqueado) {
 
                     <div class="card-botoes">
                         ${bloqueado ? '' : `
-                        <button class="btn-editar"><a href="compras_itens_alterar.php?id_lista_compra=${id_lista_compra}&id_produto=${tabela[i].id_produto}">Editar</a></button>
+                        <button class="btn-editar"><a href="/mykeeper/compras_itens_alterar?id_lista_compra=${id_lista_compra}&id_produto=${tabela[i].id_produto}">Editar</a></button>
                         <button class="btn-excluir"><a href="#" onclick="excluir(${id_lista_compra}, ${tabela[i].id_produto})">Excluir</a></button>
                         `}
                     </div>

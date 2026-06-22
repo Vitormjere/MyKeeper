@@ -4,6 +4,6 @@
     }
 
     if (empty($_SESSION['admin']) || $_SESSION['admin'] !== true) {
-        header("Location: /mykeeper/src/Views/admin_login.php");
+        header("Location: /mykeeper/admin_login");
         exit;
     }

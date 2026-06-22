@@ -12,7 +12,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
 </head>
 <body>
     <section>
-        <a href="/mykeeper/src/Views/receitas.php">
+        <a href="/mykeeper/receitas">
             <img src="/mykeeper/public/assets/perto.png" alt="voltar" style="position:fixed; top:12px; left:12px; width:32px; height:32px; object-fit:contain;">
         </a>
         <form>

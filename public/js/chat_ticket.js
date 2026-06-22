@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -207,8 +207,8 @@ async function enviarMensagem() {
 
 document.getElementById('btn-voltar').addEventListener('click', () => {
     if (TIPO_SESSAO == 0) {
-        window.location.href = '/mykeeper/src/Views/ticket_usuario.php';
+        window.location.href = '/mykeeper/ticket_usuario';
     } else {
-        window.location.href = '/mykeeper/src/Views/tickets_suporte.php';
+        window.location.href = '/mykeeper/tickets_suporte';
     }
 });

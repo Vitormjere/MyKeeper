@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -51,7 +51,7 @@ document.getElementById('alterarsenha').addEventListener('click', async () => {
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'Senha atualizada com sucesso!' + '.Redirecionando...';
         setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/perfil_usuario.php';
+            window.location.href = '/mykeeper/perfil_usuario';
         }, 1000);
     } else {
         document.getElementById('error').style.color = '#ff6b6b';

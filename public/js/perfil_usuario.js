@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -32,8 +32,8 @@ function preencherInformacoes(usuario) {
     document.getElementById('nome').textContent = e(usuario.nome);
     document.getElementById('email').textContent = e(usuario.email);
     document.getElementById('cep').textContent = e(usuario.cep);
-    document.getElementById('linkEditar').href = `/mykeeper/src/Views/perfil_alterar.php?id=${usuario.id}`;
-    document.getElementById('linkSenha').href = `/mykeeper/src/Views/senha_alterar.php?id=${usuario.id}`;
+    document.getElementById('linkEditar').href = `/mykeeper/perfil_alterar?id=${usuario.id}`;
+    document.getElementById('linkSenha').href = `/mykeeper/senha_alterar?id=${usuario.id}`;
 }
 
 document.getElementById('desativarConta').addEventListener('click', async () => {
@@ -45,7 +45,7 @@ document.getElementById('desativarConta').addEventListener('click', async () => 
         if (data.status === 'ok') {
             notificacaoSistema(data.mensagem, 'success');
             setTimeout(function() {
-                window.location.href = '/mykeeper/src/Views/usuario_login.php';
+                window.location.href = '/mykeeper/usuario_login';
             }, 1200);
         } else {
             notificacaoSistema('Erro ao desativar conta: ' + data.mensagem, 'error');

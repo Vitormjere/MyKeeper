@@ -17,7 +17,7 @@
     <section>
         
         <div class="header-lista">
-            <a href="/mykeeper/src/Views/compras.php">
+            <a href="/mykeeper/compras">
                 <img src="/mykeeper/public/assets/perto.png" alt="x.png" style="width:32px; height:32px; object-fit:contain;">
             </a>
             <h2>Itens da Lista de Compras</h2>

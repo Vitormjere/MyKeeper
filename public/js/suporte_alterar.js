@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -62,7 +62,7 @@ async function buscar(id){
     }else{
         notificacaoSistema('ERRO: ' + resposta.mensagem, 'error');
         setTimeout(function() {
-            window.location.href = '/mykeeper/src/Views/suporte.php';
+            window.location.href = '/mykeeper/suporte';
         }, 1200);
     }
 }
@@ -113,7 +113,7 @@ async function alterar(){
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').innerText = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
-            window.location.href = "/mykeeper/src/Views/suporte.php";
+            window.location.href = "/mykeeper/suporte";
         }, 1000);
     }else{
         document.getElementById('error').style.color = '#ff6b6b';

@@ -55,13 +55,13 @@ foreach ($ingredientes as $i => $ing) {
 
     if (!$nome || !$id_categoria || !$und_medida || $qtd <= 0) continue;
 
-    // verifica se produto já existe para este usuário
+    // verifica se produto já existe para este usuário (ignorando maiúsculas/espaços)
     $stmtCheck = $conexao->prepare("
         SELECT id FROM produto
-        WHERE nome = ? AND id_categoria = ? AND und_medida = ? AND id_usuario = ?
+        WHERE LOWER(TRIM(nome)) = LOWER(TRIM(?)) AND id_usuario = ?
         LIMIT 1
     ");
-    $stmtCheck->bind_param('sisi', $nome, $id_categoria, $und_medida, $id_usuario);
+    $stmtCheck->bind_param('si', $nome, $id_usuario);
     $stmtCheck->execute();
     $resultCheck = $stmtCheck->get_result();
 

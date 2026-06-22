@@ -4,7 +4,7 @@ document.getElementById('formLogin').addEventListener('submit',(e)=>{
 })
 
 document.getElementById('createAccount').addEventListener('click', ()=>{
-    window.location.href = '/mykeeper/src/Views/usuario_cadastro.php';
+    window.location.href = '/mykeeper/usuario_cadastro';
 })
 document.addEventListener('DOMContentLoaded', async ()=>{
     const params = new URLSearchParams(window.location.search);

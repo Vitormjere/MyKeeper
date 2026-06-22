@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', async ()=>{
     
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -72,8 +72,8 @@ function preencherTabela(tabela){
                 <td> ${respostaOuTracos(tabela[i].resposta_ticket)} </td>
                 <td> ${e(tabela[i].status_ticket)} </td>
                 <td class="botoes"> 
-                <button class = "btn-editar"><a href="tickets_suporte_alterar.php?id=${tabela[i].id}">Editar</a></button>
-                <button class="btn-chat"><a href="/mykeeper/src/Views/chat_ticket.php?id=${tabela[i].id}">Chat</a></button>
+                <button class="btn-editar"><a href="/mykeeper/tickets_suporte_alterar?id=${tabela[i].id}">Editar</a></button>
+                <button class="btn-chat"><a href="/mykeeper/chat_ticket?id=${tabela[i].id}">Chat</a></button>
                 </td>
                 </tr>`;
     }

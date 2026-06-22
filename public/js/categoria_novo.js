@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -63,7 +63,7 @@ async function novo() {
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
-            window.location.href = "/mykeeper/src/Views/categoria.php";
+            window.location.href = "/mykeeper/categoria";
         }, 1000);
     } else {
         document.getElementById('error').style.color = '#ff6b6b';

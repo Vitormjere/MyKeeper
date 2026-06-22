@@ -46,17 +46,34 @@ if (isset($_GET['id'])) {
                 p.und_medida,
                 p.imagem,
                 ii.qtd,
+                ii.und_medida AS und_medida_receita,
                 CASE 
-                    WHEN SUM(ie.quantidade) >= ii.qtd THEN 'disponivel'
-                    WHEN SUM(ie.quantidade) > 0       THEN 'parcial'
-                    ELSE                                   'indisponivel'
+                    WHEN SUM(
+                        ie.quantidade *
+                        CASE LOWER(TRIM(p.und_medida))
+                            WHEN 'kg' THEN 1000
+                            WHEN 'l'  THEN 1000
+                            WHEN 'litro' THEN 1000
+                            ELSE 1
+                        END
+                    ) >= (
+                        ii.qtd *
+                        CASE LOWER(TRIM(ii.und_medida))
+                            WHEN 'kg' THEN 1000
+                            WHEN 'l'  THEN 1000
+                            WHEN 'litro' THEN 1000
+                            ELSE 1
+                        END
+                    ) THEN 'disponivel'
+                    WHEN SUM(ie.quantidade) > 0 THEN 'parcial'
+                    ELSE 'indisponivel'
                 END AS status_estoque
             FROM item_ingrediente ii
             INNER JOIN produto p ON p.id = ii.id_produto
             LEFT JOIN item_estoque ie ON ie.id_produto = p.id
             LEFT JOIN estoque e ON e.id = ie.id_estoque AND e.id_usuario = ?
             WHERE ii.id_receita = ?
-            GROUP BY p.id, p.nome, p.id_categoria, p.und_medida, p.imagem, ii.qtd
+            GROUP BY p.id, p.nome, p.id_categoria, p.und_medida, p.imagem, ii.qtd, ii.und_medida
         ");
         $stmt2->bind_param('ii', $id_usuario, $id_receita);
         $stmt2->execute();

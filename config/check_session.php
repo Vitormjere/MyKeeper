@@ -27,7 +27,7 @@
             'id'       => $_SESSION['usuario']['id'],
             'nome'     => $_SESSION['usuario']['nome'],
             'tipo'     => $_SESSION['usuario']['tipo'],
-            'redirect' => '/mykeeper/src/Views/home.php'
+            'redirect' => '/mykeeper/home'
         ]);
     } else {
         echo json_encode([

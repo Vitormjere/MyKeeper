@@ -12,7 +12,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
 </head>
 <body>
     <section>
-        <a href="/mykeeper/src/Views/receitas.php">
+        <a href="/mykeeper/receitas">
             <img src="/mykeeper/public/assets/perto.png" alt="voltar" style="position:fixed; top:12px; left:12px; width:32px; height:32px; object-fit:contain;">
         </a>
         <form>
@@ -55,7 +55,7 @@ include_once(__DIR__ . '/../../config/check_permissao_adm.php');
                                 <option value="gramas">Gramas (g)</option>
                                 <option value="l">Litro (L)</option>
                                 <option value="ml">Mililitro (mL)</option>
-                                <option value="unidade">Unidade</option>
+                                <option value="un">Unidade</option>
                                 <option value="xicara">Xícara</option>
                                 <option value="colher_sopa">Colher de sopa</option>
                                 <option value="colher_cha">Colher de chá</option>

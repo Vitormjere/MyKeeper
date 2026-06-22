@@ -12,7 +12,7 @@
 </head>
 <body>
     <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['tipo'] === 1): 
-        echo '<script>window.location.href = "/mykeeper/src/Views/admin_home.php";</script>';
+        echo '<script>window.location.href = " /mykeeper/admin_home";</script>';
         exit();    
     ?>
     <?php endif; ?>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="stats-grid">
-            <a href="produto.php" class="card-link">
+            <a href="/mykeeper/produto" class="card-link">
                 <div class="home-card">
                     <div class="icon">📦</div>
                     <h3>Meus Produtos</h3>
@@ -33,7 +33,7 @@
                 </div>
             </a>
 
-            <a href="estoque.php" class="card-link">
+            <a href="/mykeeper/estoque" class="card-link">
                 <div class="home-card">
                     <div class="icon">&#x1F4E5;</div>
                     <h3>Estoque</h3>
@@ -42,7 +42,7 @@
                 </div>
             </a>
 
-            <a href="compras.php" class="card-link">
+            <a href="/mykeeper/compras" class="card-link">
                 <div class="home-card">
                     <div class="icon">&#x1F4DD;</div>
                     <h3>Lista de Compras</h3>
@@ -51,7 +51,7 @@
                 </div>
             </a>
 
-            <a href="receitas.php" class="card-link">
+            <a href="/mykeeper/receitas" class="card-link">
                 <div class="home-card">
                     <div class="icon">&#x1F35A;</div>
                     <h3>Receitas</h3>
@@ -60,7 +60,7 @@
                 </div>
             </a>
 
-            <a href="categoria.php" class="card-link">
+            <a href="/mykeeper/categoria" class="card-link">
                 <div class="home-card">
                     <div class="icon">🏷️</div>
                     <h3>Categorias</h3>
@@ -69,7 +69,7 @@
                 </div>
             </a>
 
-            <a href="ticket_usuario.php" class="card-link">
+            <a href="/mykeeper/ticket_usuario" class="card-link">
                 <div class="home-card">
                     <div class="icon">🎧</div>
                     <h3>Suporte</h3>

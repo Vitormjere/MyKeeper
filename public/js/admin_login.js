@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const resposta = await retorno.json();
 
         if (resposta.status === 'ok') {
-            window.location.href = '/mykeeper/src/Views/admin_home.php';
+            window.location.href = ' /mykeeper/admin_home';
         } else {
             document.getElementById('error').textContent = 'Erro: ' + resposta.mensagem + '. Redirecionando...';
             setTimeout(() => {
-                window.location.href = '/mykeeper/src/Views/home.php';
+                window.location.href = '/mykeeper/home';
             }, 2000);
         }
     });

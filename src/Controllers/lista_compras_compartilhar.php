@@ -37,7 +37,7 @@ if(!empty($resultado['link_compart'])){
 $config = parse_ini_file(__DIR__ . '/../../.env');
 $base   = rtrim($config['NGROK_URL'], '/');
 
-$link = $base . '/mykeeper/src/Views/compras_guest.php?token=' . $token;
+$link = $base . '/mykeeper/compras_guest?token=' . $token;
 
 echo json_encode([
     'status'   => 'ok',

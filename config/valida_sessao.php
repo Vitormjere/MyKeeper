@@ -2,6 +2,6 @@
 session_start();
 
 if (empty($_SESSION['logado']) || $_SESSION['logado'] !== true) {
-    header("Location: /mykeeper/src/Views/usuario_login.php");
+    header("Location: /mykeeper/usuario_login");
     exit;
 }

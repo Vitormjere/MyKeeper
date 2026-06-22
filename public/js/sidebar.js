@@ -3,14 +3,14 @@ function addClick(id, url) {
     if (el) el.addEventListener('click', () => window.location.href = url);
 }
 
-addClick('inicioButtonLink',    '/mykeeper/src/Views/home.php');
-addClick('estoquesButtonLink',  '/mykeeper/src/Views/estoque.php');
-addClick('comprasButtonLink',   '/mykeeper/src/Views/compras.php');
-addClick('produtosButtonLink',  '/mykeeper/src/Views/produto.php');
-addClick('categoriasButtonLink','/mykeeper/src/Views/categoria.php');
-addClick('receitasButtonLink',  '/mykeeper/src/Views/receitas.php');
-addClick('perfilButtonLink',    '/mykeeper/src/Views/perfil_usuario.php');
-addClick('ticketButtonLink',    '/mykeeper/src/Views/ticket_usuario.php');
+addClick('inicioButtonLink',    '/mykeeper/home');
+addClick('estoquesButtonLink',  '/mykeeper/estoque');
+addClick('comprasButtonLink',   '/mykeeper/compras');
+addClick('produtosButtonLink',  '/mykeeper/produto');
+addClick('categoriasButtonLink','/mykeeper/categoria');
+addClick('receitasButtonLink',  '/mykeeper/receitas');
+addClick('perfilButtonLink',    '/mykeeper/perfil_usuario');
+addClick('ticketButtonLink',    '/mykeeper/ticket_usuario');
 addClick('logoffButtonLink',    '/mykeeper/src/Controllers/logoff.php');
-addClick('TicketsButtonLinkSuporte', '/mykeeper/src/Views/tickets_suporte.php');
-addClick('suporteButtonLink', '/mykeeper/src/Views/suporte.php');
+addClick('TicketsButtonLinkSuporte', '/mykeeper/tickets_suporte');
+addClick('suporteButtonLink', '/mykeeper/suporte');

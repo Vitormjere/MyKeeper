@@ -22,7 +22,7 @@ cadastroForm.addEventListener('submit', (event) => {
 });
 
 entrarButton.addEventListener('click', () => {
-    window.location.href = '/mykeeper/src/Views/usuario_login.php';
+    window.location.href = '/mykeeper/usuario_login';
 });
 
 cepInput.addEventListener('input', () => {
@@ -77,7 +77,7 @@ async function cadastrar() {
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! Cadastro realizado com êxito' + '. Redirecionando para a página de login...';
         setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }, 1000);
         return;
     }else{

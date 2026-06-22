@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -20,13 +20,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id_lista_compra = urlParams.get('id_lista_compra');
 
     if (!id_lista_compra) {
-        window.location.href = '/mykeeper/src/Views/compras.php';
+        window.location.href = '/mykeeper/compras';
         return;
     }
 
     document.getElementById('id_lista_compra').value = id_lista_compra;
     buscarProdutos();
-    document.getElementById('btn-voltar').href = '/mykeeper/src/Views/compras_itens.php?id_lista_compra=' + id_lista_compra;
+    document.getElementById('btn-voltar').href = '/mykeeper/compras_itens?id_lista_compra=' + id_lista_compra;
 });
 
 async function buscarProdutos() {

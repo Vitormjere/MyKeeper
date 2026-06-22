@@ -17,7 +17,7 @@
 
 <body>
     <section>
-        <a href="/mykeeper/src/Views/suporte.php">
+        <a href="/mykeeper/suporte">
         <img src="/mykeeper/public/assets/perto.png" alt="x.png" style="position:fixed; top:12px; left:12px; width:32px; height:32px; object-fit:contain;">
     </a>
         <form>

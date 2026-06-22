@@ -4,8 +4,8 @@
         session_start();
     } 
 
-    include_once '../../config/headers.php';
-    include_once '../../config/conexao.php';
+    include_once __DIR__ . '/../../config/headers.php';
+    include_once __DIR__ . '/../../config/conexao.php';
 
     header('Content-Type: application/json; charset=utf-8');
 

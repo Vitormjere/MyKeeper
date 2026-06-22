@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id_estoque = urlParams.get('id_estoque');
 
     if (!id_estoque) {
-        window.location.href = '/mykeeper/src/Views/estoque.php';
+        window.location.href = '/mykeeper/estoque';
         return;
     }
 
     buscar(id_estoque);
 
     document.getElementById('adicionarItem').addEventListener('click', () => {
-        window.location.href = `/mykeeper/src/Views/item_estoque_adicionar.php?id_estoque=${id_estoque}`;
+        window.location.href = `/mykeeper/item_estoque_adicionar?id_estoque=${id_estoque}`;
     });
 });
 
@@ -78,7 +78,7 @@ function preencherTabela(tabela, id_estoque) {
                         Validade: ${validade}
                     </div>
                     <div class="card-botoes">
-                        <button class="btn-editar"><a href="item_estoque_alterar.php?id=${tabela[i].id}&id_estoque=${id_estoque}">Editar</a></button>
+                        <button class="btn-editar"><a href="/mykeeper/item_estoque_alterar?id=${tabela[i].id}&id_estoque=${id_estoque}">Editar</a></button>
                         <button class="btn-excluir"><a href="#" onclick="excluir(${tabela[i].id}, ${id_estoque})">Excluir</a></button>
                     </div>
                 </div>`;

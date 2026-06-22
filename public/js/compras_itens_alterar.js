@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const data = await response.json();
     if (!data.logado) {
         if (data.expirado) {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php?motivo=expirado';
+            window.location.href = '/mykeeper/usuario_login?motivo=expirado';
         } else {
-            window.location.href = '/mykeeper/src/Views/usuario_login.php';
+            window.location.href = '/mykeeper/usuario_login';
         }
         return;
     }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const id_produto     = urlParams.get('id_produto');
 
     if (!id_lista_compra || !id_produto) {
-        window.location.href = '/mykeeper/src/Views/compras.php';
+        window.location.href = '/mykeeper/compras';
         return;
     }
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     document.getElementById('btn-voltar').href =
-        '/mykeeper/src/Views/compras_itens.php?id_lista_compra=' + id_lista_compra;
+        '/mykeeper/compras_itens?id_lista_compra=' + id_lista_compra;
 
     buscar(id_lista_compra, id_produto);
 
@@ -69,7 +69,7 @@ async function alterar() {
         document.getElementById('error').style.color = '#00ffa3';
         document.getElementById('error').textContent = 'SUCESSO! ' + resposta.mensagem + '. Redirecionando...';
         setTimeout(() => {
-            window.location.href = '/mykeeper/src/Views/compras_itens.php?id_lista_compra=' + id_lista_compra;
+            window.location.href = '/mykeeper/compras_itens?id_lista_compra=' + id_lista_compra;
         }, 1000);
     } else {
         document.getElementById('error').style.color = '#ff6b6b';

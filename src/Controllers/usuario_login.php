@@ -43,7 +43,7 @@ if ($usuario && password_verify($_POST['senha'], $usuario['senha'])) {
     $retorno = [
         'status'   => 'ok',
         'mensagem' => 'Login realizado com sucesso',
-        'redirect' => '/mykeeper/src/Views/home.php'
+        'redirect' => '/mykeeper/home'
     ];
 
 } else {
